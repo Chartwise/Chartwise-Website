@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Authors on Chartwise | Data Consultancy</title>
+    <link>/author/</link>
+    <description>Recent content in Authors on Chartwise | Data Consultancy</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright &amp;copy; 2020 Chartwise All Rights Reserved</copyright>
+    
+	<atom:link href="/author/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Rob Storm | Chartwise - Data Consultancy</title>
+      <link>/author/rob-storm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/author/rob-storm/</guid>
+      <description>Het creatieve brein achter Chartwise. Met mijn ervaring in zowel online- als offline marketing help ik jouw bedrijf graag met het realiseren van groei.</description>
+    </item>
+    
+    <item>
+      <title>Stefan Musch | Chartwise - Data Consultancy</title>
+      <link>/author/stefan-musch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/author/stefan-musch/</guid>
+      <description>Met mijn passie voor feiten en ervaring als lead Data Scientist is jouw data in goede handen. Ik help jouw organisatie graag met het vertalen van lastige bedrijfsproblemen naar oplossingen aan de hand van data.</description>
+    </item>
+    
+  </channel>
+</rss>

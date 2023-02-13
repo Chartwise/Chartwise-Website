@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Onze Services | Chartwise - Datavisualisatie &amp; Data Consultancy on Chartwise | Datavisualisatie &amp; Data Consultancy</title>
+    <link>/services/</link>
+    <description>Recent content in Onze Services | Chartwise - Datavisualisatie &amp; Data Consultancy on Chartwise | Datavisualisatie &amp; Data Consultancy</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright &amp;copy; 2020 Chartwise All Rights Reserved</copyright>
+    
+	<atom:link href="/services/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>

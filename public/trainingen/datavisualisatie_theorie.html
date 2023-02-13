@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Datavisualisatie Theorie Training</title>
+    <meta charset="utf-8" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link href="libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
+    <link href="libs/ionicons/css/ionicons.min.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.png" type="image">
+    <title>Datavisualisatie Theorie Training</title>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+class: hide-logo
+
+.center[
+# Introductie
+
+&lt;br&gt; 
+
+.pull-left[
+&lt;img src="img/rob.png" style="width: 50%;"/&gt;
+&lt;br&gt; 
+**Rob Storm** &lt;br&gt; 
+Brand Manager &lt;br&gt;&lt;br&gt;
+&lt;a href="https://www.linkedin.com/in/robstormm/"&gt;
+.orange[<i class="fab  fa-linkedin fa-2x "></i>]&lt;/a&gt;
+&lt;a href="mailto:rob@chartwise.nl"&gt;
+.orange[<i class="fas  fa-envelope fa-2x "></i>]&lt;/a&gt;
+]
+
+.pull-right[
+&lt;img src="img/stefan.png" style="width: 50%;"/&gt;
+&lt;br&gt; 
+**Stefan Musch** &lt;br&gt; 
+Data Manager &lt;br&gt;&lt;br&gt;
+&lt;a href="https://www.linkedin.com/in/stefanmusch/"&gt;
+.orange[<i class="fab  fa-linkedin fa-2x "></i>]&lt;/a&gt;
+&lt;a href="mailto:stefan@chartwise.nl"&gt;
+.orange[<i class="fas  fa-envelope fa-2x "></i>]&lt;/a&gt;
+]
+
+&lt;div style = "font-size: 16px"&gt;
+&lt;a href="https://www.instagram.com/chartwisenl/"&gt;
+.orange[<i class="ion  ion-social-instagram "></i>]&lt;/a&gt;
+&lt;a href="https://www.instagram.com/chartwisenl/"&gt;chartwiseNL&lt;/a&gt;&lt;/div&gt;
+]
+&lt;a href="https://www.instagram.com/chartwisenl/"&gt;
+&lt;img src="img/cw-oranje-blauw.png" style="width: 30%; position: absolute; bottom: 25px; right: 35%;"/&gt;
+&lt;/a&gt;
+
+
+---
+class: inverse
+
+.center[
+# Datavisualisatie Training
+## Effectief communiceren met data
+## Stefan Musch
+## November 2020
+]
+
+.center[
+&lt;img src="img/front-page.png" style="width: 50%;"/&gt;
+]
+
+---
+
+# Waarom datavisualisatie?
+
+&gt; A picture is worth a thousand words
+&gt; *-Henrik Ibsen*
+
+--
+
+* Datavisualisatie kan informatie **sneller** overbrengen dan tabellen
+
+--
+
+* Datavisualisatie kan **onverwachte** patronen aan het licht brengen
+
+--
+
+* Datavisualisatie is **aantrekkelijker** om naar te kijken en trekt de aandacht
+
+.center[
+&lt;img src="img/2020-03-07-muziek.png" style="width: 40%;"/&gt;
+]
+
+---
+
+# Het belang van datavisualisatie
+
+&lt;br&gt;
+
+.center[
+&lt;img src="img/anscombe.png" style="width: 80%;"/&gt;
+]
+
+---
+
+### Anscombe’s kwartet*
+
+In de *scatterplots* hieronder zijn dezelfde series aan datapunten te zien. Zoals je ziet, zijn de patronen en trends volledig verschillend ondanks dat de variabelen exact dezelfde samengevatte waardes hebben
+
+.center[
+&lt;img src="datavisualisatie_theorie_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+.footnote[*Anscombe, 1973; Chatterjee &amp; Firat, 2007]
+
+---
+
+## Communiceren met datavisualisatie
+
+* Om een boodschap effectief over te brengen, is het belangrijk om de juiste visuele aspecten uit te lichten.
+
+--
+* De design van je grafiek hangt af van het **punt** dat je wil maken.
+--
+
+
+.center[
+&lt;img src="img/communiceren.png" style="width: 100%;"/&gt;
+]
+
+---
+
+## Wat maakt een visualisatie slecht?
+
+Problemen met visualisaties komen vaak voor in drie vormen:
+
+* `Esthetisch`
+
+.center[
+&lt;img src="img/bad-taste.png" style="width: 80%;"/&gt;
+]
+
+&gt; Edward R. Tufte is *de* meeste bekende criticus van overgefrabiceerde visualisaties. Zijn boek *The Visual Display of Quantitative Information (1983)* wordt dan ook gezien als de heilige voor het ontwerpen van datavisualisaties.  
+
+---
+
+## Wat maakt een visualisatie slecht?
+
+Problemen met visualisaties komen vaak voor in drie vormen:
+
+* Esthetisch
+* `Misleidende data`
+
+.center[
+&lt;img src="img/slechte-data.png" style="width: 60%;"/&gt;
+]
+
+&gt; Enorm elegant, good geproduceerd en enorm veel gedeeld op Social Media.
+
+---
+
+## Wat maakt een visualisatie slecht?
+
+De originele grafiek van de New York Times bevat twee misleidende elementen:
+ * Het lijkt erop dat de x-as door de tijd gemeten is, begonnen in 1930 en beëindigd in 1980. Dit is echter niet het geval, dit gaat puur om de *geboortedatum* van een persoon. Een staafgrafiek was dus beter geweest.
+ * Het lijkt erop dat de y-as een *keuze* laat zien tussen wel of geen democractie. Echter was de vraag gesteld op een 10-puntsschaal waar `1 = niet belangrijk` en `10 = enorm belangrijk` betekend. De percentages waren in referentie tot het aantal antwoorden met een `10`. 
+
+.center[
+&lt;img src="img/slechte-data-2.png" style="width: 60%;"/&gt;
+]
+
+&gt; De "echte" data gevisueleerd.
+
+---
+
+## Wat maakt een visualisatie slecht?
+
+Problemen met visualisaties komen vaak voor in drie vormen:
+
+* Esthetisch
+* Misleidende data
+* `Perceptie`
+
+.center[
+&lt;img src="img/perceptie.png" style="width: 60%;"/&gt;
+]
+
+--
+
+&gt; De algemene trend is goed te volgen, maar de trend van de specifieke "types" is een stuk lastiger te zien
+
+---
+
+## Waar zit de fout?
+
+.center[
+&lt;img src="img/cnn-slechte-viz.png" style="width: 70%;"/&gt;
+]
+
+--
+
+* Schaal van de US staafgrafieken staan niet in verhouding
+* 25% in US is meer dan 26% in UK
+* Data in Spanje telt op tot 113%
+
+---
+
+## Waar zit de fout?
+
+.center[
+&lt;img src="img/coronavirus-fox-news.jpg" style="width: 70%;"/&gt;
+]
+
+--
+
+* Waardes op de y-as maken niet dezelfde sprongen
+
+---
+
+## Waar zit de fout?
+
+.center[
+&lt;img src="img/2020-05-05-doden-week-af.png" style="width: 60%;"/&gt;
+]
+
+--
+
+* Y-as begint niet op 0 waardoor de verschillen groter lijken
+
+---
+
+## Wat maakt een visualisatie goed?
+
+* Truthful
+* Functional
+* Beautiful
+* Insightful
+* Enlightening
+
+.center[
+&lt;img src="img/good-visual.png" style="width: 60%;"/&gt;
+]
+
+.footnote[ [Alberto Cairo, The Truthful Art](https://www.bol.com/nl/f/the-truthful-art/9200000041222227/)]
+
+---
+## Design
+
+&gt; Disclaimer: Wij hebben geen opleiding Grafisch Vormgeven afgerond
+
+Toch denk ik jullie wat tips mee te kunnen geven onder het `CRAP` principe.
+
+.center[
+&lt;img src="img/crap.png" style="width: 70%;"/&gt;
+]
+
+
+.footnote[[Non-designers Design Book - Robin Williams](https://ptgmedia.pearsoncmg.com/images/9780133966152/samplepages/9780133966152.pdf)]
+
+---
+
+## Afbeeldingstypes
+
+.pull-left[
+.center[
+&lt;img src="img/foto.jpg" style="width: 90%;"/&gt;
+  
+#### Foto's
+
+.pull-left[
+**Web**  
+`JPG`
+]
+.pull-right[
+**Print**  
+`JPG`
+]
+]
+]
+.pull-right[
+.center[
+
+&lt;img src="img/plot.png" style="width: 80%;"/&gt;
+
+#### Grafieken &amp; logo's
+
+.pull-left[
+**Web**  
+`PNG / SVG`
+]
+.pull-right[
+**Print**  
+`PDF`
+]
+]
+]
+---
+
+### Voorbeelden
+
+.center[
+&lt;img src="img/2020-01-31-bevolkingsgroei-plot.png" style="width: 65%;"/&gt;
+]
+
+---
+### Voorbeelden
+
+.center[
+&lt;img src="img/2020-02-06-transfersommen.png" style="width: 65%;"/&gt;
+]
+
+---
+### Voorbeelden
+
+.center[
+&lt;img src="img/2020-04-22-olie-af.png" style="width: 65%;"/&gt;
+]
+
+---
+### Voorbeelden
+
+.center[
+&lt;img src="img/2020-10-25-wappies.png" style="width: 65%;"/&gt;
+]
+
+---
+
+class: inverse
+
+.center[
+# On to the good stuff!
+]
+
+---
+
+# Grafiektypes
+
+.center[
+&lt;img src="img/grafieken.png" style="width: 90%;"/&gt;
+]
+
+---
+
+# Data to viz
+
+&lt;iframe width="100%" height="80%" style = "border:1px solid #225060" src="https://www.data-to-viz.com/" title="data-to-viz"&gt;
+
+## Kleurgebruik in grafieken
+
+---
+
+# Kleurpaletten 
+
+* [RColorBrewer](https://colorbrewer2.org/#type=sequential&amp;scheme=BuGn&amp;n=3)
+* [Viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)
+* [Color Picker](https://learnui.design/tools/data-color-picker.html)
+
+.panelset[
+.panel[.panel-name[Palettes]
+.center[
+&lt;img src="img/color_schemes.png" style="width: 90%;"/&gt;
+]
+]
+.panel[.panel-name[Viridis]
+
+Geoptimaliseerd voor kleurenblinden 
+
+.center[
+&lt;img src="img/viridis.png" style="width: 75%;"/&gt;
+]
+]
+]
+
+
+---
+
+class: inverse
+
+# Software &amp; tools 
+
+.center[
+&lt;img src="img/software.png" style="width: 80%;"/&gt;
+]
+
+---
+
+# Een voorbeeldje in R
+
+[Carbon Monitor](https://carbonmonitor.org/) is een internationaal initiatief om de wereldwijde CO2 uitstoot te meten en bij te houden. Wij gaan een grafiekje maken om de impact van COVID-19 op de uitstoot te visualiseren. 
+--
+
+**De data** 
+* CO2 uitstoot in EU landen &amp; het VK
+* Uitstoot gemeten per dag en omgezet naar een **rolling average** over 7 dagen
+
+
+
+
+```r
+co2_data %&gt;% add_kable()
+```
+
+&lt;table class="table" style="font-size: 14px; font-family: Lato; "&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; date &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; year &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; year_day &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; total_co2_per_day &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; rolling_avg &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-01 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2019 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-02 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2019 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.27 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-03 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2019 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11.23 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-04 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2019 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11.31 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.76 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-05 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2019 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.71 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.23 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-06 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2019 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.49 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2019 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.57 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.62 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+## CO2 uitstoot visualiseren
+
+1) Als eerste geven we aan welke data we willen visualiseren en welke assen we willen.
+
+.panelset[
+.panel[.panel-name[Code]
+
+```r
+ggplot(data = co2_data, 
+*      aes(x = year_day, y = rolling_avg, colour = year))
+```
+]
+.panel[.panel-name[Plot]
+![](datavisualisatie_theorie_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+]]
+
+---
+
+## CO2 uitstoot visualiseren
+
+2) Als tweede geven we de grafiektype aan.
+
+.panelset[
+.panel[.panel-name[Code]
+
+```r
+ggplot(data = co2_data, 
+       aes(x = year_day, y = rolling_avg, colour = year)) +
+* geom_line(size = 1)
+```
+]
+.panel[.panel-name[Plot]
+![](datavisualisatie_theorie_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+]]
+
+---
+
+## CO2 uitstoot visualiseren
+
+3) Vervolgens maken we de assen af en geven we een kleurschaal mee.
+
+.panelset[
+.panel[.panel-name[Code]
+
+```r
+ggplot(data = co2_data, 
+       aes(x = year_day, y = rolling_avg, colour = year)) +
+  geom_line(size = 1) +
+* scale_color_chartwise(name = "")+
+* scale_y_continuous(labels = number_format(suffix = ' ton'))+
+* scale_x_continuous(breaks = c(0,92, 183, 275),
+*                    labels = c('Januari', 'April', 'Juli', 'Oktober'))
+```
+]
+
+.panel[.panel-name[Plot]
+![](datavisualisatie_theorie_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+]]
+
+
+
+---
+
+## CO2 uitstoot visualiseren
+
+4) Nu wil ik graag de lockdown periode laten zien zoals op de website. Van 10 maart tot 19 mei.
+
+.panelset[
+.panel[.panel-name[Code]
+
+```r
+ggplot(data = co2_data, 
+       aes(x = year_day, y = rolling_avg, colour = year)) +
+  geom_line(size = 1) +
+  scale_color_chartwise(name = "")+ 
+  scale_y_continuous(labels = number_format(suffix = ' ton'))+
+  scale_x_continuous(breaks = c(0,92, 183, 275),
+                     labels = c('Januari', 'April', 'Juli', 'Oktober')) +
+* annotate(geom = 'rect',
+*          xmin = 50, xmax = 110, ymin = Inf,ymax = -Inf,
+*          fill = '#CF7732', alpha = 0.2) +
+* annotate(geom = 'text',
+*          label = 'lockdown',
+*          x = 60, y = 12, size = 5, hjust =0)
+```
+]
+
+.panel[.panel-name[Plot]
+![](datavisualisatie_theorie_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+]]
+
+
+---
+
+## CO2 uitstoot visualiseren
+
+5) Titels, subtitels, assen &amp; een uitleg over 'rolling average'.
+
+.panelset[
+.panel[.panel-name[Code]
+
+```r
+ggplot(data = co2_data, 
+       aes(x = year_day, y = rolling_avg, colour = year)) +
+  geom_line(size = 1) +
+  scale_color_chartwise(name = "")+ 
+  scale_y_continuous(labels = number_format(suffix = ' ton'))+
+  scale_x_continuous(breaks = c(0,92, 183, 275),
+                     labels = c('Januari', 'April', 'Juli', 'Oktober')) +
+  annotate(geom = 'rect', 
+           xmin = 50, xmax = 110, ymin = Inf,ymax = -Inf, 
+           fill = '#CF7732', alpha = 0.2) + 
+  annotate(geom = 'text', 
+           label = 'lockdown', 
+           x = 60, y = 12, size = 5, hjust =0) +
+* labs(y = "Aantal metrische tonnen CO2",
+*      x = "",
+*      title= toupper("CO2 uitstoot weer bijna terug op niveau 2019"),
+*      subtitle="7-daagse *rolling average* in EU &amp; VK")
+```
+]
+.panel[.panel-name[Plot]
+![](datavisualisatie_theorie_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+]]
+
+---
+
+## CO2 uitstoot visualiseren
+
+6) Voorgeprogrammeerde thema toevoegen voor lettertypes, kleuren, etc.
+
+.panelset[
+.panel[.panel-name[Code]
+
+```r
+ggplot(data = co2_data, 
+       aes(x = year_day, y = rolling_avg, colour = year)) +
+  geom_line(size = 1) +
+  scale_color_chartwise(name = "")+ 
+  scale_y_continuous(labels = number_format(suffix = ' ton'))+
+  scale_x_continuous(breaks = c(0,92, 183, 275),
+                     labels = c('Januari', 'April', 'Juli', 'Oktober')) +
+  annotate(geom = 'rect', 
+           xmin = 50, xmax = 110, ymin = Inf,ymax = -Inf, 
+           fill = '#CF7732', alpha = 0.2) + 
+  annotate(geom = 'text', 
+           label = 'lockdown', 
+           x = 60, y = 12, size = 5, hjust =0) +
+  labs(y = "Aantal metrische tonnen CO2",
+       x = "",
+       title= toupper("CO2 uitstoot weer bijna terug op niveau 2019"), 
+       subtitle="7-daagse *rolling average* in EU &amp; VK")+
+* theme_chartwise()
+```
+]
+
+.panel[.panel-name[Plot]
+![](datavisualisatie_theorie_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+]]
+
+---
+
+## CO2 uitstoot visualiseren 
+
+.center[
+&lt;img src="img/2020-11-01-co2.png" style="width: 65%;"/&gt;
+]
+
+.footnote[[Download zelf hier de data en maak je eigen visualisatie](https://www.chartwise.nl/trainingen/data/carbon-monitor-eu27-uk.xlsx)]
+---
+
+# Programmeren de moeite?
+
+.pull-left[
+**Voordelen**
+* Reproduceerbaar
+* Kennis-overdracht
+* Eenvoudig samenwerken
+* Tijdbesparend
+* Gratis / Open-source
+]
+
+.pull-right[
+**Nadelen**
+* Vergt veel voorkennis
+* Affiniteit met programmeren essentieel
+* Je moet héél veel Googelen
+]
+
+&lt;br&gt;
+Online is ontzettend veel materiaal te vinden om te starten met programmeren. Ook wij bieden [interactieve trainingen](https://www.chartwise.nl/service/data-trainingen/) aan om te starten met R en om data te visualiseren met R. 
+
+---
+## Bonus data-analyse
+
+Ook bij datavisualisaties geld het principe **garbage-in garbage-out**. Veel datasets waar jullie mee te maken gaan krijgen zijn, simpelweg, garbage. Ook de data die we zojuist gevisualiseerd hebben kwam helaas niet zo aangeleverd. 
+
+Ik ga nu stap-voor-stap laten zien hoe we deze hebben omgezet naar een dataset die we daadwerkelijk kunnen gebruiken.
+
+
+---
+## Bonus data-analyse
+
+1) Data inlezen.
+
+
+
+```r
+co2_data &lt;- read_xlsx("data/carbon-monitor-eu27-uk.xlsx" ) 
+
+co2_data %&gt;% 
+ add_kable()
+```
+
+&lt;table class="table" style="font-size: 14px; font-family: Lato; "&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; country / group of countries &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; date &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; sector &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; MtCO2 per day &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EU27 &amp;amp; UK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 01/01/2019 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.02 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EU27 &amp;amp; UK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 02/01/2019 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.09 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EU27 &amp;amp; UK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 03/01/2019 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.88 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EU27 &amp;amp; UK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 04/01/2019 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.89 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EU27 &amp;amp; UK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 05/01/2019 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.33 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EU27 &amp;amp; UK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 06/01/2019 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.34 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EU27 &amp;amp; UK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 07/01/2019 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.72 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+## Bonus data-analyse
+
+2) Kolomnamen aanpassen &amp; missende waardes filteren.
+
+
+```r
+co2_data %&gt;%
+* rename(land = 1, date = 2,
+*        sector = 3, co2_per_day = 4) %&gt;%
+* filter(!is.na(sector)) %&gt;%
+  add_kable()
+```
+
+&lt;table class="table" style="font-size: 14px; font-family: Lato; "&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; land &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; date &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; sector &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; co2_per_day &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EU27 &amp;amp; UK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 01/01/2019 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.02 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EU27 &amp;amp; UK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 02/01/2019 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.09 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EU27 &amp;amp; UK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 03/01/2019 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.88 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EU27 &amp;amp; UK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 04/01/2019 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.89 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EU27 &amp;amp; UK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 05/01/2019 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.33 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EU27 &amp;amp; UK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 06/01/2019 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.34 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EU27 &amp;amp; UK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 07/01/2019 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.72 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+## Bonus data-analyse
+
+3) Data types aanpassen.
+
+
+
+```r
+co2_data %&gt;%
+  rename(land = 1, date = 2, 
+         sector = 3, co2_per_day = 4) %&gt;% 
+  filter(!is.na(sector)) %&gt;% 
+* mutate(date = as.Date(date, format = "%d/%m/%Y")) %&gt;%
+  add_kable()
+```
+
+&lt;table class="table" style="font-size: 14px; font-family: Lato; "&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; land &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; date &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; sector &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; co2_per_day &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EU27 &amp;amp; UK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-01 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.02 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EU27 &amp;amp; UK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-02 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.09 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EU27 &amp;amp; UK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-03 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.88 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EU27 &amp;amp; UK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-04 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.89 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EU27 &amp;amp; UK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-05 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.33 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EU27 &amp;amp; UK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-06 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.34 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EU27 &amp;amp; UK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.72 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+## Bonus data-analyse
+
+4) Data grouperen &amp; samenvatten.
+
+
+
+```r
+co2_data %&gt;%
+  rename(land = 1, date = 2, 
+         sector = 3, co2_per_day = 4) %&gt;% 
+  filter(!is.na(sector)) %&gt;% 
+  mutate(date = as.Date(date, format = "%d/%m/%Y")) %&gt;% 
+* group_by(date) %&gt;%
+* summarize(total_co2_per_day = sum(co2_per_day)) %&gt;%
+  add_kable()
+```
+
+&lt;table class="table" style="font-size: 14px; font-family: Lato; "&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; date &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; total_co2_per_day &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-01 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.14 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.27 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-03 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11.23 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-04 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11.31 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-05 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.71 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-06 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.11 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-07 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.57 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+## Bonus data-analyse
+
+5) Groepen verwijderen &amp; nieuwe kolommen genereren.
+
+
+```r
+co2_data %&gt;%
+  rename(land = 1, date = 2, 
+         sector = 3, co2_per_day = 4) %&gt;% 
+  filter(!is.na(sector)) %&gt;% 
+  mutate(date = as.Date(date, format = "%d/%m/%Y")) %&gt;% 
+  group_by(date) %&gt;%  
+  summarize(total_co2_per_day = sum(co2_per_day)) %&gt;%
+* ungroup %&gt;%
+* mutate(year = as.character(year(date)),
+*        year_day = yday(date),
+*        rolling_avg = zoo::rollmean(total_co2_per_day, k = 7,fill = NA)) %&gt;%
+  select(date, year, year_day, total_co2_per_day, rolling_avg) %&gt;%
+  add_kable()
+```
+
+&lt;table class="table" style="font-size: 14px; font-family: Lato; "&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; date &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; year &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; year_day &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; total_co2_per_day &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; rolling_avg &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-01 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2019 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-02 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2019 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.27 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-03 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2019 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11.23 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-04 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2019 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11.31 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.76 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-05 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2019 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.71 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.23 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-06 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2019 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.49 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019-01-07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2019 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.57 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.62 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
+class: inverse
+
+.center[
+# Bedankt!
+
+&lt;br&gt;
+.white[&lt;b&gt;Vragen? Mail ons gerust.&lt;/b&gt;] 
+&lt;br&gt;
+&lt;a href="mailto:info@chartwise.nl"&gt;
+.white[<i class="fas  fa-paper-plane "></i>  info@chartwise.nl]
+&lt;/a&gt;
+&lt;br&gt;&lt;br&gt;
+
+.white[&lt;b&gt;Vergeet ook niet te volgen en te taggen!&lt;/b&gt;]
+&lt;br&gt;
+
+&lt;a href="https://www.instagram.com/chartwisenl/?hl=nl"&gt;
+.white[<i class="fab  fa-instagram "></i>  @chartwiseNL]
+&lt;/a&gt;
+
+&lt;a href="https://www.facebook.com/ChartwiseNL"&gt;
+.white[<i class="fab  fa-facebook "></i>  @chartwiseNL]
+&lt;/a&gt;
+
+&lt;a href="https://www.linkedin.com/company/chartwise"&gt;
+.white[<i class="fab  fa-linkedin "></i>  @Chartwise]
+&lt;/a&gt;
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "tomorrow-night-blue",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

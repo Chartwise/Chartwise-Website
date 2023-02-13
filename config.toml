@@ -1,0 +1,192 @@
+################################# Default configuration ###################
+baseURL = "https://www.chartwise.nl"
+title = "Chartwise | Data Consultancy"
+theme = "airspace-hugo"
+# post pagination
+paginate = "4"
+# post excerpt
+summaryLength = "30"
+# disqus short name
+disqusShortname = "" # get your shortname form here : https://disqus.com
+# disable language
+disableLanguages = []
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+
+[markup.goldmark.renderer]
+unsafe= true
+#################################### Plugins ##############################
+
+# CSS Plugins
+[[params.plugins.css]]
+link = "plugins/bootstrap/bootstrap.min.css"
+[[params.plugins.css]]
+link = "plugins/Ionicons/css/ionicons.min.css"
+[[params.plugins.css]]
+link = "plugins/magnific-popup/magnific-popup.css"
+[[params.plugins.css]]
+link = "plugins/slick/slick.css"
+
+# JS Plugins
+[[params.plugins.js]]
+link = "plugins/jQuery/jquery.min.js"
+[[params.plugins.js]]
+link = "plugins/bootstrap/bootstrap.min.js"
+[[params.plugins.js]]
+link = "plugins/slick/slick.min.js"
+[[params.plugins.js]]
+link = "plugins/magnific-popup/jquery.magnific-popup.min.js"
+[[params.plugins.js]]
+link = "plugins/shuffle/shuffle.min.js"
+[[params.plugins.js]]
+link = "plugins/google-map/gmap.js"
+[[params.plugins.js]]
+link = "plugins/app.js"
+
+############################## navigation Base ###############################
+
+# main menu
+
+[[menu.main]]
+name = "Ons Verhaal"
+URL = "about/"
+weight = 1
+
+
+[[menu.main]]
+name = "Projecten"
+URL = "project"
+weight = 2
+
+[[menu.main]]
+name = "Services"
+URL = "service/"
+weight = 3
+
+  [[menu.main]]
+  parent = "Services"
+  name = "Data Consultancy"
+  URL = "service/data-consultancy/"
+  weight = 1
+  
+  [[menu.main]]
+  parent = "Services"
+  name = "Marktonderzoek"
+  URL = "service/marktonderzoek/"
+  weight = 2
+  
+  [[menu.main]]
+  parent = "Services"
+  name = "Datavisualisatie"
+  URL = "service/datavisualisatie/"
+  weight = 3
+  
+    
+  [[menu.main]]
+  parent = "Services"
+  name = "KPI Dashboard"
+  URL = "service/kpi-dashboard/"
+  weight = 4
+  
+  [[menu.main]]
+  parent = "Services"
+  name = "Trainingen"
+  URL = "service/data-trainingen/"
+  weight = 5
+
+
+[[menu.main]]
+name = "Blog"
+URL = "blog/"
+weight = 4
+
+[[menu.main]]
+name = "Contact"
+URL = "contact/"
+weight = 5
+
+# footer menu
+
+[[menu.footer]]
+name = "Home"
+URL = "/"
+weight = 1
+
+[[menu.footer]]
+name = "Ons verhaal"
+URL = "/about/"
+weight = 2
+
+[[menu.footer]]
+name = "Blog"
+URL = "/blog/"
+weight = 3
+
+[[menu.footer]]
+name = "Contact"
+URL = "/contact/"
+weight = 4
+
+
+#################### default parameters ################################
+[params]
+logo = "images/cw-oranje-blauw.png"
+og_image = "images/favicon.png"
+# Meta data
+description = "Bij Chartwise worden wij enthousiast van data. Met onze expertise helpen wij bedrijven om het maximale uit data te halen. Hierbij begeleiden wij jouw project van begin tot eind met de beste zorg."
+author = "Chartwise V.O.F."
+# Contact Information
+phone = "06-11235775"
+email = "info@chartwise.nl"
+location = "Den Haag, 2581 ST"
+kvk = "KvK 80059619"
+# contact form action
+contact_form_action = "https://formspree.io/f/mzbyweqy" # contact form works with : https://formspree.io
+# Google Analitycs
+google_analitycs_id = "UA-164680498-1" # Your ID# search
+gtm_id = "GTM-NCJSSDG"
+# multi-author support (if set to true, you must use an Array in the author field)
+multi_author = false
+
+# Preloader
+[params.preloader]
+enable = true
+preloader = "" # use .png , .svg or .gif format
+
+# Navigation get start button
+[params.nav_button]
+enable = true
+label = "Stuur ons een berichtje"
+link = "contact"
+
+# google map
+[params.gmap]
+enable = false
+gmap_api = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"
+map_latitude = "52.092620"
+map_longitude = "4.269360"
+map_marker = "images/marker.png"
+
+  
+############################# social site ########################
+
+[[params.social]]
+icon = "ion-social-instagram" #ionicon pack v2 : https://ionicons.com/v2/
+link = "https://www.instagram.com/chartwisenl/"
+
+[[params.social]]
+icon = "ion-social-linkedin" #ionicon pack v2 : https://ionicons.com/v2/
+link = "https://www.linkedin.com/company/chartwise/"
+
+[[params.social]]
+icon = "ion-social-facebook" #ionicon pack v2 : https://ionicons.com/v2/
+link = "https://www.facebook.com/ChartwiseNL/"
+
+################################ English Language ########################
+[Languages.en]
+languageName = "EN"
+languageCode = "en-us"
+contentDir = "content/english"
+weight = 1
+home = "Home"
+# copyright
+copyright = "Copyright &copy; 2020 Chartwise All Rights Reserved"

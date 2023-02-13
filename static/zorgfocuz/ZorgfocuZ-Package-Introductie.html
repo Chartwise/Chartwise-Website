@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Vervolg R &amp; ZorgfocuZ Package</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Stefan Musch" />
+    <meta name="date" content="2021-09-23" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <link rel="stylesheet" href="zorgfocuz.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, top, title-slide
+
+# Vervolg R &amp; ZorgfocuZ Package
+## Chartwise
+### Stefan Musch
+### 23 september 2021
+
+---
+
+
+
+
+
+
+# Vorige keer
+
+Afgelopen training hebben we de basis van R behandeld;
+
+* Variabelen en objecten
+
+--
+
+* Data frames
+
+--
+
+* Rijen en Kolommen manipuleren met de Tidyverse
+
+--
+
+Zijn er nog vragen na de vorige training?
+
+---
+
+# Vandaag
+
+1. ZorgfocuZ R Package 
+
+2. Grafieken genereren
+
+3. R Markdown rapportage
+
+---
+class: inverse
+
+# Setup
+
+---
+
+# ZorgfocuZ package
+
+Hetgeen dat wij tijdens de vorige training hebben besproken komt samen in het door ons ontwikkelde ZorgfocuZ package. 
+
+* Niet alles wat we hebben geleerd en besproken is per sé nodig voor het gebruik van onze package.
+* Wel is het ontzettend handig om de basis te kennen - soms moet data enigszins worden aangepast voor het onze functies in gaat.
+* In principe zijn de functies ontwikkeld om meteen te werken.
+
+---
+
+## Installatie van de `ZorgfocuZ` library
+
+Je kan de package van onze GitLab omgeving installeren door middel van onderstaande code: 
+
+.small[
+
+```r
+remotes_old_version &lt;- "http://cran.r-project.org/src/contrib/Archive/remotes/remotes_2.3.0.tar.gz"
+
+install.packages(remotes_old_version, repos = NULL, type = "source")
+
+# eventueel sessie restarten 
+
+zorgfocuz_url &lt;- "https://gitlab+deploy-token-440844:anyu4P3A_aHwz4Ketqxy@gitlab.com/zf-en/r-expertteam/zfencharts.git"
+
+remotes::install_git(url = zorgfocuz_url,
+                      ref = 'develop', 
+                      upgrade = FALSE,
+                      dependencies = TRUE)
+```
+]
+
+--
+
+En laden via 
+
+.small[
+
+```r
+library(ZorgfocuZ)
+```
+]
+
+---
+
+## Data
+
+ZorgfocuZ heeft een aantal geïntegreerde voorbeeld datasets (net als gapminder). Deze zijn na het laden van de library meteen te gebruiken, en worden ook in onze voorbeelden aangehaald:
+
+**WMO:**
+
+.smaller[
+
+```r
+wmo %&gt;% as_factor() %&gt;% head(5)
+```
+
+```
+## # A tibble: 5 x 68
+##      id submitdate          attribute_1 kwartaal  token  V1     V2      V3_SQ001
+##   &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;       &lt;fct&gt;     &lt;chr&gt;  &lt;fct&gt;  &lt;fct&gt;   &lt;fct&gt;   
+## 1    27 2020-08-06 10:10:00 01-01-20    Kwartaal~ KTCCR~ Finan~ Ja, de~ Ja      
+## 2     8 2020-07-22 20:36:05 01-01-20    Kwartaal~ KTCCR~ Hulp ~ Nee, i~ Nee     
+## 3   217 2020-10-31 10:10:00 01-04-20    Kwartaal~ KTCCR~ Rolst~ Ja, de~ Nee     
+## 4   213 2020-10-31 10:10:00 01-04-20    Kwartaal~ KTCCR~ Finan~ Nee, i~ Nee     
+## 5   248 2021-01-13 12:27:57 01-04-20    Kwartaal~ KTCCR~ Anders Ja, de~ Ja      
+## # ... with 60 more variables: V3_SQ002 &lt;fct&gt;, V5_SQ001 &lt;fct&gt;, V5_SQ002 &lt;fct&gt;,
+## #   V5_SQ003 &lt;fct&gt;, V5_SQ004 &lt;fct&gt;, V5_SQ005 &lt;fct&gt;, V5_SQ006 &lt;fct&gt;,
+## #   V5_SQ007 &lt;fct&gt;, V5_SQ008 &lt;fct&gt;, V5_SQ009 &lt;fct&gt;, V5_SQ010 &lt;fct&gt;,
+## #   V5_SQ011 &lt;fct&gt;, V5_SQ012 &lt;fct&gt;, V6_SQ001 &lt;fct&gt;, V6_SQ002 &lt;fct&gt;,
+## #   V6_SQ003 &lt;fct&gt;, V6_SQ004 &lt;fct&gt;, V6_SQ005 &lt;fct&gt;, V7_SQ001 &lt;fct&gt;,
+## #   V7_SQ002 &lt;fct&gt;, V7_SQ003 &lt;fct&gt;, V7_SQ004 &lt;fct&gt;, V7_SQ005 &lt;fct&gt;,
+## #   V7_SQ006 &lt;fct&gt;, V13 &lt;fct&gt;, V14 &lt;fct&gt;, V16 &lt;fct&gt;, V17 &lt;fct&gt;,
+## #   V18_SQ001 &lt;fct&gt;, V18_SQ002 &lt;fct&gt;, V18_SQ003 &lt;fct&gt;, V18_SQ004 &lt;fct&gt;,
+## #   V18_SQ005 &lt;fct&gt;, V23_SQ001 &lt;fct&gt;, V23_SQ002 &lt;fct&gt;, V23_SQ003 &lt;fct&gt;,
+## #   V26_SQ001 &lt;fct&gt;, V28 &lt;fct&gt;, V29_SQ001 &lt;dbl&gt;, V31 &lt;fct&gt;, V32 &lt;fct&gt;,
+## #   V33_SQ001 &lt;fct&gt;, V33_SQ002 &lt;fct&gt;, V33_SQ003 &lt;fct&gt;, V33_SQ004 &lt;fct&gt;,
+## #   V33_SQ005 &lt;fct&gt;, V33_SQ006 &lt;fct&gt;, V33_SQ007 &lt;fct&gt;, V34 &lt;fct&gt;, V35 &lt;fct&gt;,
+## #   V37 &lt;fct&gt;, V39 &lt;fct&gt;, V40 &lt;fct&gt;, V41 &lt;fct&gt;, V43 &lt;fct&gt;, V44_SQ001 &lt;fct&gt;,
+## #   V44_SQ002 &lt;fct&gt;, V47 &lt;fct&gt;, PrimaryLast &lt;fct&gt;, PrimaryLast1 &lt;fct&gt;
+```
+]
+
+
+---
+## Data
+
+ZorgfocuZ heeft een aantal geïntegreerde voorbeeld datasets (net als gapminder). Deze zijn na het laden van de library meteen te gebruiken, en worden ook in onze voorbeelden aangehaald:
+
+**Burgerpeiling**:
+
+.smaller[
+
+```r
+burgerpeiling_anoniem %&gt;% as_factor() %&gt;% head(5)
+```
+
+```
+## # A tibble: 5 x 127
+##      id bron   wl01   wl02_0 wl02_1 wl03_0 wl03_1 wl03_2 wl18  wl04  wl05  wl06 
+##   &lt;dbl&gt; &lt;fct&gt;  &lt;fct&gt;  &lt;fct&gt;  &lt;fct&gt;  &lt;fct&gt;  &lt;fct&gt;  &lt;fct&gt;  &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;
+## 1     1 Websu~ 8      eens   eens   eens   eens   eens   bij ~ ja, ~ nauw~ soms 
+## 2     2 Websu~ 7      eens   eens   eens   neutr~ eens   nee,~ ja, ~ wein~ soms 
+## 3     3 Websu~ 8      eens   helem~ eens   neutr~ eens   bij ~ ja, ~ wein~ soms 
+## 4     4 Websu~ 8      eens   eens   helem~ helem~ helem~ bij ~ ja, ~ nauw~ (vri~
+## 5     5 Websu~ 10. Z~ helem~ neutr~ eens   eens   eens   ja, ~ ja, ~ niet~ soms 
+## # ... with 115 more variables: wl07_0 &lt;fct&gt;, wl07_1 &lt;fct&gt;, wl08_0 &lt;fct&gt;,
+## #   wl08_1 &lt;fct&gt;, wl09 &lt;fct&gt;, wl11 &lt;fct&gt;, wl16 &lt;fct&gt;, wl12_0 &lt;fct&gt;,
+## #   wl12_1 &lt;fct&gt;, wl12_2 &lt;fct&gt;, wl13 &lt;fct&gt;, wl14 &lt;fct&gt;, vz01_0 &lt;fct&gt;,
+## #   vz01_1 &lt;fct&gt;, vz02_0 &lt;fct&gt;, vz02_1 &lt;fct&gt;, vz03_0 &lt;fct&gt;, vz03_1 &lt;fct&gt;,
+## #   vz03_2 &lt;fct&gt;, vz03_3 &lt;fct&gt;, vz03_4 &lt;fct&gt;, bo01 &lt;fct&gt;, bo02_0 &lt;fct&gt;,
+## #   bo02_1 &lt;fct&gt;, bo02_2 &lt;fct&gt;, bo03_0 &lt;fct&gt;, bo03_1 &lt;fct&gt;, bo04_0 &lt;fct&gt;,
+## #   bo06 &lt;fct&gt;, dv01 &lt;fct&gt;, dv06 &lt;fct&gt;, dv02 &lt;fct&gt;, dv12_1 &lt;fct&gt;, dv12_2 &lt;fct&gt;,
+## #   dv12_3 &lt;fct&gt;, dv12_4 &lt;fct&gt;, dv12_5 &lt;fct&gt;, dv12_6 &lt;fct&gt;, dv12_7 &lt;fct&gt;,
+## #   dv12_8 &lt;fct&gt;, dv04 &lt;fct&gt;, dv05_0 &lt;fct&gt;, dv07_0 &lt;fct&gt;, dv07_1 &lt;fct&gt;,
+## #   dv07_2 &lt;fct&gt;, dv07_3 &lt;fct&gt;, mm01_1 &lt;fct&gt;, mm01_2 &lt;fct&gt;, mm01_3 &lt;fct&gt;,
+## #   mm01_4 &lt;fct&gt;, mm01_5 &lt;fct&gt;, mm02_1 &lt;fct&gt;, dv08_0 &lt;fct&gt;, dv09_0 &lt;fct&gt;,
+## #   dv10 &lt;fct&gt;, zw00 &lt;fct&gt;, zw02 &lt;fct&gt;, zw01_0 &lt;fct&gt;, zw01_1 &lt;fct&gt;,
+## #   zw01_2 &lt;fct&gt;, zw01_3 &lt;fct&gt;, zw01_4 &lt;fct&gt;, zw01_5 &lt;fct&gt;, zw01_6 &lt;fct&gt;,
+## #   zw03 &lt;fct&gt;, zw04 &lt;fct&gt;, zw20 &lt;fct&gt;, zw05_0 &lt;fct&gt;, zw05_1 &lt;fct&gt;,
+## #   zw05_2 &lt;fct&gt;, zw05_5 &lt;fct&gt;, zw05_3 &lt;fct&gt;, zw05_4 &lt;fct&gt;, zw06_0 &lt;fct&gt;,
+## #   zw06_1 &lt;fct&gt;, zw06_2 &lt;fct&gt;, zw06_3 &lt;fct&gt;, zw07 &lt;fct&gt;, zw08_0 &lt;fct&gt;,
+## #   zw08_1 &lt;fct&gt;, zw08_2 &lt;fct&gt;, zw08_3 &lt;fct&gt;, zw08_4 &lt;fct&gt;, zw08_5 &lt;fct&gt;,
+## #   zw08_6 &lt;fct&gt;, zw13_0 &lt;fct&gt;, zw13_1 &lt;fct&gt;, zw13_2 &lt;fct&gt;, zw13_3 &lt;fct&gt;,
+## #   zw13_4 &lt;fct&gt;, zw13_5 &lt;fct&gt;, zw13_6 &lt;fct&gt;, zw13_7 &lt;fct&gt;, zw13_9 &lt;fct&gt;,
+## #   zw13_10 &lt;fct&gt;, zw13_11 &lt;fct&gt;, zw09 &lt;fct&gt;, zw19_1 &lt;fct&gt;, zw19_2 &lt;fct&gt;,
+## #   zw19_3 &lt;fct&gt;, ...
+```
+]
+
+---
+## Data
+
+ZorgfocuZ heeft een aantal geïntegreerde voorbeeld datasets (net als gapminder). Deze zijn na het laden van de library meteen te gebruiken, en worden ook in onze voorbeelden aangehaald:
+
+**Imago Onderzoek**:
+
+.smaller[
+
+```r
+imago_onderzoek %&gt;% as_factor() %&gt;% head(5)
+```
+
+```
+## # A tibble: 5 x 60
+##   v1    v2     v3     v4     v6    v7    v10_SQ001 v10_SQ002 v10_SQ003 v10_SQ004
+##   &lt;fct&gt; &lt;fct&gt;  &lt;fct&gt;  &lt;fct&gt;  &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;     &lt;fct&gt;     &lt;fct&gt;     &lt;fct&gt;    
+## 1 Man   50 to~ Groni~ Lokal~ Ja    Goed~ Ja        Niet ges~ Niet ges~ Niet ges~
+## 2 Man   40 to~ Groni~ Lokal~ Ja    Enig~ Ja        Ja        Ja        Niet ges~
+## 3 Vrouw 40 to~ Groni~ Zorg ~ Ja    Goed~ Ja        Niet ges~ Ja        Niet ges~
+## 4 Vrouw 70 ja~ Groni~ Ander~ Ja    Enig~ Niet ges~ Niet ges~ Niet ges~ Niet ges~
+## 5 Man   60 to~ Noord~ Fonds~ Ja    Enig~ Ja        Niet ges~ Niet ges~ Niet ges~
+## # ... with 50 more variables: v10_SQ005 &lt;fct&gt;, v10_SQ006 &lt;fct&gt;,
+## #   v10_SQ007 &lt;fct&gt;, v10_SQ008 &lt;fct&gt;, v10_SQ009 &lt;fct&gt;, v10_SQ010 &lt;fct&gt;,
+## #   v10SocialMedia_SQ001 &lt;fct&gt;, v10SocialMedia_SQ002 &lt;fct&gt;,
+## #   v10SocialMedia_SQ003 &lt;fct&gt;, v13_SQ001 &lt;fct&gt;, v13_SQ002 &lt;fct&gt;,
+## #   v13_SQ003 &lt;fct&gt;, v13_SQ004 &lt;fct&gt;, v13_SQ005 &lt;fct&gt;, v13_SQ006 &lt;fct&gt;,
+## #   v13_SQ007 &lt;fct&gt;, v13_SQ008 &lt;fct&gt;, v13_SQ009 &lt;fct&gt;, v13_SQ010 &lt;fct&gt;,
+## #   v13_SQ011 &lt;fct&gt;, v13_SQ012 &lt;fct&gt;, v13_SQ013 &lt;fct&gt;, v13_SQ014 &lt;fct&gt;,
+## #   v13_SQ015 &lt;fct&gt;, v13_SQ016 &lt;fct&gt;, v13_SQ017 &lt;fct&gt;, v13_SQ018 &lt;fct&gt;,
+## #   v13_SQ019 &lt;fct&gt;, v13_SQ020 &lt;fct&gt;, v13_SQ021 &lt;fct&gt;, v14 &lt;fct&gt;, v16 &lt;fct&gt;,
+## #   v16ja_SQ001 &lt;fct&gt;, v16ja_SQ002 &lt;fct&gt;, v16ja_SQ003 &lt;fct&gt;, v16ja_SQ004 &lt;fct&gt;,
+## #   v17_SQ001 &lt;fct&gt;, v17_SQ002 &lt;fct&gt;, v17_SQ003 &lt;fct&gt;, v17_SQ004 &lt;fct&gt;,
+## #   v17_SQ005 &lt;fct&gt;, v17_SQ006 &lt;fct&gt;, v19_SQ001 &lt;fct&gt;, v20_SQ001 &lt;fct&gt;,
+## #   v21_SQ001 &lt;fct&gt;, v22_SQ001 &lt;fct&gt;, v24 &lt;fct&gt;, v25 &lt;fct&gt;, v26 &lt;fct&gt;,
+## #   PrimaryLast &lt;fct&gt;
+```
+]
+
+---
+
+## Data
+
+ZorgfocuZ heeft een aantal geïntegreerde voorbeeld datasets (net als gapminder). Deze zijn na het laden van de library meteen te gebruiken, en worden ook in onze voorbeelden aangehaald:
+
+**Vergelijking van een tevredenheidsonderzoek**:
+
+.smaller[
+
+```r
+vergelijking_tevredenheidsonderzoek %&gt;% as_factor() %&gt;% head(10)
+```
+
+```
+## # A tibble: 10 x 21
+##    Jaar  V1    V2    V3    V4    V7    V8    V11   V12   V14   V16   V22   V23  
+##    &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;
+##  1 2021  Gehe~ Ja    Mee ~ Mee ~ Mees~ Mees~ Mee ~ Mee ~ Mee ~ Prec~ Nooit Nooit
+##  2 2021  Mee ~ Ja    Mee ~ Mee ~ Alti~ Alti~ Mee ~ Mee ~ Mee ~ Prec~ Nooit Nooit
+##  3 2021  Gehe~ Ja    Mee ~ Mee ~ Mees~ Mees~ Mee ~ Mee ~ Mee ~ Te h~ Soms  Nooit
+##  4 2021  Gehe~ Nee   Mee ~ Gehe~ Mees~ Mees~ Mee ~ Mee ~ Mee ~ Te h~ Nooit Nooit
+##  5 2021  Gehe~ Nee   Mee ~ Mee ~ Soms  Soms  &lt;NA&gt;  Gehe~ Mee ~ Veel~ Nooit Nooit
+##  6 2021  Mee ~ Ja    Gehe~ Mee ~ Mees~ Mees~ Gehe~ Mee ~ Mee ~ Prec~ Soms  Soms 
+##  7 2021  Mee ~ Nee   Mee ~ Mee ~ Mees~ Alti~ Mee ~ Mee ~ Mee ~ Te h~ Nooit Nooit
+##  8 2021  Mee ~ Ja    Gehe~ Mee ~ Mees~ Mees~ Mee ~ Mee ~ Mee ~ Prec~ Soms  Soms 
+##  9 2021  Gehe~ Nee   Gehe~ Mee ~ Alti~ Mees~ Mee ~ Mee ~ Mee ~ Prec~ Nooit Nooit
+## 10 2021  Mee ~ Ja    Mee ~ Mee ~ Alti~ Mees~ Mee ~ Mee ~ Mee ~ Te h~ Soms  Soms 
+## # ... with 8 more variables: V25 &lt;fct&gt;, V26 &lt;fct&gt;, V27 &lt;fct&gt;, V28 &lt;fct&gt;,
+## #   V30 &lt;fct&gt;, V31 &lt;fct&gt;, V32 &lt;fct&gt;, V37_SQ001 &lt;dbl&gt;
+```
+]
+
+---
+### Data oefeningen (1/2)
+
+Nu gaan jullie zelf toepassen wat we afgelopen training hebben besproken;
+
+--
+1. Filter de `vergelijking_tevredenheidsonderzoek` naar rijen waar V1 gelijk is aan  "Mee eens" off "Geheel mee eens". Selecteer vervolgens de variabelen Jaar en V1 t/m V8. Stop het resultaat in een nieuw object. **Hint: gebruik eerst **as_factor()** zodat je de waarde van de factors converteerd**
+
+--
+
+2. Maak een kruistabel van je gefilterde dataset tussen Jaar en V1. Heeft je filter gewerkt?
+--
+
+3. Doe dit nogmaals, maar gebruik nu de functie `count()`. Bekijk eerst even de help pagina om te begrijpen hoe deze functie werkt. Sla dit object op.
+
+--
+
+4. We gaan nu een staafgrafiekje bouwen. Hiervoor maken we gebruik van `ggplot`. 
+
+.small[
+
+```r
+jouw_count_tabel %&gt;%
+  ggplot() +
+  aes(x = Jaar, y = n, fill = V1) + 
+  geom_col() + 
+  scale_fill_manual(values = ZorgfocuZ::zf_kleuren_neutraal(n =2)) + 
+  labs(x = 'Jaartal', y = 'Aantal', title = "V1: Tevredenheid over de samenwerking met collega's") + 
+  theme_minimal()
+```
+]
+
+---
+
+### Data oefeningen (2/2)
+
+1. Pak het `imago_onderzoek` datasetje en filter tot alleen mannen die ouder zijn dan 40 en uit Groningen, Drenthe of Friesland komen. Hoevel respondenten hou je over?
+
+--
+
+2. Selecteer alles dat begint met `V10`, behalve de variabele `V10SocialMedia`.
+
+--
+
+3. Maak hier een `lange` dataset van met de functie `gather()`. 
+
+--
+
+4. Pak dit nieuwe object, en tel de `key` en `value` waardes. Oftewel, hoevaak is iets geselecteerd (value) per waarde (key). Filter vervolgens naar alleen `value == "Ja"` en maak meet een soortgelijk stukje code een staafgrafiek van het aantal `ja` antwoorden per key. 
+
+---
+### `zf_data()`
+
+De `zf_data()` functie zorgt ervoor dat je survey data uit LimeSurvey op de juiste manier geïmporteerd wordt in R zodat onze package hiermee kan werken. Dit werkt als volgt:
+
+.small[
+
+```r
+data_locatie &lt;-
+   system.file("data_files", "alle_vraagtypen_data.csv", package="ZorgfocuZ")
+
+syntax_locatie &lt;-
+   system.file("data_files", "alle_vraagtypen_syntax.R", package="ZorgfocuZ")
+
+df &lt;- zf_data(data_file_locatie = data_locatie,
+              syntax_file_locatie = syntax_locatie)
+
+head(df[, 1:10], 5)
+```
+
+```
+## # A tibble: 5 x 10
+##      id submitdate lastpage startlanguage startdate datestamp vijfpunt vijfpunt2
+##   &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;
+## 1     1 2021-06-0~        5 nl            2021-06-~ 2021-06-~        5         4
+## 2     2 2021-06-0~        5 nl            2021-06-~ 2021-06-~        4         5
+## 3     3 2021-06-0~        5 nl            2021-06-~ 2021-06-~        3         2
+## 4     4 2021-06-0~        5 nl            2021-06-~ 2021-06-~        3         6
+## 5     5 2021-06-0~        5 nl            2021-06-~ 2021-06-~        6         4
+## # ... with 2 more variables: lijst &lt;fct&gt;, lijst2 &lt;fct&gt;
+```
+]
+
+In de code hierboven hebben we de locatie van zowel de syntax als de data file toegewezen aan een variabele. Deze variabele hebben we vervolgens in de functie parameters toegevoegd.
+
+---
+
+### `zf_data()` files generen
+
+Om zelf een survey te importeren vanuit LimeSurvey moeten we twee verschillende files exporteren vanuit het portaal.
+
+**De data file**
+
+1. Ga naar Responsen -&gt; Responsen en Statistieken
+1. Ga naar Exporteer gegevens -&gt; Exporteer resultaten naar programma
+1. Selecteer R (databestand)
+1. Koppen moet op Vraagcode staan
+1. Responsen moet op Antwoordcodes staan met beide "Zet X om in:" aangevinkt
+1. Sla het syntax bestand op in de folder waar je aan de rapportage werkt
+  
+  
+**Tip**: Je kan altijd de beschrijving van de functie vinden door **?zf_data** in je console te typen.
+---
+
+
+### `zf_data()` files generen
+
+Om zelf een survey te importeren vanuit LimeSurvey moeten we twee verschillende files exporteren vanuit het portaal.
+
+**De syntax file**
+
+1. Ga naar Responses -&gt; Responses &amp; Statistics
+1. Ga naar Export -&gt;  Export results to application
+1. Selecteer R (syntax file) en export de default waardes
+1. Sla het syntax bestand op in de folder waar je aan rapportage werkt
+  
+  
+**Tip**: Je kan altijd de beschrijving van de functie vinden door **?zf_data** in je console te typen.
+---
+
+### `zf_datasets_samenvoegen()`
+
+Soms moet je verschillende datasets samenvoegen. Eerst moet je dan de twee datasets via de vorige stap inlezen en als object aanmaken. Vervolgens kan je beide data frames aan elkaar verbinden via `zf_datasets_samenvoegen()`
+
+.small[
+
+```r
+wmo_nieuw &lt;- zf_datasets_samenvoegen('2021' = wmo,
+                                     '2022' = wmo,
+                                     .id= 'Jaar')
+
+head(wmo_nieuw[, 1:5])
+```
+
+```
+## # A tibble: 6 x 5
+##   Jaar     id submitdate          attribute_1       kwartaal
+##   &lt;chr&gt; &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;            &lt;dbl+lbl&gt;
+## 1 2021     27 2020-08-06 10:10:00 01-01-20    1 [Kwartaal 1]
+## 2 2021      8 2020-07-22 20:36:05 01-01-20    1 [Kwartaal 1]
+## 3 2021    217 2020-10-31 10:10:00 01-04-20    2 [Kwartaal 2]
+## 4 2021    213 2020-10-31 10:10:00 01-04-20    2 [Kwartaal 2]
+## 5 2021    248 2021-01-13 12:27:57 01-04-20    2 [Kwartaal 2]
+## 6 2021    203 2020-10-31 10:10:00 01-04-20    2 [Kwartaal 2]
+```
+]
+
+---
+
+## Grafieken maken
+
+Het doel van de ZorgfocuZ package is om snel en gemakkelijk reproduceerbare grafieken te maken. Hier zijn de volgende functies voor ontwikkeld:
+
+- `zf_enkele_vraag_likert()`
+- `zf_enkele_vraag_likert_vergelijking()`
+- `zf_enkele_meerkeuzevraag()`
+- `zf_enkele_cijfervraag()`
+- `zf_meerdere_vragen_likert()`
+- `zf_meerkeuzevraag_vergelijking()`
+
+---
+
+### Enkele vragen
+
+---
+
+### `zf_enkele_vraag_likert()`
+
+.small[
+.panelset[
+
+.panel[.panel-name[Code]
+
+```r
+zf_enkele_vraag_likert(data = wmo,
+                       variabele = 'V2') +
+  zf_theme()
+```
+
+]
+
+.panel[.panel-name[Grafiek]
+
+![](ZorgfocuZ-Package-Introductie_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+]
+
+.panel[.panel-name[Parameters]
+
+```r
+zf_enkele_vraag_likert(
+  data,
+  variabele,
+  type = c("staaf", "cirkel", "donut"),
+  titel = NULL,
+  kleur = c("rood_groen"),
+  inclusief_NA = FALSE,
+  NA_waardes = c("N.v.t.", "Geen mening", "geen mening", "nvt", "N.v.t", "weet niet",
+    "weet niet / geen mening"),
+  labels = TRUE,
+  labels_drempel = 0,
+  procent = FALSE,
+  n_in_legenda = TRUE,
+  legenda_rijen = 1,
+  reverse = TRUE
+)
+```
+]
+]
+]
+
+
+---
+
+### `zf_enkele_vraag_likert_vergelijking()`
+
+.small[
+.panelset[
+
+.panel[.panel-name[Code]
+
+```r
+zf_enkele_vraag_likert_vergelijking(data=wmo,
+                                    variabele = 'V18_SQ002',
+                                    groep = 'kwartaal',
+                                    titel = '18. De ondersteuning die ik krijg past bij mijn hulpaanvraag',
+                                    procent=TRUE) +
+                            zf_theme()
+```
+
+]
+
+.panel[.panel-name[Grafiek]
+
+![](ZorgfocuZ-Package-Introductie_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+
+]
+
+.panel[.panel-name[Parameters]
+
+```r
+zf_enkele_vraag_likert_vergelijking(
+  data,
+  variabele,
+  groep,
+  titel = NULL,
+  kleur = c("rood_groen"),
+  inclusief_NA = FALSE,
+  NA_waardes = c("N.v.t.", "Geen mening", "geen mening", "nvt", "N.v.t", "weet niet",
+    "weet niet / geen mening"),
+  n_kleiner_dan_10 = TRUE,
+  labels = TRUE,
+  labels_drempel = 0,
+  procent = FALSE,
+  reverse = FALSE,
+  reverse_groepen = FALSE,
+  sorteer_op = NULL,
+  aflopend = TRUE,
+  legenda_rijen = 1,
+  middelpunt_nul = FALSE
+)
+```
+]
+]
+]
+
+---
+
+### `zf_enkele_meerkeuzevraag()`
+
+
+.small[
+.panelset[
+.panel[.panel-name[Code]
+
+```r
+zf_enkele_meerkeuzevraag(
+  data = burgerpeiling_anoniem,
+  variabele_patroon = 'dv12_',
+  n_kleiner_dan_10 = FALSE,
+  sorteer = FALSE
+) +
+zf_theme(gridlijn_x = TRUE,
+         gridlijn_y = FALSE)
+```
+
+]
+
+.panel[.panel-name[Grafiek]
+
+![](ZorgfocuZ-Package-Introductie_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+
+]
+
+.panel[.panel-name[Parameters]
+
+```r
+zf_enkele_meerkeuzevraag(
+  data,
+  variabele_patroon,
+  titel = "",
+  inclusief_NA = FALSE,
+  NA_waardes = c("N.v.t.", "Geen mening", "geen mening", "nvt", "N.v.t", "weet niet",
+    "weet niet / geen mening"),
+  kleur = "zorgfocuz_groen",
+  alfabetische_volgorde = FALSE,
+  n_kleiner_dan_10 = TRUE,
+  labels = TRUE,
+  labels_drempel = 0,
+  procent = TRUE,
+  einde_x_as = 1,
+  sorteer = TRUE,
+  aflopend = TRUE
+)
+```
+]
+]
+]
+
+---
+
+### `zf_enkele_cijfervraag()`
+
+
+.small[
+.panelset[
+.panel[.panel-name[Code]
+
+```r
+zf_enkele_cijfervraag(
+  data = burgerpeiling_anoniem,
+  variabele = 'wl01',
+  gemiddelde=TRUE,
+  NPS_Amerikaans=TRUE,
+  NPS_Europees=TRUE
+) +
+zf_theme(gridlijn_x = FALSE,
+         gridlijn_y = TRUE)
+```
+
+]
+
+.panel[.panel-name[Grafiek]
+
+![](ZorgfocuZ-Package-Introductie_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+
+]
+
+.panel[.panel-name[Parameters]
+
+```r
+zf_enkele_cijfervraag(
+  data,
+  variabele,
+  titel = NULL,
+  inclusief_NA = FALSE,
+  NA_waardes = c("N.v.t.", "Geen mening", "geen mening", "nvt", "N.v.t", "weet niet",
+    "weet niet / geen mening"),
+  kleur = "zorgfocuz_groen",
+  gemiddelde = TRUE,
+  NPS_Europees = FALSE,
+  NPS_Amerikaans = FALSE,
+  volgorde_sterren = NULL,
+  hoogtepositie = c(0.075, 0.075, 0.075),
+  lengtepositie = NULL,
+  labels = TRUE,
+  labels_drempel = 0,
+  procent = TRUE,
+  reverse = FALSE
+)
+```
+]
+
+]
+]
+
+---
+
+### Meerdere vragen
+
+---
+
+### `zf_meerdere_vragen_likert()`
+
+.small[
+.panelset[
+.panel[.panel-name[Code]
+
+```r
+zf_meerdere_vragen_likert(data = wmo,
+                          variabele_patroon = 'V18',
+                          sorteer_op = c('Helemaal mee eens', "Mee eens"),
+                          aflopend = TRUE) +
+zf_theme(legenda_links = TRUE)
+```
+
+]
+
+.panel[.panel-name[Grafiek]
+
+![](ZorgfocuZ-Package-Introductie_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+
+]
+
+.panel[.panel-name[Parameters]
+
+```r
+zf_meerdere_vragen_likert(
+  data,
+  variabele_patroon,
+  kleur = c("rood_groen"),
+  variabele_nummering = TRUE,
+  nummering_start = NULL,
+  titel = "",
+  inclusief_NA = FALSE,
+  NA_waardes = c("N.v.t.", "Geen mening", "geen mening", "nvt", "N.v.t", "weet niet",
+    "weet niet / geen mening"),
+  n_kleiner_dan_10 = TRUE,
+  labels = TRUE,
+  labels_drempel = 0,
+  procent = FALSE,
+  reverse = FALSE,
+  sorteer_op = NULL,
+  aflopend = TRUE,
+  legenda_rijen = 1,
+  middelpunt_nul = FALSE
+)
+```
+]
+]
+]
+
+---
+
+### `zf_meerkeuzevraag_vergelijking()`
+
+.small[
+.panelset[
+.panel[.panel-name[Code]
+
+```r
+zf_meerkeuzevraag_vergelijking(
+  data = wmo,
+  variabele_patroon = "V33_",
+  groep = "kwartaal",
+  titel = "Dit is een titel die ik heb zelf heb bedacht. De originele titel is:
+  'Als u zich wel eens eenzaam voelt, waardoor komt dat dan?'"
+  )+
+  zf_theme(border = FALSE,
+           gridlijn_x = TRUE,
+           gridlijn_y = FALSE,
+           meerkeuze_vergelijking = TRUE)
+```
+
+]
+
+.panel[.panel-name[Grafiek]
+
+![](ZorgfocuZ-Package-Introductie_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+
+]
+
+.panel[.panel-name[Parameters]
+
+```r
+zf_meerkeuzevraag_vergelijking(
+  data,
+  variabele_patroon,
+  groep,
+  titel = "",
+  inclusief_NA = FALSE,
+  kleur = c("#kleuren"),
+  alfabetische_volgorde = FALSE,
+  n_kleiner_dan_10 = TRUE,
+  labels = TRUE,
+  labels_drempel = 0,
+  einde_x_as = 1,
+  procent = TRUE
+)
+```
+]
+]
+]
+
+---
+
+## Tabellen maken
+
+---
+
+### `zf_vergelijkingstabel()`
+
+.small[
+.panelset[
+.panel[.panel-name[Code]
+
+```r
+zf_vergelijkingstabel(burgerpeiling_anoniem,
+                     groep='bron',
+                     variabelen = c('wl01','wl18','wl04','wl05','wl06','wl09'),
+                     omkeren = c('wl04', 'wl09', 'wl18'),
+                     groep_omkeren=FALSE,
+                     volledige_vraag = TRUE)
+```
+
+]
+
+.panel[.panel-name[Grafiek]
+
+<div id="ukxeamufce" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: Calibri;
+}
+
+#ukxeamufce .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: white;
+  width: 100%;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: black;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: black;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: black;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: black;
+}
+
+#ukxeamufce .gt_heading {
+  background-color: white;
+  text-align: center;
+  border-bottom-color: white;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-left-color: Black;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-right-color: Black;
+}
+
+#ukxeamufce .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: white;
+  border-bottom-width: 0;
+}
+
+#ukxeamufce .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: white;
+  border-top-width: 0;
+}
+
+#ukxeamufce .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: Black;
+}
+
+#ukxeamufce .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: black;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: black;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ukxeamufce .gt_col_heading {
+  color: #333333;
+  background-color: white;
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: inherit;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ukxeamufce .gt_column_spanner_outer {
+  color: #333333;
+  background-color: white;
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ukxeamufce .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ukxeamufce .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ukxeamufce .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: black;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ukxeamufce .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: white;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ukxeamufce .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: white;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ukxeamufce .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ukxeamufce .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ukxeamufce .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ukxeamufce .gt_stub {
+  color: #333333;
+  background-color: white;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#ukxeamufce .gt_summary_row {
+  color: #333333;
+  background-color: white;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ukxeamufce .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#ukxeamufce .gt_grand_summary_row {
+  color: #333333;
+  background-color: white;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ukxeamufce .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ukxeamufce .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ukxeamufce .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: black;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: black;
+}
+
+#ukxeamufce .gt_footnotes {
+  color: #333333;
+  background-color: white;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ukxeamufce .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#ukxeamufce .gt_sourcenotes {
+  color: #333333;
+  background-color: white;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ukxeamufce .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#ukxeamufce .gt_left {
+  text-align: left;
+}
+
+#ukxeamufce .gt_center {
+  text-align: center;
+}
+
+#ukxeamufce .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ukxeamufce .gt_font_normal {
+  font-weight: normal;
+}
+
+#ukxeamufce .gt_font_bold {
+  font-weight: bold;
+}
+
+#ukxeamufce .gt_font_italic {
+  font-style: italic;
+}
+
+#ukxeamufce .gt_super {
+  font-size: 65%;
+}
+
+#ukxeamufce .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="3" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="background-color: #37B69C; color: white;">Vergelijking Resultaten</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;"></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">Veldwerkmodus</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">Websurvey</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left gt_stub" style="border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">1. Hoe prettig vindt u het om in uw buurt te wonen?</td>
+<td class="gt_row gt_center" style="border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black; background-color: #FFFFFF; color: #595959;">8.2</td>
+<td class="gt_row gt_center" style="border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black; background-color: #FFFFFF; color: #595959;">8.1</td></tr>
+    <tr><td class="gt_row gt_left gt_stub" style="border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">18. Voelt u zich betrokken bij de mensen die in uw buurt wonen?</td>
+<td class="gt_row gt_center" style="border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black; background-color: #37B69C; color: #ffffff;">3.5</td>
+<td class="gt_row gt_center" style="border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black; background-color: #FFFFFF; color: #595959;">3.3</td></tr>
+    <tr><td class="gt_row gt_left gt_stub" style="border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">4. Voelt u zich veilig in uw buurt?</td>
+<td class="gt_row gt_center" style="border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black; background-color: #FFFFFF; color: #595959;">4.2</td>
+<td class="gt_row gt_center" style="border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black; background-color: #FFFFFF; color: #595959;">4.3</td></tr>
+    <tr><td class="gt_row gt_left gt_stub" style="border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">5. In welke mate ervaart u overlast van buurtbewoners?</td>
+<td class="gt_row gt_center" style="border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black; background-color: #FFFFFF; color: #595959;">4.0</td>
+<td class="gt_row gt_center" style="border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black; background-color: #FFFFFF; color: #595959;">4.1</td></tr>
+    <tr><td class="gt_row gt_left gt_stub" style="border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">6. Hoe vaak heeft u te maken met onveilige verkeerssituaties in uw buurt?</td>
+<td class="gt_row gt_center" style="border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black; background-color: #FFFFFF; color: #595959;">2.5</td>
+<td class="gt_row gt_center" style="border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black; background-color: #FFFFFF; color: #595959;">2.4</td></tr>
+    <tr><td class="gt_row gt_left gt_stub" style="border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">9. Is de leefbaarheid van uw buurt de afgelopen jaren vooruit gegaan, achteruit gegaan of gelijk gebleven?</td>
+<td class="gt_row gt_center" style="border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black; background-color: #FFFFFF; color: #595959;">2.9</td>
+<td class="gt_row gt_center" style="border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black; background-color: #FFFFFF; color: #595959;">3.0</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+
+]
+
+.panel[.panel-name[Parameters]
+
+```r
+zf_vergelijkingstabel(
+  data,
+  groep,
+  variabelen,
+  nummers = TRUE,
+  n_kleiner_dan_10 = TRUE,
+  groep_omkeren = FALSE,
+  NA_waardes = c("N.v.t.", "Geen mening", "geen mening", "nvt", "N.v.t", "weet niet",
+    "weet niet / geen mening"),
+  omkeren = NULL,
+  merk = c("zorgfocuz", "enneus"),
+  significantie = TRUE,
+  volledige_vraag = TRUE,
+  alpha = 0.05,
+  variabelen_te_overschrijven = NULL,
+  overschrijven_naar = NULL
+)
+```
+]
+]]
+
+---
+
+### `zf_frequentietabellen()`
+
+
+.small[
+
+```r
+zf_frequentietabellen(wmo,
+                      variabelen = c('V1', 'V2'),
+                      bestandsnaam = 'V1.csv',
+                      overschrijven = FALSE)
+```
+]
+
+---
+
+## Grafieken of tabellen opslaan &amp; afmaken
+
+---
+
+### `zf_theme()`
+
+.small[
+
+]
+
+Bij alle grafieken hiervoor zie je dat we via de `+` een thema hebben toegevoegd aan de grafiek. Het `+` teken werkt alleen bij objecten die een `ggplot` class hebben, oftewel, grafieken. 
+
+De default parameters van de functie zijn: 
+.small[
+
+```r
+zf_theme(
+  tekst_grootte = 18, # Grootte van de tekst - alle elementen worden geschaald
+  label_grootte = 4, # Grootte van de labels
+  legenda_links = FALSE, # Om de legenda verder naar links te schuiven
+  border = TRUE, # Om een groene (of blauwe) rand toe te voegen aan de grafiek
+  cirkeldiagram = FALSE, # Verwijdert assen bij een cirkeldiagram
+  meerkeuze_vergelijking = FALSE, # Maakt ruimte tussen labels &amp; y-as
+  gridlijn_x = TRUE, # Indien FALSE, verwijdert de verticale lijnen
+  gridlijn_y = FALSE # Indien FALSE, verwijdert de horizontale lijnen
+)
+```
+]
+
+---
+
+### `zf_save()`
+
+Sla je grafiek op in je huidige werkmap (**weet je nog? Gebruik altijd een .Rproj zodat duidelijk is waar je huidige werkmap is!**). 
+
+.small[
+
+
+```r
+zf_save(
+  plot = voorbeeld_grafiek,
+  filepath = NULL,
+  breedte = 16,
+  hoogte = 14,
+  footer = TRUE,
+  logo = TRUE,
+  bron = "Bronvermelding",
+  label = "@ZorgfocuZ",
+  merk = "zorgfocuz",
+  tekst_factor = 2)
+```
+]
+
+---
+
+# R Markdown
+
+`R Markdown` is een bestandstype dat het mogelijk maakt om tekst en code door 
+elkaar te schrijven. Je werkt in RStudio in een `.Rmd` bestand en kan via normale [Markdown](https://www.markdownguide.org/) je document stylen. Daartussen kan je
+R Code schrijven in `chunks`: 
+
+````
+```{r}
+
+Schrijf hier je R Code
+
+```
+````
+
+Je kan dan de code gewoon laten werken in je *chunk*. 
+
+---
+
+# Huiswerk
+
+Nu is het jullie beurt! In het ZorgfocuZ package is een R Markdown Tuturial 
+template bijgevoegd. Jullie kunnen nu via `File -&gt; New File -&gt; RMarkdown -&gt; From Template` de `ZorgfocuZ Package Tutorial` selecteren 
+
+&lt;img src="https://i.imgur.com/Rap3OyC.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: inverse
+
+.center[
+# Succes!!
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "tomorrow-night-blue",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

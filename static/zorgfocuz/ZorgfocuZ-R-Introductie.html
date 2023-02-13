@@ -1,0 +1,1856 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introductie in R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Stefan Musch" />
+    <meta name="date" content="2021-09-21" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <link rel="stylesheet" href="chartwise.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, top, title-slide
+
+# Introductie in R
+## Chartwise
+### Stefan Musch
+### 21 september 2021
+
+---
+
+
+
+
+
+# Rapportageproces ZorgfocuZ
+
+* Huidige werkwijze: SPSS, Excel, Word.
+
+--
+
+* Optimaliseren van dit proces:
+  * Tijdsbesparing.
+  * Foutgevoeligheid verkleinen.
+  * Rapportages efficiënter inrichten.
+  
+--
+
+* Alternatief: de overstap naar R.
+  
+---
+
+# Doel van deze eerste training
+
+* De basis van R onder de knie krijgen.
+
+--
+
+* Het leren inlezen en manipuleren van data.
+  
+--
+
+* Het schrijven van (eenvoudige) scripts.
+
+--
+
+Bij de tweede training op 23 september gaan jullie leren om de functies die wij hebben geschreven toe te passen. Dat maakt het uitdraaien van visualisaties in de toekomst een stuk sneller. 
+  
+---
+# Inleiding
+
+1. R en RStudio 
+
+2. Het maken en gebruiken van `variabelen` en `objecten`
+
+3. Het laden van dataframes
+
+4. Introductie in de Tidyverse
+
+5. Spelen met data
+    + Rijen &amp; kolommen filteren &amp; aanmaken
+    + Data samenvatten
+
+---
+class: inverse
+
+# R en RStudio
+
+---
+# Waarom R?
+
+R is een softwarepakket en programmeertaal, ontwikkeld voor statistiek en data-analysedoeleinden.
+
+Waarom is R zo handig?
+
+--
+
+* R is *gratis*, dus je hebt geen licentie nodig.
+
+--
+
+* R heeft een *hele* grote community die ondersteuning biedt en informatie en software deelt.
+
+--
+
+* R kan vrijwel ieder gegevensformaat aan.
+
+--
+
+* R maakt het reproduceren van werk *eenvoudig*.
+
+--
+
+* R is een *taal*, dus *alles* is mogelijk.&lt;sup&gt;1&lt;/sup&gt;
+
+.footnote[[1] Inclusief het maken van een presentatie zoals deze!]
+--
+
+* R is vergelijkbaar met andere programmeertalen.
+
+---
+
+# R Studio
+
+R Studio is een zeer gebruiksvriendelijke ontwikkelomgeving voor R. Dit maakt werken met R een stuk *eenvoudiger*.
+
+--
+
+RStudio kan:
+--
+
+* Code, output, en plots genereren.
+
+--
+
+* Code automatisch aanvullen en codes of tekst uitlichten.
+
+--
+
+* Hulp bieden bij het bekijken van data en objecten.  
+
+--
+
+* [R-code eenvoudig integreren in documenten.](https://rmarkdown.rstudio.com/)
+
+---
+
+# R Studio Pimpen
+
+Voordat we beginnen, gaan we de applicatie ons eerst 'eigen' maken. Een
+aantal instellingen die ik hieronder aanhaal zijn belangrijk, de andere zijn puur naar smaak aan te passen.
+
+--
+
+* Ga naar `Tools` -&gt;  `Global Options` -&gt; `General`
+  + Vink `Restore .RData into workspace` uit en zet de dropdown op `Never`
+  
+--
+
+* Ga naar `Code` - &gt; `Display` 
+  + Selecteer `Show margin` en zet de margin op 80
+  + Selecteer `Highlight R function calls`
+  + Optioneel: Selecteer `Rainbow parentheses` 
+
+---
+
+# R Studio Pimpen
+
+Voordat we beginnen, gaan we de applicatie ons eerst 'eigen' maken. Een
+aantal instellingen die ik hieronder aanhaal zijn belangrijk, de andere zijn puur naar smaak aan te passen.
+
+*  Ga naar `R Markdown`
+  + Selecteer `Show output inline for all R Markdown documents`
+
+* Ga naar `Appearance`
+  + Kies je favoriete RStudio Thema
+  + Kies je favoriete lettertype &amp; grootte
+  + Kies je favoriete Editor Thema
+  
+---
+# Het begin       
+
+Open RStudio en kies *File &gt; New File &gt; R Script*.
+
+Laten we ons nu eerst focussen op de gebruikersomgeving:
+
+* *Linksboven*: het **bewerkingspaneel (editor)**, hier kun je data bekijken en aanpassen. 
+
+* *Linksonder*: **de console** voor het uitvoeren van code. 
+
+* *Rechtsboven*: **de omgeving (environment)** waar variabelen en functies die door de gebruiker zijn gedefinieerd, worden bijgehouden. 
+
+* *Rechtsonder*: Tabbladen voor het doorzoeken van bestanden, het bekijken van plots, het beheren van 'packages' en het openen van helpbestanden. 
+
+Je kan de layout van Rstudio veranderen door te gaan naar *View &gt; Panes &gt; Pane Layout*.
+
+---
+
+# Codes bewerken en uitvoeren
+
+Er zijn meerdere manieren om R code in Rstudio uit te voeren:
+
+--
+
+* Selecteer een regel in het **bewerkingspaneel (editor)** en klik op 'Run' bovenaan het scherm, of druk op 'ctrl+enter' om de code uit te voeren.
+
+--
+
+* Klik met de muis achter de regel die je wilt uitvoeren en klik op 'ctrl+enter'. Op deze manier verspringt de cursus automatisch naar de volgende regel. Op deze manier kun je meerdere stukjes code achter elkaar uitvoeren. 
+
+--
+
+* Typ een regel in de **console** en druk op 'enter'. 
+
+--
+
+De console toont de regels die je hebt uitgevoerd, gevolgd door een eventuele uitkomst van de code.
+---
+
+# Onvolledige Code
+
+Als er iets ontbreekt in de code (bijvoorbeeld een haakje dat mist), kan R soms een '+' teken laten zien. Hiermee word je gevraagd de code af te maken:
+
+
+```r
+&gt; (11-2
++
+```
+
+Je kunt dan kiezen om de code aan te passen, of om op 'esc' te drukken om te stoppen met het creëren van de code.  
+
+---
+
+# R gebruiken als rekenmachine
+
+Typ het volgende in de **console**: `123 + 456 + 789` en druk op `Enter`.
+--
+
+
+```r
+123 + 456 + 789
+```
+
+```
+## [1] 1368
+```
+
+--
+
+De `[1]` die je ziet als output, geeft de numerieke **index** aan van het eerste element op die lijn.
+
+--
+
+Vul nu, in het lege R document in het **bewerkingspaneel (editor)**, de code `sqrt(400)` en klik op *Run* of druk op 'Ctrl+Enter'. 
+
+--
+
+
+```r
+sqrt(400)
+```
+
+```
+## [1] 20
+```
+
+---
+
+# Functies en hulp
+
+`sqrt()` is een voorbeeld van een **functie** in R en staat voor square root (de wortel van).
+
+Mocht je willen weten wat de functie `sqrt()` doet, dan kun je `?sqrt` typen in de console. Vervolgens verschijnt er een uitleg in het **Help** paneel aan de rechterkant. 
+
+
+
+```r
+?sqrt
+```
+
+**Arguments** laat zien wat voor **input** er wordt gevraagd bij een bepaalde functie. In dit geval kun je zien dat de **input** een getal of een vector (serie) van getallen moet zijn.
+
+Een hulpbestand geeft dus aan hoe een functie kan worden gebruikt en wat voor uitkomst er door de code wordt geproduceerd. 
+
+---
+class: inverse
+
+# Het maken en gebruiken van 'objecten'
+
+---
+
+# Het maken van 'objecten'
+
+R slaat *alles* op als een **object**, inclusief data, functies, modellen, en output.
+
+--
+
+Het maken van een object kan worden gedaan door het gebruik van de zogenaamde **assignment operator**: `&lt;-` 
+
+**Operators** zoals `&lt;-` zijn functies die er uit zien als symbolen en die vaak tussen getallen of objecten instaan.
+
+--
+
+
+```r
+new.object &lt;- 144
+```
+
+---
+
+# Het oproepen van een 'object'
+
+Je kan een object eenvoudig oproepen door simpelweg de naam in te typen. 
+
+
+```r
+new.object
+```
+
+```
+## [1] 144
+```
+
+--
+
+Object namen kunnen `_` en `.` bevatten, maar mogen *niet beginnen* met een getal. Ze mogen wel beginnen met `.` maar dan is dit een *onzichtbaar* object en wordt het niet in je *environment* getoond. Probeer consistent te zijn in het benoemen van objecten. Bedenk hierbij dat lange namen altijd beter zijn dan vage namen!
+
+*Goede namen besparen een hoop verwarring.*
+
+---
+
+# Het gebruik van objecten
+
+De **naam** van een object geeft aan welke informatie er is opgeslagen in dat **object**. Je kunt een object dus behandelen alsof het de waarden zijn die er in zijn opgeslagen. 
+--
+
+
+```r
+new.object + 10
+```
+
+```
+## [1] 154
+```
+
+```r
+new.object + new.object
+```
+
+```
+## [1] 288
+```
+
+```r
+sqrt(new.object)
+```
+
+```
+## [1] 12
+```
+
+---
+
+# Het creëren van vectors
+
+Een **vector** is een serie van **elementen**, zoals getallen. 
+
+--
+
+Je kunt een vector creëren en het opslaan als een 'object' op de zelfde manier als ik hiervoor liet zien. Om dit te doen gebruik je de functie `c()`. Dit staat voor "combinatie".
+--
+
+
+```r
+new.object &lt;- c(4, 9, 16, 25, 36)
+new.object
+```
+
+```
+## [1]  4  9 16 25 36
+```
+
+--
+
+Wanneer je een naam van een object dezelfde naam geeft als dat van een al bestaand object, dan zal deze worden *overschreven*.
+
+--
+
+Je kunt een vector gebruiken bij veel verschillende functies. De functie wordt 
+dan toegepast op **ieder element in de vector**.
+--
+
+
+```r
+sqrt(new.object)
+```
+
+```
+## [1] 2 3 4 5 6
+```
+
+---
+
+# Categorische Vectoren
+
+Naast numerieke data, wordt er ook vaak met categorische data gewerkt. 
+
+--
+Ook daar kan een vector van tekst elementen- **strings** in programmeertaal, van worden gemaakt. In dat geval moeten we de tekst tussen aanhalingstekens plaatsen:
+
+
+```r
+string.vector &lt;- c("Atlantic", "Pacific", "Arctic")
+string.vector
+```
+
+```
+## [1] "Atlantic" "Pacific"  "Arctic"
+```
+
+--
+Categorische data kan ook worden opgeslagen als een **factor** met onderliggende numerieke data. Op die manier worden de **factoren** omgezet in dummies.
+
+
+```r
+factor.vector &lt;- factor(string.vector)
+factor.vector
+```
+
+```
+## [1] Atlantic Pacific  Arctic  
+## Levels: Arctic Atlantic Pacific
+```
+
+---
+# Het opslaan en laden van objecten
+
+Je kunt een R object op je computer opslaan om deze later weer te openen:
+
+```r
+save(new.object, file="new_object.RData")
+```
+
+--
+
+Je kunt een opgeslagen bestand op deze manier weer openen:
+
+```r
+load("new_object.RData")
+```
+
+--
+
+Maar waar worden deze bestanden opgeslagen? En vanaf welke locatie worden ze geladen?
+
+---
+# Werkmappen
+
+R slaat bestanden op en zoekt naar bestanden om te openen, in je huidige **werkmappen**. Je kunt R ook vragen waar dit precies is:
+
+
+```r
+getwd()
+```
+
+```
+## [1] "D:/Stefan/Chartwise/chartwise-R/Trainingen/ZorgfocuZ Trainingen"
+```
+
+--
+
+Op dezelfde manier kunnen we een werkmap als volgt instellen:
+
+
+```r
+setwd("D:/Stefan/Chartwise")
+```
+
+---
+# R Projecten
+
+Hoewel je losse scripts op *kan* slaan, is het het beste om altijd in een zogenaamd [**R Project (.Rproj)**](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects) te werken. Dus voor ieder project is het een goed idee om een bijbehorend R Project te maken. Dit kan door naar `File -&gt; New Project` te gaan en ofwel `New Directory` of `Existing Directory` te kiezen. 
+
+Als je project is aangemaakt kan je deze openen in RStudio door op het icoontje te klikken.
+
+--
+* Sla alle R scripts en data files op in dezelfde folder als je R Project
+  + Je R Project zorgt ervoor dat je een nieuwe *basis locatie* krijgt. 
+  + Dus i.p.v. `save(file = 'C:/hele_lange_naam_die_continu_verandert/file')` kan je nu simpelweg `save(file = 'file')` typen en zal het opgeslagen worden op dezelfde locatie als je project.
+
+---
+
+# Complexere objecten
+
+Ook voor complexere objecten zoals **matrixen**, **rijen**, **lijsten**, en **dataframes**, kunnen dezelfde principes worden gebruikt als ik liet zien bij de vectoren. (Dataframe: een lijst die er uit ziet als een matrix maar meerdere gegevenstypes bevat).
+
+De meeste data sets waar jullie mee gaan werken worden ingelezen in R en opgeslagen als **dataframe**, daarom zullen wij ons tijdens deze training vooral daar op focussen. 
+
+![Complex](https://i.imgur.com/EUjhM08.png)
+
+---
+class: inverse 
+
+# Het laden van dataframes
+
+---
+
+# Gescheiden tekstbestanden
+
+De eenvoudigste manier om te werken met externa data- dat niet in R format staat- is wanneer dit is opgeslagen als een *gescheiden* tekstbestand. Een voorbeeld hiervan is een **CSV bestand** (door komma's gescheiden waarden) of een **TSV bestand** (Tab gescheiden waarden).
+
+--
+
+R heeft verschillende ingebouwde functies voor het importeren van gegevens die zijn opgeslagen in tekstbestanden, zoals `read.table()` en `read.csv()`.
+
+Gebruik "write" versies (voorbeeld: `write.csv()`) om deze bestanden zelf te creëren. 
+
+
+
+```r
+new_df &lt;- read.csv("some_spreadsheet.csv",
+                   stringsAsFactors = FALSE)
+```
+
+---
+# Data uit andere software
+
+Wanneer er wordt gewerkt met **Stata**, **SAS**, of in jullie geval **SPSS** data, dan kan er een zogenaamde **package** (kom ik zo op terug) worden gebruikt om opgeslagen data files in te laden. De twee meest bekende zijn:
+ 
+* `foreign`
+    + Onderdeel van de basis van R
+    + Functies: `read.spss()`, `read.dta()`, `read.xport()`
+    + Minder complex, maar soms gaat er wat metadata verloren
+* `haven`
+    + Onderdeel van de `tidyverse` familie
+    + Functies: `read_spss()`, `read_dta()`, `read_sas()`
+    + Behoudt metadata zoals variabele labels
+
+
+Voor dataformats die minder vaak voor komen, is het vaak een kwestie van Googelen. Voor vrijwel ieder type data is er al reeds een package beschikbaar.
+
+---
+
+# Het installeren van packages
+
+Maar wat zijn packages? 
+
+--
+
+Packages bevatten functies (en soms gegevens) die door de community zijn gemaakt. Deze gratis te downloaden packages zijn het grote voordeel van R!
+
+--
+
+Voor het overige deel van deze workshop werken we met gegevens uit een package genaamd `gapminder`. Deze package bevat data uit 142 landen, die om de vijf jaar zijn waargenomen tussen 1952 tot 2007. 
+
+--
+
+We kunnen `gapminder` installeren vanuit het R-archiefnetwerk (CRAN):
+
+
+```r
+install.packages("gapminder")
+```
+
+Je hoeft een package slechts **eenmaal** te installeren voor een bepaalde versie van R. Wel moeten alle packages opnieuw worden geïnstalleerd na het upgraden van R.
+
+---
+
+# Het laden van een package
+
+Om een package te laden, gebruik je `library()`:
+
+
+```r
+library(gapminder)
+```
+
+Zodra een package is geladen, kun je een beroep doen op functies of gegevens uit de package.
+
+.small[
+
+```r
+data(gapminder) # Plaatst data in 'de omgeving / environment'
+head(gapminder) # Geeft de eerste zes elementen van een object weer
+```
+
+```
+## # A tibble: 6 x 6
+##   country     continent  year lifeExp      pop gdpPercap
+##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+## 1 Afghanistan Asia       1952    28.8  8425333      779.
+## 2 Afghanistan Asia       1957    30.3  9240934      821.
+## 3 Afghanistan Asia       1962    32.0 10267083      853.
+## 4 Afghanistan Asia       1967    34.0 11537966      836.
+## 5 Afghanistan Asia       1972    36.1 13079460      740.
+## 6 Afghanistan Asia       1977    38.4 14880372      786.
+```
+]
+
+---
+class: inverse
+# Spelen met data
+
+---
+
+# Indexen en dimensies
+
+In R, zijn er twee manieren om elementen van een object op te roepen. Dit kan met blokhaken (`[]` of `[[]]`) en met `$`. Hoe je een object benadert hang af van de *dimensies*.
+
+--
+
+Dataframes hebben *2* dimensies: **rijen** en **kolommen**. Door de blokhaken te gebruiken kunnen wij aangeven welke rijen en kolommen wij willen oproepen. Dit ziet er dus als volgt uit: `object[rij, kolom]`.
+Wanneer wij niks invoeren, wordt *alles* opgeroepen**!** Let hier goed mee op, sommige datasets zijn zo groot, dat wanneer je alles print, RStudio kan vastlopen. 
+
+.small[
+
+```r
+head(gapminder)
+```
+
+```
+## # A tibble: 6 x 6
+##   country     continent  year lifeExp      pop gdpPercap
+##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+## 1 Afghanistan Asia       1952    28.8  8425333      779.
+## 2 Afghanistan Asia       1957    30.3  9240934      821.
+## 3 Afghanistan Asia       1962    32.0 10267083      853.
+## 4 Afghanistan Asia       1967    34.0 11537966      836.
+## 5 Afghanistan Asia       1972    36.1 13079460      740.
+## 6 Afghanistan Asia       1977    38.4 14880372      786.
+```
+]
+
+---
+
+# Indexen en dimensies
+
+.small[
+
+```r
+gapminder[1,] # Eerste rij
+```
+
+```
+## # A tibble: 1 x 6
+##   country     continent  year lifeExp     pop gdpPercap
+##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;
+## 1 Afghanistan Asia       1952    28.8 8425333      779.
+```
+]
+--
+.small[
+
+```r
+gapminder[1:2, 3:4] # Eerste twee rijen, derde en vierde kolom 
+```
+
+```
+## # A tibble: 2 x 2
+##    year lifeExp
+##   &lt;int&gt;   &lt;dbl&gt;
+## 1  1952    28.8
+## 2  1957    30.3
+```
+]
+
+.footnote[
+[1] De **dubbelepunt** (`:`) zorgt er voor dat ook tussenliggende getallen worden meegenomen. `1:3` staat gelijk aan de vector `c(1,2,3)`. 
+]
+
+---
+
+# Dataframes en namen
+
+Kolommen in dataframes kunnen ook worden opgeroepen door de naam van de kolom in combinatie met het teken `$`. Hierdoor wordt de kolom opgeroepen als een vector:
+
+
+```r
+top_10_gdp &lt;- gapminder$gdpPercap[1:10]
+
+print(top_10_gdp)
+```
+
+```
+##  [1] 779.4453 820.8530 853.1007 836.1971 739.9811 786.1134 978.0114 852.3959
+##  [9] 649.3414 635.3414
+```
+
+--
+
+Let op: hier gebruik ik *ook* blokhaken om alleen de eerste 10 elementen van de kolom op te roepen.
+
+Het is mogelijk om dit soort formats te combineren. In dit geval gebruik ik slechts één waarde (en geen kolom index) omdat **vectors** maar één dimensie hebben (lengte).
+
+Wanneer je iets probeert te selecteren en vervolgens de volgende waarschuwing krijgt "incorrect number of dimensions", check dan wat je tussen de *[]* hebt geplaatst!
+
+---
+
+# Indexeren met een expressie
+
+Het is ook mogelijk om te indexeren op basis van een expressie.
+
+.small[
+
+```r
+gapminder[gapminder$year==1952, ]
+```
+
+```
+## # A tibble: 142 x 6
+##    country     continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Afghanistan Asia       1952    28.8  8425333      779.
+##  2 Albania     Europe     1952    55.2  1282697     1601.
+##  3 Algeria     Africa     1952    43.1  9279525     2449.
+##  4 Angola      Africa     1952    30.0  4232095     3521.
+##  5 Argentina   Americas   1952    62.5 17876956     5911.
+##  6 Australia   Oceania    1952    69.1  8691212    10040.
+##  7 Austria     Europe     1952    66.8  6927772     6137.
+##  8 Bahrain     Asia       1952    50.9   120447     9867.
+##  9 Bangladesh  Asia       1952    37.5 46886859      684.
+## 10 Belgium     Europe     1952    68    8730405     8343.
+## # ... with 132 more rows
+```
+]
+
+---
+
+# Hoe werkt een expressie?
+
+Wat doet `gapminder$year==1952` nou eigenlijk? 
+
+--
+
+.small[
+
+```r
+head(gapminder$year, n = 20)
+```
+
+```
+##  [1] 1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 2002 2007 1952 1957 1962
+## [16] 1967 1972 1977 1982 1987
+```
+
+```r
+head(gapminder$year==1952, n = 20) # geef de eerste 20 elementen weer
+```
+
+```
+##  [1]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [13]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+```
+]
+
+--
+
+Het geeft een vector met `TRUE` of `FALSE` waarden terug. 
+
+Wanneer dit in combinatie met de blokhaken wordt gebruikt (`[]`), dan worden elementen waar de uitkomst `TRUE` is gegeven wel opgeroepen, terwijl de elementen die overeenkomen met `FALSE` worden weggelaten.
+
+---
+
+# Logical Operators
+
+Zojuist gebruikten wij `==` voor het oproepen van "is gelijk aan": `gapminder$year==1952`.
+
+--
+
+Er zijn nog veel meer andere [logical operators](http://www.statmethods.net/management/operators.html):
+
+--
+
+* `!=`: niet gelijk aan
+--
+
+* `&gt;`, `&gt;=`, `&lt;`, `&lt;=`: groter dan, groter dan of gelijk aan, etc.
+--
+
+* `%in%`: wordt gebruikt om te checken of iets gelijk is aan één of meerdere waarden
+
+--
+
+Of we kunnen meerdere logical operators combineren:
+
+* `&amp;`: beide voorwaarden moeten gelden (AND)
+--
+
+* `|`: In ieder geval één voorwaarde moet gelden (OR)
+--
+
+* `!`: Keert een logical operator om (`TRUE` wordt `FALSE`, `FALSE` wordt `TRUE`)
+
+Bovenstaande logical operators zullen wij straks verder behandelen.
+--
+
+Logical operators zijn het fundament van programmeren. Je kunt er mee experimenteren om uit te zoeken hoe ze werken. 
+
+---
+
+# Meerdere condities gebruiken
+
+Laten we zeggen dat we alle data van het land Oman van na 1980 en tot en met 2000 willen bekijken. 
+
+--
+
+.small[
+
+```r
+gapminder[gapminder$country == "Oman" &amp;
+          gapminder$year &gt; 1980 &amp;
+          gapminder$year &lt;= 2000, ]
+```
+
+```
+## # A tibble: 4 x 6
+##   country continent  year lifeExp     pop gdpPercap
+##   &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;
+## 1 Oman    Asia       1982    62.7 1301048    12955.
+## 2 Oman    Asia       1987    67.7 1593882    18115.
+## 3 Oman    Asia       1992    71.2 1915208    18617.
+## 4 Oman    Asia       1997    72.5 2283635    19702.
+```
+]
+
+.footnote[
+Let op: we moeten altijd de gehele naam van het object gebruiken in ieder subsetting argument, in plaats van alleen `country == "Oman"`. 
+]
+
+---
+
+# Het opslaan van een subset
+
+Als we verwachten dat wij een subset vaker willen gebruiken, dan kunnen we deze opslaan en een naam geven zoals ieder ander object:
+
+.small[
+
+```r
+China &lt;- gapminder[gapminder$country == "China", ]
+head(China, 4)
+```
+
+```
+## # A tibble: 4 x 6
+##   country continent  year lifeExp       pop gdpPercap
+##   &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+## 1 China   Asia       1952    44   556263527      400.
+## 2 China   Asia       1957    50.5 637408000      576.
+## 3 China   Asia       1962    44.5 665770000      488.
+## 4 China   Asia       1967    58.4 754550000      613.
+```
+]
+
+---
+# Een andere operator: `%in%`
+
+Een veelvoorkomende actie die we soms uitvoeren, is rijen subsetten naar dingen in een *set*.
+
+We kunnen `%in%` gebruiken zoals `==` maar het komt overeen met *ieder element* in de vector aan de rechterkant.
+
+.small[
+
+```r
+former_yugoslavia &lt;- c("Bosnia and Herzegovina", "Croatia", 
+              "Macedonia", "Montenegro", "Serbia", "Slovenia")
+yugoslavia &lt;- gapminder[gapminder$country %in% former_yugoslavia, ]
+head(yugoslavia, 5)
+```
+
+```
+## # A tibble: 5 x 6
+##   country                continent  year lifeExp     pop gdpPercap
+##   &lt;fct&gt;                  &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;
+## 1 Bosnia and Herzegovina Europe     1952    53.8 2791000      974.
+## 2 Bosnia and Herzegovina Europe     1957    58.4 3076000     1354.
+## 3 Bosnia and Herzegovina Europe     1962    61.9 3349000     1710.
+## 4 Bosnia and Herzegovina Europe     1967    64.8 3585000     2172.
+## 5 Bosnia and Herzegovina Europe     1972    67.4 3819000     2860.
+```
+]
+
+---
+## Nieuwe kolommen maken
+
+We kunnen nieuwe kolommen maken (variabelen) in een dataframe door dezelfde subsetting functies te gebruiken. 
+
+.small[
+
+```r
+yugoslavia$pop_million &lt;- yugoslavia$pop / 1000000
+yugoslavia$life_exp_past_40 &lt;- yugoslavia$lifeExp - 40
+head(yugoslavia[,-1:-4])
+```
+
+```
+## # A tibble: 6 x 4
+##       pop gdpPercap pop_million life_exp_past_40
+##     &lt;int&gt;     &lt;dbl&gt;       &lt;dbl&gt;            &lt;dbl&gt;
+## 1 2791000      974.        2.79             13.8
+## 2 3076000     1354.        3.08             18.5
+## 3 3349000     1710.        3.35             21.9
+## 4 3585000     2172.        3.58             24.8
+## 5 3819000     2860.        3.82             27.4
+## 6 4086000     3528.        4.09             29.9
+```
+]
+
+Let op: Ik heb expres de eerste 4 kolommen niet geprint.
+
+---
+class: inverse
+
+# Basisanalyses
+
+---
+
+# Histogrammen
+
+We kunnen de `hist()` functie gebruiken om een histogram te genereren van een bepaalde vector: 
+
+
+```r
+hist(gapminder$lifeExp,
+     xlab = "Levensverwachting in Jaren", 
+     main = "Geobserveerde levensverwachting") 
+```
+
+&lt;img src="ZorgfocuZ-R-Introductie_files/figure-html/unnamed-chunk-21-1.png" height="320px" /&gt;
+
+.pull-right[
+.footnote[
+`xlab =` is gebruikt om de label van de x-as van een plot in te stellen. 
+
+`main = ` is gebruikt om de titel van een plot in te stellen. 
+
+Gebruik `?hist` om extra opties te zien die beschikbaar zijn voor het aanpassen van een histogram.
+
+]
+]
+
+---
+# Spreidingsdiagrammen
+
+.small[
+
+```r
+plot(lifeExp ~ gdpPercap, data = gapminder, 
+     xlab = "ln(GDP per Capita)",
+     ylab = "Levensverwachting in jaren",
+     main = "Levensverwachting &amp; Logaritme van GDP per Capita",
+     pch = 16, log="x") # log="x" zet de x-as om naar log schaal!
+abline(h = mean(gapminder$lifeExp), col = "red") 
+abline(v = mean(gapminder$gdpPercap), col = "blue") 
+```
+
+&lt;img src="ZorgfocuZ-R-Introductie_files/figure-html/unnamed-chunk-22-1.png" height="320px" /&gt;
+]
+
+.pull-right[
+.footnote[Let op: `lifeExp ~ gdpPercap` is een **formule** van het type `y ~ x`. Het eerste element(`lifeExp`) wordt geplot op de y-as en het tweede element (`gdpPercap`) wordt geplot op de x-as. 
+
+De `abline()` plaatst horizontale (`h =`) of verticale (`v =`) lijnen bij de gemiddelden van de variabelen die in de plot worden gebruikt.
+]
+]
+
+---
+# Formules
+
+De meeste modelleringsfuncties in R gebruiken een algemeen formuleformaat - hetzelfde als bij de vorige plot:
+
+
+```r
+new_formula &lt;- y ~ x1 + x2 + x3
+new_formula
+```
+
+```
+## y ~ x1 + x2 + x3
+```
+
+```r
+class(new_formula)
+```
+
+```
+## [1] "formula"
+```
+
+De afhankelijke variabele staat aan de linkerkant van `~` en de onafhankelijke variabelen aan de rechterkant.
+
+Bekijk hier meer over [formules](https://www.datacamp.com/community/tutorials/r-formula-tutorial).
+
+---
+
+# Simpele tabellen
+
+`table()` maakt basis kruistabellen van vectoren.
+
+
+```r
+table(mtcars$cyl, mtcars$am)
+```
+
+```
+##    
+##      0  1
+##   4  3  8
+##   6  4  3
+##   8 12  2
+```
+
+---
+
+# Chi-Square
+
+We kunnen de output van `table()` omzetten naar `chisq.test()` om een chi-square toets uit te voeren.  
+
+.small[
+
+```r
+chisq.test(table(mtcars$cyl, mtcars$am))
+```
+
+```
+## Warning in chisq.test(table(mtcars$cyl, mtcars$am)): Chi-squared approximation
+## may be incorrect
+```
+
+```
+## 
+## 	Pearson's Chi-squared test
+## 
+## data:  table(mtcars$cyl, mtcars$am)
+## X-squared = 8.7407, df = 2, p-value = 0.01265
+```
+]
+
+Let op de waarschuwing hier. Je kunt herschalen gebruiken (`rescale.p=TRUE`) of gesimuleerde P-waarden (`simulate.p.value=TRUE`) indien nodig. 
+
+---
+
+# T Tests
+
+R kan ook worden gebruikt om door middel van een T test, gemiddelden te vergelijken. 
+
+.small[
+
+```r
+gapminder$post_1980 &lt;- ifelse(gapminder$year &gt; 1980, 1, 2)
+t.test(lifeExp ~ post_1980, data=gapminder)
+```
+
+```
+## 
+## 	Welch Two Sample t-test
+## 
+## data:  lifeExp by post_1980
+## t = 17.174, df = 1694.7, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##   8.791953 11.059068
+## sample estimates:
+## mean in group 1 mean in group 2 
+##        64.43719        54.51168
+```
+]
+
+---
+
+# Lineaire modellen
+
+We kunnen een lineaire regressie uitvoeren door `lm()` te gebruiken:
+
+.small[
+
+```r
+lm(lifeExp~pop + gdpPercap + year + continent, data=gapminder)
+```
+
+```
+## 
+## Call:
+## lm(formula = lifeExp ~ pop + gdpPercap + year + continent, data = gapminder)
+## 
+## Coefficients:
+##       (Intercept)                pop          gdpPercap               year  
+##        -5.185e+02          1.791e-09          2.985e-04          2.863e-01  
+## continentAmericas      continentAsia    continentEurope   continentOceania  
+##         1.429e+01          9.375e+00          1.936e+01          2.056e+01
+```
+]
+
+Let op: We krijgen een stuk minder output dan je zou verwachten! Dit is omdat we slechts naar een klein stukje van de informatie kijken die wordt geproduceerd door `lm()`. We moeten het object dat `lm()` maakt, verder onderzoeken. 
+
+---
+
+# Model Samenvattingen
+
+The `summary()` functie levert een regressie output vergelijkbaar aan SPSS: 
+
+.smaller[
+
+```r
+lm_out &lt;- lm(lifeExp~pop + gdpPercap + year + continent, data=gapminder)
+summary(lm_out)
+```
+
+```
+## 
+## Call:
+## lm(formula = lifeExp ~ pop + gdpPercap + year + continent, data = gapminder)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -28.4051  -4.0550   0.2317   4.5073  20.0217 
+## 
+## Coefficients:
+##                     Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       -5.185e+02  1.989e+01 -26.062   &lt;2e-16 ***
+## pop                1.791e-09  1.634e-09   1.096    0.273    
+## gdpPercap          2.985e-04  2.002e-05  14.908   &lt;2e-16 ***
+## year               2.863e-01  1.006e-02  28.469   &lt;2e-16 ***
+## continentAmericas  1.429e+01  4.946e-01  28.898   &lt;2e-16 ***
+## continentAsia      9.375e+00  4.719e-01  19.869   &lt;2e-16 ***
+## continentEurope    1.936e+01  5.182e-01  37.361   &lt;2e-16 ***
+## continentOceania   2.056e+01  1.469e+00  13.995   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 6.883 on 1696 degrees of freedom
+## Multiple R-squared:  0.7172,	Adjusted R-squared:  0.716 
+## F-statistic: 614.5 on 7 and 1696 DF,  p-value: &lt; 2.2e-16
+```
+]
+
+---
+
+# Model Objecten
+
+`lm()` produceert een stuk meer informatie dan wat wordt getoond door `summary()`. We kunnen de **structuur** van de `lm()` outputinzien door gebruik te maken van `str()`:
+
+
+```r
+str(lm_out)
+```
+
+.smaller[
+
+```
+## List of 13
+##  $ coefficients : Named num [1:8] -5.18e+02 1.79e-09 2.98e-04 2.86e-01 1.43e+01 ...
+##   ..- attr(*, "names")= chr [1:8] "(Intercept)" "pop" "gdpPercap" "year" ...
+##  $ residuals    : Named num [1:1704] -21.1 -21.1 -20.8 -20.2 -19.6 ...
+##   ..- attr(*, "names")= chr [1:1704] "1" "2" "3" "4" ...
+##  $ effects      : Named num [1:1704] -2455.1 34.6 312.1 162.6 100.6 ...
+##   ..- attr(*, "names")= chr [1:1704] "(Intercept)" "pop" "gdpPercap" "year" ...
+##  $ rank         : int 8
+##  $ fitted.values: Named num [1:1704] 49.9 51.4 52.8 54.3 55.7 ...
+##   ..- attr(*, "names")= chr [1:1704] "1" "2" "3" "4" ...
+##  $ assign       : int [1:8] 0 1 2 3 4 4 4 4
+##  $ qr           :List of 5
+##   ..$ qr   : num [1:1704, 1:8] -41.2795 0.0242 0.0242 0.0242 0.0242 ...
+##   .. ..- attr(*, "dimnames")=List of 2
+##   .. ..- attr(*, "assign")= int [1:8] 0 1 2 3 4 4 4 4
+##   .. ..- attr(*, "contrasts")=List of 1
+##   ..$ qraux: num [1:8] 1.02 1 1.02 1.01 1.01 ...
+##   ..$ pivot: int [1:8] 1 2 3 4 5 6 7 8
+##   ..$ tol  : num 1e-07
+##   ..$ rank : int 8
+##   ..- attr(*, "class")= chr "qr"
+##   [list output truncated]
+##  - attr(*, "class")= chr "lm"
+```
+]
+
+.pull-right30[
+.footnote[
+`lm()` heeft dus eigenlijk een enorme hoeveelheid output! Dit is een type object dat een **lijst** wordt genoemd.
+
+]
+]
+
+---
+
+# Model Objecten
+
+We kunnen toegang krijgen tot delen van de `lm()` output door `$` te gebruiken net als bij de dataframe namen:
+
+.small[
+
+```r
+lm_out$coefficients
+```
+
+```
+##       (Intercept)               pop         gdpPercap              year 
+##     -5.184555e+02      1.790640e-09      2.984892e-04      2.862583e-01 
+## continentAmericas     continentAsia   continentEurope  continentOceania 
+##      1.429204e+01      9.375486e+00      1.936120e+01      2.055921e+01
+```
+]
+
+We kunnen dit ook doen met `summary()`, die aanvullende statistieken biedt:
+
+.small[
+
+```r
+summary(lm_out)$coefficients
+```
+
+```
+##                        Estimate   Std. Error    t value      Pr(&gt;|t|)
+## (Intercept)       -5.184555e+02 1.989299e+01 -26.062215 3.248472e-126
+## pop                1.790640e-09 1.634107e-09   1.095791  2.733256e-01
+## gdpPercap          2.984892e-04 2.002178e-05  14.908225  2.522143e-47
+## year               2.862583e-01 1.005523e-02  28.468586 4.800797e-146
+## continentAmericas  1.429204e+01 4.945645e-01  28.898241 1.183161e-149
+## continentAsia      9.375486e+00 4.718629e-01  19.869087  3.798275e-79
+## continentEurope    1.936120e+01 5.182170e-01  37.361177 2.025551e-223
+## continentOceania   2.055921e+01 1.469070e+00  13.994707  3.390781e-42
+```
+]
+
+---
+
+# ANOVA
+
+ANOVA's kunnen worden aangepast en samengevat, net als `lm()`
+
+.small[
+
+```r
+summary(aov(lifeExp ~ continent, data=gapminder))
+```
+
+```
+##               Df Sum Sq Mean Sq F value Pr(&gt;F)    
+## continent      4 139343   34836   408.7 &lt;2e-16 ***
+## Residuals   1699 144805      85                   
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+]
+
+---
+
+# Complexere modellen
+
+R support nog veel meer complexe modellen, bijvoorbeeld: 
+
+* `glm()` met dezelfde syntax als `lm()` maar met een `family =` argument om verschillende model families toe te passen (bijv. poisson of logistic)
+   + bijv. `glm(x~y, family=binomial(link="logit"))`
+
+* De `lme4` package geeft de mogelijkheid om hierarchical &amp; multilevel GLM modellen te maken.
+
+* `randomForest` geeft de mogelijkheid om verschillende beslisbomen te stapelen
+
+* `plm` and `tseries` voor tijd-series
+
+Veel van deze packages en modellen werken op dezelfde manier. Aangezien R voornamelijk *door en voor* statistici geschreven is, zal er voor letterlijk alle doeleinden die je kan bedenken wel een bestaande oplossing te vinden zijn in de vorm van een geschreven package.
+
+---
+class: inverse
+
+# Voorbij Basic R
+
+Vandaag gaan we ook een kijkje nemen naar packages uit de  [`tidyverse`](https://www.tidyverse.org/) collectie.
+
+--
+
+De `tidyverse` is een collectie R packages die dezelfde design principes, syntax en data structuren gebruiken.
+
+--
+
+Twee van de meest populaire packages ooit in R behoren tot de `tidyverse`;
+* [`dplyr`](https://dplyr.tidyverse.org/) 
+* [`ggplot2`](https://ggplot2.tidyverse.org/)
+
+--
+
+Je kan alle packages in één keer installeren door het volgende in je console te typen:
+
+
+```r
+install.packages("tidyverse")
+install.packages('haven')
+```
+
+--
+
+Dit keer maken we wederom gebruik van de `gapminder` dataset om wat voorbeelden aan te halen.
+
+
+```r
+install.packages("gapminder")
+```
+
+---
+class: inverse
+
+# Spelen met data: `dplyr` editie
+
+
+---
+# Maar eerst, *pipes*: `%&gt;%`
+
+`dplyr` maakt gebruik van de `forward pipe operator`, vaak ook wel gewoon **pipe** genoemd. Pipes worden zo **`%&gt;%`** (`Ctrl+Shift+M`) opgeroepen, en vergemakkelijken het gebruik (en de leesvaardigheid) van functies.
+
+--
+
+Een pipe pakt een object *links* en stopt het in de functie *rechts* `x %&gt;% f(y) = f(x, y)`. Je kunt dit ook wel lezen als "en dan..."
+
+--
+
+.small[
+
+```r
+library(dplyr)
+library(gapminder)
+library(haven)
+gapminder %&gt;% filter(country == "Canada") %&gt;% head(2)
+```
+
+```
+## # A tibble: 2 x 7
+##   country continent  year lifeExp      pop gdpPercap post_1980
+##   &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Canada  Americas   1952    68.8 14785584    11367.         2
+## 2 Canada  Americas   1957    70.0 17010154    12490.         2
+```
+]
+
+--
+
+Pipes maakt je code leesbaar en scheelt typewerk, zoals hierboven. Zie hieronder het alternatief;
+
+
+```r
+head(filter(gapminder, country == "Canada"), 2)
+```
+
+---
+
+# Het gebruiken van de pipe
+
+Pipes werken het beste als iedere losse functie op een nieuwe lijn geschreven wordt.
+
+--
+
+
+```r
+neem_deze_data %&gt;%
+    doe_eerste_ding(with = deze_value) %&gt;%
+    doe_tweede_ding(using = volgende_value) %&gt;% ...
+```
+
+--
+Alles links van de pipe is doorgevoerd als *eerste argument* van de functie rechts.
+
+---
+
+# Toewijzen d.m.v. de pipe
+
+Als je nieuwe objecten wilt aanmaken via de pipe, dan zet je altijd de `assignment operator (&lt;-)`  aan het begin van de pipe;
+
+
+```r
+lm_pop_year &lt;- gapminder %&gt;% 
+  lm(pop ~ year, data = .)
+```
+
+---
+class: inverse
+
+# Rijen manipuleren
+
+---
+## `filter` Data Frames
+
+Door een logical operator te gebruiken kan je observaties in je dataset verwijderen of behouden.
+
+
+```r
+gapminder %&gt;% filter(country == "Oman") %&gt;% head(8)
+```
+
+```
+## # A tibble: 8 x 7
+##   country continent  year lifeExp     pop gdpPercap post_1980
+##   &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Oman    Asia       1952    37.6  507833     1828.         2
+## 2 Oman    Asia       1957    40.1  561977     2243.         2
+## 3 Oman    Asia       1962    43.2  628164     2925.         2
+## 4 Oman    Asia       1967    47.0  714775     4721.         2
+## 5 Oman    Asia       1972    52.1  829050    10618.         2
+## 6 Oman    Asia       1977    57.4 1004533    11848.         2
+## 7 Oman    Asia       1982    62.7 1301048    12955.         1
+## 8 Oman    Asia       1987    67.7 1593882    18115.         1
+```
+
+---
+
+## Logical Operators
+
+--
+
+`filter()` behoud alle rijen die `TRUE` zijn. In dit geval dus alle rijen waarin de waarde in de `country`  kolom gelijk is aan `Oman`
+
+
+Weet je nog?
+--
+
+* `!=`: niet gelijk aan
+--
+
+* `&gt;`, `&gt;=`, `&lt;`, `&lt;=`: groter dan, groter dan of gelijk aan, etc.
+--
+
+* `%in%`: wordt gebruikt om te checken of iets gelijk is aan één of meerdere waarden
+
+--
+
+Of we kunnen meerdere logical operators combineren:
+
+* `&amp;`: beide voorwaarden moeten gelden (AND)
+--
+
+* `|`: In ieder geval één voorwaarde moet gelden (OR)
+--
+
+* `!`: Keert een logical operator om (`TRUE` wordt `FALSE`, `FALSE` wordt `TRUE`)
+
+---
+
+## Meerdere filter condities
+
+Nu wil ik nogmaals alle observaties van Oman, maar alleen tussen 1980 en 2000.
+
+--
+
+.small[
+
+```r
+gapminder %&gt;%
+    filter(country == "Oman" &amp;
+           year &gt; 1980 &amp;
+           year &lt;= 2000 )
+```
+
+```
+## # A tibble: 4 x 7
+##   country continent  year lifeExp     pop gdpPercap post_1980
+##   &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Oman    Asia       1982    62.7 1301048    12955.         1
+## 2 Oman    Asia       1987    67.7 1593882    18115.         1
+## 3 Oman    Asia       1992    71.2 1915208    18617.         1
+## 4 Oman    Asia       1997    72.5 2283635    19702.         1
+```
+]
+
+--
+
+Tenslotte kan je ook hier de `%in%` operator gebruiken
+
+.small[
+
+```r
+former_yugoslavia &lt;- c("Bosnia and Herzegovina", "Croatia", 
+              "Macedonia", "Montenegro", "Serbia", "Slovenia") 
+
+yugoslavia &lt;- gapminder %&gt;% filter(country %in% former_yugoslavia)
+
+tail(yugoslavia, 2)
+```
+
+```
+## # A tibble: 2 x 7
+##   country  continent  year lifeExp     pop gdpPercap post_1980
+##   &lt;fct&gt;    &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Slovenia Europe     2002    76.7 2011497    20660.         1
+## 2 Slovenia Europe     2007    77.9 2009245    25768.         1
+```
+]
+
+---
+## Sorteren: `arrange()`
+
+Soms wil je je dataset sorteren, dan kan je `arrange()` gebruiken.
+
+
+```r
+yugoslavia %&gt;% arrange(year, desc(pop)) %&gt;% head(6)
+```
+
+```
+## # A tibble: 6 x 7
+##   country                continent  year lifeExp     pop gdpPercap post_1980
+##   &lt;fct&gt;                  &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Serbia                 Europe     1952    58.0 6860147     3581.         2
+## 2 Croatia                Europe     1952    61.2 3882229     3119.         2
+## 3 Bosnia and Herzegovina Europe     1952    53.8 2791000      974.         2
+## 4 Slovenia               Europe     1952    65.6 1489518     4215.         2
+## 5 Montenegro             Europe     1952    59.2  413834     2648.         2
+## 6 Serbia                 Europe     1957    61.7 7271135     4981.         2
+```
+
+De data is nu oplopend gesorteerd naar het **jaartal**, en aflopend op **populatie**.
+
+---
+class: inverse
+
+# Kolommen manipuleren
+
+---
+## Kolommen selecteren: `select()`
+
+Hiervoor hebben we rijen gemanipuleerd. Maar ook kolommen kan je verplaatsen, wijzigen, of zelfs nieuwe aanmaken. Om bijvoorbeeld maar een paar kolommen te selecteren kan je het volgende doen:
+
+
+```r
+yugoslavia %&gt;% select(country, year, pop) %&gt;% head(4)
+```
+
+```
+## # A tibble: 4 x 3
+##   country                 year     pop
+##   &lt;fct&gt;                  &lt;int&gt;   &lt;int&gt;
+## 1 Bosnia and Herzegovina  1952 2791000
+## 2 Bosnia and Herzegovina  1957 3076000
+## 3 Bosnia and Herzegovina  1962 3349000
+## 4 Bosnia and Herzegovina  1967 3585000
+```
+
+---
+## Kolommen verwijderen: `select()`
+
+Het tegenovergestelde (kolommen verwijderen) kan je bereiken met het `-` teken:
+
+
+```r
+yugoslavia %&gt;% select(-continent, -pop, -lifeExp) %&gt;% head(4)
+```
+
+```
+## # A tibble: 4 x 4
+##   country                 year gdpPercap post_1980
+##   &lt;fct&gt;                  &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Bosnia and Herzegovina  1952      974.         2
+## 2 Bosnia and Herzegovina  1957     1354.         2
+## 3 Bosnia and Herzegovina  1962     1710.         2
+## 4 Bosnia and Herzegovina  1967     2172.         2
+```
+
+---
+### Hulpfuncties voor `select()`
+
+`select()` kan ook gebruik maken van andere **hulpfuncties** zoals `starts_with()`, `ends_with()`, and `contains()`. 
+
+Dit is erg nuttig als je een lange data frame hebt (wat in surveys vaak voorkomt) en je daar een selectie van wilt maken. Dit is iets wat veel gebruikt is in het ZorgfocuZ package.
+
+.smaller[
+
+```r
+ZorgfocuZ::wmo %&gt;%
+  select(starts_with('V33_')) %&gt;%
+  as_factor() %&gt;%
+  head(5)
+```
+
+```
+## # A tibble: 5 x 7
+##   V33_SQ001   V33_SQ002   V33_SQ003 V33_SQ004   V33_SQ005  V33_SQ006  V33_SQ007 
+##   &lt;fct&gt;       &lt;fct&gt;       &lt;fct&gt;     &lt;fct&gt;       &lt;fct&gt;      &lt;fct&gt;      &lt;fct&gt;     
+## 1 Niet gesel~ Niet gesel~ Ja        Niet gesel~ Niet gese~ Ja         Niet gese~
+## 2 Ja          Ja          Ja        Niet gesel~ Niet gese~ Niet gese~ Niet gese~
+## 3 &lt;NA&gt;        &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;        &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;      
+## 4 &lt;NA&gt;        &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;        &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;      
+## 5 &lt;NA&gt;        &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;        &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+```
+
+```r
+ZorgfocuZ::wmo %&gt;%
+  select(contains('V2')) %&gt;% 
+  as_factor() %&gt;%
+  head(5)
+```
+
+```
+## # A tibble: 5 x 7
+##   V2               V23_SQ001   V23_SQ002   V23_SQ003   V26_SQ001 V28   V29_SQ001
+##   &lt;fct&gt;            &lt;fct&gt;       &lt;fct&gt;       &lt;fct&gt;       &lt;fct&gt;     &lt;fct&gt;     &lt;dbl&gt;
+## 1 Ja, de eerste k~ Helemaal m~ Helemaal m~ Helemaal m~ Voldoende Ja           NA
+## 2 Nee, ik heb dez~ Niet mee e~ Niet mee e~ Neutraal    Onvoldoe~ Nee          NA
+## 3 Ja, de eerste k~ Mee eens    Mee eens    Mee eens    Voldoende Ja           10
+## 4 Nee, ik heb dez~ Mee eens    Mee eens    Mee eens    &lt;NA&gt;      Nee          NA
+## 5 Ja, de eerste k~ Mee eens    Mee eens    Mee eens    Goed      &lt;NA&gt;         NA
+```
+]
+
+---
+## Kolommen een andere naam geven: `rename()`
+
+Soms wil je je kolommen een andere naam geven. Dat kan dan via `rename()`
+
+.small[
+
+```r
+yugoslavia %&gt;%
+    select(country, year, lifeExp) %&gt;%
+    rename(Life_Expectancy = lifeExp) %&gt;%
+    head(4)
+```
+
+```
+## # A tibble: 4 x 3
+##   country                 year Life_Expectancy
+##   &lt;fct&gt;                  &lt;int&gt;           &lt;dbl&gt;
+## 1 Bosnia and Herzegovina  1952            53.8
+## 2 Bosnia and Herzegovina  1957            58.4
+## 3 Bosnia and Herzegovina  1962            61.9
+## 4 Bosnia and Herzegovina  1967            64.8
+```
+]
+
+---
+## Kolommen aanmaken: `mutate()`
+
+Met `dplyr` kan je nieuwe kolommen aanmaken met `mutate()`. Hierin kan je alles wat je maar bedenkt, uitvoeren. Bijvoorbeeld het toepassen van wiskundige veranderingen: 
+
+.small[
+
+```r
+yugoslavia %&gt;% filter(country == "Serbia") %&gt;%
+    select(year, pop, lifeExp) %&gt;%
+    mutate(pop_million = pop / 1000000, 
+           life_exp_past_40 = lifeExp - 40, 
+           log_life_exp  = log(lifeExp)) %&gt;% 
+    head(5)
+```
+
+```
+## # A tibble: 5 x 6
+##    year     pop lifeExp pop_million life_exp_past_40 log_life_exp
+##   &lt;int&gt;   &lt;int&gt;   &lt;dbl&gt;       &lt;dbl&gt;            &lt;dbl&gt;        &lt;dbl&gt;
+## 1  1952 6860147    58.0        6.86             18.0         4.06
+## 2  1957 7271135    61.7        7.27             21.7         4.12
+## 3  1962 7616060    64.5        7.62             24.5         4.17
+## 4  1967 7971222    66.9        7.97             26.9         4.20
+## 5  1972 8313288    68.7        8.31             28.7         4.23
+```
+]
+
+.footnote[Je kan meerdere variabelen aanmaken in één `mutate()` functie door alles met komma's te scheiden.]
+
+---
+class: inverse
+
+# Data samenvatten
+
+---
+## Data samenvatten: `summarize()`
+
+**`summarize()`** neemt de te groeperen kolommen en maakt een berekening voor iedere nieuwe rij, bijvoorbeeld: 
+
+* Het tellen van het aantal rijen
+* Het berekenen van het gemiddelde van de groep
+* Het berekenen van de som van de groep
+* Het berekenen van het Minimum of maximum van de groep
+* etc.
+
+---
+## `summarize()` voorbeeld
+
+Neem bijvoorbeeld dezelfde data, maar nu willen we voor het jaar 1982 een aantal statistieken weten:
+
+.small[
+
+```r
+yugoslavia %&gt;%
+    filter(year == 1982) %&gt;%
+    summarize(n_obs = n(),
+              total_pop = sum(pop),
+              mean_life_exp = mean(lifeExp),
+              range_life_exp = max(lifeExp) - min(lifeExp))
+```
+
+```
+## # A tibble: 1 x 4
+##   n_obs total_pop mean_life_exp range_life_exp
+##   &lt;int&gt;     &lt;int&gt;         &lt;dbl&gt;          &lt;dbl&gt;
+## 1     5  20042685          71.3           3.94
+```
+]
+
+In dit geval zijn alle rijen die overgebleven zijn na het filteren gebruikt.
+
+---
+## Data samenvatten: `group_by()`
+
+Om bepaalde groepen in je data te maken kan je de functie `group_by()` gebruiken. Dit werkt dan heel goed samen in combinatie met `summarize()`, voorbeeld:
+
+.small[
+
+```r
+yugoslavia %&gt;%
+  group_by(year) %&gt;% 
+    summarize(num_countries = n_distinct(country),
+              total_pop = sum(pop),
+              total_gdp_per_cap = sum(pop*gdpPercap)/total_pop) %&gt;%
+    head(5)
+```
+
+```
+## # A tibble: 5 x 4
+##    year num_countries total_pop total_gdp_per_cap
+##   &lt;int&gt;         &lt;int&gt;     &lt;int&gt;             &lt;dbl&gt;
+## 1  1952             5  15436728             3030.
+## 2  1957             5  16314276             4187.
+## 3  1962             5  17099107             5257.
+## 4  1967             5  17878535             6656.
+## 5  1972             5  18579786             8730.
+```
+]
+
+Omdat we **year** aan `group_by()` hebben doorgevoerd, worden alle statistieken per jaar samengevat.
+
+---
+class: inverse
+
+# Bedankt!
+
+--
+
+Meer oefenen en leren? Check dan de volgende bronnen:
+
+   * [R for Data Science](http://r4ds.had.co.nz/) online boek geschreven door Garrett Grolemund en Hadley Wickham. Een van de vele goede, gratis, R boeken beschikbaar. Dit boek focust op de [tidyverse](http://tidyverse.org/) collectie van R packages, welke de moderne standaard zijn voor het schrijven van R code.
+   * [Advanced R](http://adv-r.had.co.nz/) online boek geschreven door Hadley Wickham, voor meer geavanceerde gebruikers.
+   * [DataCamp](https://www.datacamp.com/): online portal voor interactieve R tutorials (sommige gratis).
+   * [RStudio cheatsheets](https://www.rstudio.com/resources/cheatsheets/) over R, Rstudio en RMarkdown
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "tomorrow-night-blue",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

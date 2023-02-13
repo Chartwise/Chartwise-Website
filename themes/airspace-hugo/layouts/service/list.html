@@ -1,0 +1,138 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+<!-- Service -->
+{{ if $data.service.service2.enable }}
+{{ partial "service-titleless.html" . }}
+{{ end }}
+<!-- /service -->
+
+<!-- Services Explained -->
+{{ if $data.service.featured_service.enable }}
+{{ with $data.service.featured_service }}
+<section class="service-arrow">
+  <div class="container-fluid">
+    <div class="row">
+      {{ range .service_item }}
+      <div class="col-md-3 bg-primary bg-{{ .color }}">
+        <div class="block">
+          <i class="{{ .icon }}"></i>
+          <h3>{{ .name | markdownify }}</h3>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /Services Explained -->
+
+<!-- Service Snippets -->
+{{ if $data.service.about.enable }}
+{{ with $data.service.about }}
+<section class="service-about section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2 id = "{{ .title | markdownify }}">{{ .title | markdownify }}</h2>
+        <p class="mt-30">{{ .content | markdownify }}</p>
+        {{ if .button.enable }}
+        {{ with .button }}
+        <a href="{{ .link | relURL }}" class="btn btn-small mt-20">{{ .label }}</a>
+        {{ end }}
+        {{ end }}
+      </div>
+      <div class="col-md-6">
+        <img class="img-responsive" src="{{ .image | absURL }}">
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+{{ if $data.service.about2.enable }}
+{{ with $data.service.about2 }}
+<section class="service-about section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 right-align">
+        <h2 id = "{{ .title | markdownify }}">{{ .title | markdownify }}</h2>
+        <p class="mt-30">{{ .content | markdownify }}</p>
+        {{ if .button.enable }}
+        {{ with .button }}
+        <a href="{{ .link | relURL }}" class="btn btn-small mt-20">{{ .label }}</a>
+        {{ end }}
+        {{ end }}
+      </div>
+      <div class="col-md-6">
+        <img class="img-responsive" src="{{ .image | absURL }}">
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+
+{{ if $data.service.about3.enable }}
+{{ with $data.service.about3 }}
+<section class="service-about section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2 id = "{{ .title | markdownify }}">{{ .title | markdownify }}</h2>
+        <p class="mt-30">{{ .content | markdownify }}</p>
+        {{ if .button.enable }}
+        {{ with .button }}
+        <a href="{{ .link | relURL }}" class="btn btn-small mt-20">{{ .label }}</a>
+        {{ end }}
+        {{ end }}
+      </div>
+      <div class="col-md-6">
+        <img class="img-responsive" src="{{ .image | absURL }}">
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+
+
+{{ if $data.service.about4.enable }}
+{{ with $data.service.about4 }}
+<section class="service-about section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 right-align">
+        <h2 id = "{{ .title | markdownify }}">{{ .title | markdownify }}</h2>
+        <p class="mt-30">{{ .content | markdownify }}</p>
+        {{ if .button.enable }}
+        {{ with .button }}
+        <a href="{{ .link | relURL }}" class="btn btn-small mt-20">{{ .label }}</a>
+        {{ end }}
+        {{ end }}
+      </div>
+      <div class="col-md-6">
+        <img class="img-responsive" src="{{ .image | absURL }}">
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /Service Snippets -->
+
+<!-- Call to action -->
+{{ if $data.service.cta.enable }}
+{{ partial "cta.html" . }}
+{{ end }}
+<!-- /Call to action -->
+
+{{ end }}

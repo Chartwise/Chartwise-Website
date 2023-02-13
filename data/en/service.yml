@@ -1,0 +1,120 @@
+
+############################# Service op Service page ###############################
+service2:
+  enable : true
+  title : "Onze Services"
+  description : ""
+  service_item:
+
+    # Data Consultancy
+    - icon : ion-code-working #ionicon pack v2 : https://ionicons.com/v2/ 
+      name: Data Consultancy
+      content: "Het beantwoorden van al jouw vraagstukken over en met data."
+      url: "/service/data-consultancy/"
+      
+    # Advertenties
+    - icon : ion-pricetags #ionicon pack v2 : https://ionicons.com/v2/ 
+      name: Marktonderzoek
+      content: "Het verzamelen en analyseren van data die voor jouw markt relevant is."
+      url: "/service/marktonderzoek/"
+      
+    # Data Visualsatie
+    - icon : ion-easel #ionicon pack v2 : https://ionicons.com/v2/ 
+      name: Datavisualisatie
+      content: "Jouw data duidelijk vertaald naar beeld."
+      url: "/service/datavisualisatie/"
+      
+    # Dashboards
+    - icon : ion-ios-speedometer #ionicon pack v2 : https://ionicons.com/v2/ 
+      name: KPI Dashboards
+      content: "Jouw data overzichtelijk weergegeven in een dashboard."
+      url: "/service/kpi-dashboard/"
+
+    # Trainingen
+    - icon : ion-stats-bars #ionicon pack v2 : https://ionicons.com/v2/ 
+      name: Trainingen
+      content: "Theoretisch en praktische trainingen in het analyseren en visualiseren van data."
+      url: "/service/data-trainingen/"
+
+
+
+  button:
+    enable : true
+    label : "Neem contact op"
+    link : "/contact/"
+
+
+########################## featured service ############################
+featured_service:
+  enable : true
+  title : "van begin tot eind"
+  description : ""
+  service_item:
+    # featured service item loop
+    - name : "Wensen & Behoeften"
+      icon : "ion-map"
+      color : "primary-light"
+      content : "In samenwerking met jouw organisatie brengen we jullie vraag duidelijk in kaart en gaan wij op zoek naar een passende manier om deze te beantwoorden."
+      
+    # featured service item loop
+    - name : "Data Verzameling"
+      icon : "ion-code-download"
+      color : "primary"
+      content : "Beschikken jullie al over een berg met data? Dan doen wij een assessment om te kijken of dat wat wij nodig hebben daar tussen zit. Hebben jullie nog geen data of is de juiste data niet beschikbaar? Dan helpen wij om de juiste data te verzamelen."
+      
+    # featured service item loop
+    - name : "Analyse & Visualisatie"
+      icon : "ion-erlenmeyer-flask"
+      color : "primary-dark"
+      content : "Zodra wij de juiste data in handen hebben gaan wij aan de slag met een uitgebreide analyse. Deze data maken wij op een aantrekkelijke manier inzichtelijk, bijvoorbeeld door middel van een dashboard of een infographic."
+
+    # featured service item loop
+    - name : "Interpretatie & Advies"
+      icon : "ion-speedometer"
+      color : "primary-darker"
+      content : "Wij presenteren onze resultaten en zorgen voor een duidelijk advies zodat jouw organisatie hier direct mee aan de slag kan. Ons werk stopt pas als jij helemaal tevreden bent."
+
+
+############################# Service op andere paginas ###############################
+service:
+  enable : true
+  title : "Onze Services"
+  description : ""
+  service_item:
+
+    # Data Consultancy
+    - icon : ion-code-working #ionicon pack v2 : https://ionicons.com/v2/ 
+      name: Data Consultancy
+      content: "Het beantwoorden van al jouw vraagstukken over en met data."
+      url: "/service/data-consultancy/"
+      
+    # Advertenties
+    - icon : ion-pricetags #ionicon pack v2 : https://ionicons.com/v2/ 
+      name: Marktonderzoek
+      content: "Het verzamelen en analyseren van data die voor jouw markt relevant is."
+      url: "/service/marktonderzoek/"
+      
+    # Data Visualsatie
+    - icon : ion-easel #ionicon pack v2 : https://ionicons.com/v2/ 
+      name: Datavisualisatie
+      content: "Jouw data duidelijk vertaald naar beeld."
+      url: "/service/datavisualisatie/"
+
+    # Dashboards
+    - icon : ion-ios-speedometer #ionicon pack v2 : https://ionicons.com/v2/ 
+      name: KPI Dashboard
+      content: "Jouw data overzichtelijk weergegeven in een dashboard."
+      url: "/service/kpi-dashboard/"
+      
+    # Trainingen
+    - icon : ion-stats-bars #ionicon pack v2 : https://ionicons.com/v2/ 
+      name: Trainingen
+      content: "Theoretisch en praktische trainingen in het analyseren en visualiseren van data."
+      url: "/service/data-trainingen/"
+
+
+
+############################# call to action #################################
+cta:
+  enable : true
+  # call to action content comes from "data/*/homepage.yml"

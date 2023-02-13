@@ -1,0 +1,32 @@
+- id: last_update
+  translation: Laatst Geüpdate
+- id: kvk
+  translation: KvK
+- id: phone
+  translation: Telefoon
+- id: email
+  translation: Email
+- id: location
+  translation: Locatie
+- id: buy_now
+  translation: Koop Nu
+- id: address_title
+  translation: Kopje koffie?
+- id: submit
+  translation: Verstuur
+- id: all
+  translation: Alles
+- id: posted_by
+  translation: Gepost Door
+- id: read_more
+  translation: Lees Verder
+- id: latest_posts
+  translation: Laatste Posts
+- id: page_prev
+  translation: Vorige Post
+- id: page_next
+  translation: Volgende Post
+- id: tags
+  translation: Tags
+- id: categories
+  translation: Categorieën

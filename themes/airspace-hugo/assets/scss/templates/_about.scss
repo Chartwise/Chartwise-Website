@@ -1,0 +1,67 @@
+.about{
+	.block{
+		
+		h2{
+			padding-top: 35px;
+			margin:0;
+		}
+		p{
+			padding-top: 20px;
+			line-height:28px;
+		}
+		img{
+			width: 100%;
+			margin-top: 50px;
+		}
+	}
+	.about-img {
+		padding-top: 50px;
+		display: inline-block;
+
+		
+		&:hover img {
+			transform: scale3D(1.1,1.1,1);
+		}
+		img {
+			opacity: 1;	
+			max-width:50%;
+			margin:auto;
+			@include transition (all, 0.5s, ease-out);
+		}
+		
+	}
+	.section-title {
+		margin-bottom: 0px;
+	}
+	
+	p {
+	text-align: left;
+	}
+}
+
+.team {
+	padding-bottom:30px;
+	background-color: #FAFAFA; 
+	
+	h4 {
+		color: $primary-color;
+		font-style: italic;
+		font-size:16px;
+	}
+	
+	p {
+	text-align: center;
+	}
+}
+
+
+@media (max-width: 768px) {
+  .about.section {
+    text-align: center;
+  }
+  
+  .about-img {
+		padding-top: 0px;
+		}
+}
+

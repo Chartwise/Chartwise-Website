@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>R Introsessie</title>
+    <meta charset="utf-8" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <script src="libs/jquery/jquery.min.js"></script>
+    <script src="libs/proj4js/proj4.js"></script>
+    <link href="libs/highcharts/css/motion.css" rel="stylesheet" />
+    <script src="libs/highcharts/highcharts.js"></script>
+    <script src="libs/highcharts/highcharts-3d.js"></script>
+    <script src="libs/highcharts/highcharts-more.js"></script>
+    <script src="libs/highcharts/modules/stock.js"></script>
+    <script src="libs/highcharts/modules/map.js"></script>
+    <script src="libs/highcharts/modules/annotations.js"></script>
+    <script src="libs/highcharts/modules/data.js"></script>
+    <script src="libs/highcharts/modules/drilldown.js"></script>
+    <script src="libs/highcharts/modules/item-series.js"></script>
+    <script src="libs/highcharts/modules/offline-exporting.js"></script>
+    <script src="libs/highcharts/modules/overlapping-datalabels.js"></script>
+    <script src="libs/highcharts/modules/exporting.js"></script>
+    <script src="libs/highcharts/modules/export-data.js"></script>
+    <script src="libs/highcharts/modules/funnel.js"></script>
+    <script src="libs/highcharts/modules/heatmap.js"></script>
+    <script src="libs/highcharts/modules/treemap.js"></script>
+    <script src="libs/highcharts/modules/sankey.js"></script>
+    <script src="libs/highcharts/modules/dependency-wheel.js"></script>
+    <script src="libs/highcharts/modules/organization.js"></script>
+    <script src="libs/highcharts/modules/solid-gauge.js"></script>
+    <script src="libs/highcharts/modules/streamgraph.js"></script>
+    <script src="libs/highcharts/modules/sunburst.js"></script>
+    <script src="libs/highcharts/modules/vector.js"></script>
+    <script src="libs/highcharts/modules/wordcloud.js"></script>
+    <script src="libs/highcharts/modules/xrange.js"></script>
+    <script src="libs/highcharts/modules/tilemap.js"></script>
+    <script src="libs/highcharts/modules/venn.js"></script>
+    <script src="libs/highcharts/modules/gantt.js"></script>
+    <script src="libs/highcharts/modules/timeline.js"></script>
+    <script src="libs/highcharts/modules/parallel-coordinates.js"></script>
+    <script src="libs/highcharts/modules/bullet.js"></script>
+    <script src="libs/highcharts/modules/coloraxis.js"></script>
+    <script src="libs/highcharts/modules/dumbbell.js"></script>
+    <script src="libs/highcharts/modules/lollipop.js"></script>
+    <script src="libs/highcharts/modules/series-label.js"></script>
+    <script src="libs/highcharts/plugins/motion.js"></script>
+    <script src="libs/highcharts/custom/reset.js"></script>
+    <script src="libs/highcharts/modules/boost.js"></script>
+    <script src="libs/highchart-binding/highchart.js"></script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://www.chartwise.nl/images/favicon.png" type="image">
+    <title>TITLE</title>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+
+
+
+class: hide-logo
+
+.center[
+
+# Even voorstellen
+
+&lt;br&gt; 
+
+.pull-left[
+&lt;img src="https://www.chartwise.nl/images/teams/Rob.png" style="width: 50%;"/&gt;
+&lt;br&gt; 
+**Rob Storm** &lt;br&gt; 
+Brand Manager &lt;br&gt;&lt;br&gt;
+&lt;a href="https://www.linkedin.com/in/robstormm/"&gt;
+.orange[&lt;svg viewBox="0 0 448 512" style="fill:currentColor;position:relative;display:inline-block;top:.1em;height:2em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"&gt;&lt;/path&gt;&lt;/svg&gt;]&lt;/a&gt;
+&lt;a href="mailto:rob@chartwise.nl"&gt;
+.orange[&lt;svg viewBox="0 0 512 512" style="fill:currentColor;position:relative;display:inline-block;top:.1em;height:2em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"&gt;&lt;/path&gt;&lt;/svg&gt;]&lt;/a&gt;
+]
+
+.pull-right[
+&lt;img src="https://www.chartwise.nl/images/teams/Stefan.png" style="width: 50%;"/&gt;
+&lt;br&gt; 
+**Stefan Musch** &lt;br&gt; 
+Data Manager &lt;br&gt;&lt;br&gt;
+&lt;a href="https://www.linkedin.com/in/stefanmusch/"&gt;
+.orange[&lt;svg viewBox="0 0 448 512" style="fill:currentColor;position:relative;display:inline-block;top:.1em;height:2em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"&gt;&lt;/path&gt;&lt;/svg&gt;]&lt;/a&gt;
+&lt;a href="mailto:stefan@chartwise.nl"&gt;
+.orange[&lt;svg viewBox="0 0 512 512" style="fill:currentColor;position:relative;display:inline-block;top:.1em;height:2em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"&gt;&lt;/path&gt;&lt;/svg&gt;]&lt;/a&gt;
+]
+]
+
+&lt;a href="https://www.instagram.com/chartwisenl/"&gt;
+&lt;img src="https://www.chartwise.nl/images/cw-oranje-blauw.png" style="width: 30%; position: absolute; bottom: 25px; right: 35%;"/&gt;
+&lt;/a&gt;
+
+---
+
+# Rapportageproces ZorgfocuZ
+
+* Huidige werkwijze: SPSS, Excel, Word
+
+--
+
+* Optimaliseren van dit proces:
+  * Tijdsbesparing
+  * Foutgevoeligheid verkleinen
+  * Rapportages efficiënter inrichten
+  
+--
+
+* Alternatief: de overstap naar R
+  
+---
+class: inverse
+
+# Wat is R
+
+--
+
+R is een softwarepakket en programmeertaal, ontwikkeld voor statistiek en data-analysedoeleinden.
+ * Een stabiele versie van R bestaat al ongeveer 20 jaar
+ * Naast Python, en recentelijk ook Julia, is R dé programmeertaal voor onderzoekers, data analisten, statistici en nog vele andere beroepen. 
+
+--
+
+R is [open-source](https://opensource.com/resources/what-open-source) en heeft een enorm online ecosysteem ontwikkeld door de jaren in de vorm van `packages` ofwel `libraries`. 
+
+---
+
+# Voordelen van R
+
+--
+
+* Enorm scala aan functies beschikbaar
+  + Data analyse
+  + Statistiek
+  + Visualisatie
+  + Rapportage
+  + Dashboarding
+  + ....
+
+--
+
+* Je werkt in scripts. 
+  * Dat wil zeggen dat alles wat je doet gedocumenteerd wordt
+  * Je werk wordt automatisch **reproduceerbaar** en **controleerbaar**
+
+--
+
+* Het is mogelijk om zelf functies op te zetten, zo ben je niet gelimiteerd aan wat bijvoorbeeld IBM in de applicatie bouwt.
+
+--
+
+* Het is gratis
+
+---
+
+# Nadelen van R
+
+--
+
+* Het vereist programmeerkennis
+
+--
+
+* R heeft een vrij steile leercurve
+
+--
+
+* Je moet zelf je infrastructuur ontwikkelen en bijhouden
+
+--
+
+* R is continue in ontwikkeling. Dit is zowel positief als negatief. 
+
+
+---
+class: inverse
+
+# Voorbeeldjes in R
+
+--
+
+Fun fact: Deze presentatie is ook in R geschreven
+
+---
+
+class: hide-logo
+
+.center[
+
+## Visualisaties
+
+&lt;img src="img/Thuiswerken.png" style="width: 70%;"/&gt;
+
+]
+---
+class: hide-logo
+
+
+.center[
+
+## Interactieve Visualisaties
+
+<div id="htmlwidget-b3760f3e606adf41af26" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b3760f3e606adf41af26">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":"Pinguïns - Snavel & Flipper Lengte"},"yAxis":{"title":{"text":"bill_length_mm"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":true},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"name":"Adelie","data":[{"species":"Adelie","island":"Torgersen","bill_length_mm":39.1,"bill_depth_mm":18.7,"flipper_length_mm":181,"body_mass_g":3750,"sex":"male","year":2007,"x":181,"y":39.1},{"species":"Adelie","island":"Torgersen","bill_length_mm":39.5,"bill_depth_mm":17.4,"flipper_length_mm":186,"body_mass_g":3800,"sex":"female","year":2007,"x":186,"y":39.5},{"species":"Adelie","island":"Torgersen","bill_length_mm":40.3,"bill_depth_mm":18,"flipper_length_mm":195,"body_mass_g":3250,"sex":"female","year":2007,"x":195,"y":40.3},{"species":"Adelie","island":"Torgersen","bill_length_mm":null,"bill_depth_mm":null,"flipper_length_mm":null,"body_mass_g":null,"sex":null,"year":2007,"x":null,"y":null},{"species":"Adelie","island":"Torgersen","bill_length_mm":36.7,"bill_depth_mm":19.3,"flipper_length_mm":193,"body_mass_g":3450,"sex":"female","year":2007,"x":193,"y":36.7},{"species":"Adelie","island":"Torgersen","bill_length_mm":39.3,"bill_depth_mm":20.6,"flipper_length_mm":190,"body_mass_g":3650,"sex":"male","year":2007,"x":190,"y":39.3},{"species":"Adelie","island":"Torgersen","bill_length_mm":38.9,"bill_depth_mm":17.8,"flipper_length_mm":181,"body_mass_g":3625,"sex":"female","year":2007,"x":181,"y":38.9},{"species":"Adelie","island":"Torgersen","bill_length_mm":39.2,"bill_depth_mm":19.6,"flipper_length_mm":195,"body_mass_g":4675,"sex":"male","year":2007,"x":195,"y":39.2},{"species":"Adelie","island":"Torgersen","bill_length_mm":34.1,"bill_depth_mm":18.1,"flipper_length_mm":193,"body_mass_g":3475,"sex":null,"year":2007,"x":193,"y":34.1},{"species":"Adelie","island":"Torgersen","bill_length_mm":42,"bill_depth_mm":20.2,"flipper_length_mm":190,"body_mass_g":4250,"sex":null,"year":2007,"x":190,"y":42},{"species":"Adelie","island":"Torgersen","bill_length_mm":37.8,"bill_depth_mm":17.1,"flipper_length_mm":186,"body_mass_g":3300,"sex":null,"year":2007,"x":186,"y":37.8},{"species":"Adelie","island":"Torgersen","bill_length_mm":37.8,"bill_depth_mm":17.3,"flipper_length_mm":180,"body_mass_g":3700,"sex":null,"year":2007,"x":180,"y":37.8},{"species":"Adelie","island":"Torgersen","bill_length_mm":41.1,"bill_depth_mm":17.6,"flipper_length_mm":182,"body_mass_g":3200,"sex":"female","year":2007,"x":182,"y":41.1},{"species":"Adelie","island":"Torgersen","bill_length_mm":38.6,"bill_depth_mm":21.2,"flipper_length_mm":191,"body_mass_g":3800,"sex":"male","year":2007,"x":191,"y":38.6},{"species":"Adelie","island":"Torgersen","bill_length_mm":34.6,"bill_depth_mm":21.1,"flipper_length_mm":198,"body_mass_g":4400,"sex":"male","year":2007,"x":198,"y":34.6},{"species":"Adelie","island":"Torgersen","bill_length_mm":36.6,"bill_depth_mm":17.8,"flipper_length_mm":185,"body_mass_g":3700,"sex":"female","year":2007,"x":185,"y":36.6},{"species":"Adelie","island":"Torgersen","bill_length_mm":38.7,"bill_depth_mm":19,"flipper_length_mm":195,"body_mass_g":3450,"sex":"female","year":2007,"x":195,"y":38.7},{"species":"Adelie","island":"Torgersen","bill_length_mm":42.5,"bill_depth_mm":20.7,"flipper_length_mm":197,"body_mass_g":4500,"sex":"male","year":2007,"x":197,"y":42.5},{"species":"Adelie","island":"Torgersen","bill_length_mm":34.4,"bill_depth_mm":18.4,"flipper_length_mm":184,"body_mass_g":3325,"sex":"female","year":2007,"x":184,"y":34.4},{"species":"Adelie","island":"Torgersen","bill_length_mm":46,"bill_depth_mm":21.5,"flipper_length_mm":194,"body_mass_g":4200,"sex":"male","year":2007,"x":194,"y":46},{"species":"Adelie","island":"Biscoe","bill_length_mm":37.8,"bill_depth_mm":18.3,"flipper_length_mm":174,"body_mass_g":3400,"sex":"female","year":2007,"x":174,"y":37.8},{"species":"Adelie","island":"Biscoe","bill_length_mm":37.7,"bill_depth_mm":18.7,"flipper_length_mm":180,"body_mass_g":3600,"sex":"male","year":2007,"x":180,"y":37.7},{"species":"Adelie","island":"Biscoe","bill_length_mm":35.9,"bill_depth_mm":19.2,"flipper_length_mm":189,"body_mass_g":3800,"sex":"female","year":2007,"x":189,"y":35.9},{"species":"Adelie","island":"Biscoe","bill_length_mm":38.2,"bill_depth_mm":18.1,"flipper_length_mm":185,"body_mass_g":3950,"sex":"male","year":2007,"x":185,"y":38.2},{"species":"Adelie","island":"Biscoe","bill_length_mm":38.8,"bill_depth_mm":17.2,"flipper_length_mm":180,"body_mass_g":3800,"sex":"male","year":2007,"x":180,"y":38.8},{"species":"Adelie","island":"Biscoe","bill_length_mm":35.3,"bill_depth_mm":18.9,"flipper_length_mm":187,"body_mass_g":3800,"sex":"female","year":2007,"x":187,"y":35.3},{"species":"Adelie","island":"Biscoe","bill_length_mm":40.6,"bill_depth_mm":18.6,"flipper_length_mm":183,"body_mass_g":3550,"sex":"male","year":2007,"x":183,"y":40.6},{"species":"Adelie","island":"Biscoe","bill_length_mm":40.5,"bill_depth_mm":17.9,"flipper_length_mm":187,"body_mass_g":3200,"sex":"female","year":2007,"x":187,"y":40.5},{"species":"Adelie","island":"Biscoe","bill_length_mm":37.9,"bill_depth_mm":18.6,"flipper_length_mm":172,"body_mass_g":3150,"sex":"female","year":2007,"x":172,"y":37.9},{"species":"Adelie","island":"Biscoe","bill_length_mm":40.5,"bill_depth_mm":18.9,"flipper_length_mm":180,"body_mass_g":3950,"sex":"male","year":2007,"x":180,"y":40.5},{"species":"Adelie","island":"Dream","bill_length_mm":39.5,"bill_depth_mm":16.7,"flipper_length_mm":178,"body_mass_g":3250,"sex":"female","year":2007,"x":178,"y":39.5},{"species":"Adelie","island":"Dream","bill_length_mm":37.2,"bill_depth_mm":18.1,"flipper_length_mm":178,"body_mass_g":3900,"sex":"male","year":2007,"x":178,"y":37.2},{"species":"Adelie","island":"Dream","bill_length_mm":39.5,"bill_depth_mm":17.8,"flipper_length_mm":188,"body_mass_g":3300,"sex":"female","year":2007,"x":188,"y":39.5},{"species":"Adelie","island":"Dream","bill_length_mm":40.9,"bill_depth_mm":18.9,"flipper_length_mm":184,"body_mass_g":3900,"sex":"male","year":2007,"x":184,"y":40.9},{"species":"Adelie","island":"Dream","bill_length_mm":36.4,"bill_depth_mm":17,"flipper_length_mm":195,"body_mass_g":3325,"sex":"female","year":2007,"x":195,"y":36.4},{"species":"Adelie","island":"Dream","bill_length_mm":39.2,"bill_depth_mm":21.1,"flipper_length_mm":196,"body_mass_g":4150,"sex":"male","year":2007,"x":196,"y":39.2},{"species":"Adelie","island":"Dream","bill_length_mm":38.8,"bill_depth_mm":20,"flipper_length_mm":190,"body_mass_g":3950,"sex":"male","year":2007,"x":190,"y":38.8},{"species":"Adelie","island":"Dream","bill_length_mm":42.2,"bill_depth_mm":18.5,"flipper_length_mm":180,"body_mass_g":3550,"sex":"female","year":2007,"x":180,"y":42.2},{"species":"Adelie","island":"Dream","bill_length_mm":37.6,"bill_depth_mm":19.3,"flipper_length_mm":181,"body_mass_g":3300,"sex":"female","year":2007,"x":181,"y":37.6},{"species":"Adelie","island":"Dream","bill_length_mm":39.8,"bill_depth_mm":19.1,"flipper_length_mm":184,"body_mass_g":4650,"sex":"male","year":2007,"x":184,"y":39.8},{"species":"Adelie","island":"Dream","bill_length_mm":36.5,"bill_depth_mm":18,"flipper_length_mm":182,"body_mass_g":3150,"sex":"female","year":2007,"x":182,"y":36.5},{"species":"Adelie","island":"Dream","bill_length_mm":40.8,"bill_depth_mm":18.4,"flipper_length_mm":195,"body_mass_g":3900,"sex":"male","year":2007,"x":195,"y":40.8},{"species":"Adelie","island":"Dream","bill_length_mm":36,"bill_depth_mm":18.5,"flipper_length_mm":186,"body_mass_g":3100,"sex":"female","year":2007,"x":186,"y":36},{"species":"Adelie","island":"Dream","bill_length_mm":44.1,"bill_depth_mm":19.7,"flipper_length_mm":196,"body_mass_g":4400,"sex":"male","year":2007,"x":196,"y":44.1},{"species":"Adelie","island":"Dream","bill_length_mm":37,"bill_depth_mm":16.9,"flipper_length_mm":185,"body_mass_g":3000,"sex":"female","year":2007,"x":185,"y":37},{"species":"Adelie","island":"Dream","bill_length_mm":39.6,"bill_depth_mm":18.8,"flipper_length_mm":190,"body_mass_g":4600,"sex":"male","year":2007,"x":190,"y":39.6},{"species":"Adelie","island":"Dream","bill_length_mm":41.1,"bill_depth_mm":19,"flipper_length_mm":182,"body_mass_g":3425,"sex":"male","year":2007,"x":182,"y":41.1},{"species":"Adelie","island":"Dream","bill_length_mm":37.5,"bill_depth_mm":18.9,"flipper_length_mm":179,"body_mass_g":2975,"sex":null,"year":2007,"x":179,"y":37.5},{"species":"Adelie","island":"Dream","bill_length_mm":36,"bill_depth_mm":17.9,"flipper_length_mm":190,"body_mass_g":3450,"sex":"female","year":2007,"x":190,"y":36},{"species":"Adelie","island":"Dream","bill_length_mm":42.3,"bill_depth_mm":21.2,"flipper_length_mm":191,"body_mass_g":4150,"sex":"male","year":2007,"x":191,"y":42.3},{"species":"Adelie","island":"Biscoe","bill_length_mm":39.6,"bill_depth_mm":17.7,"flipper_length_mm":186,"body_mass_g":3500,"sex":"female","year":2008,"x":186,"y":39.6},{"species":"Adelie","island":"Biscoe","bill_length_mm":40.1,"bill_depth_mm":18.9,"flipper_length_mm":188,"body_mass_g":4300,"sex":"male","year":2008,"x":188,"y":40.1},{"species":"Adelie","island":"Biscoe","bill_length_mm":35,"bill_depth_mm":17.9,"flipper_length_mm":190,"body_mass_g":3450,"sex":"female","year":2008,"x":190,"y":35},{"species":"Adelie","island":"Biscoe","bill_length_mm":42,"bill_depth_mm":19.5,"flipper_length_mm":200,"body_mass_g":4050,"sex":"male","year":2008,"x":200,"y":42},{"species":"Adelie","island":"Biscoe","bill_length_mm":34.5,"bill_depth_mm":18.1,"flipper_length_mm":187,"body_mass_g":2900,"sex":"female","year":2008,"x":187,"y":34.5},{"species":"Adelie","island":"Biscoe","bill_length_mm":41.4,"bill_depth_mm":18.6,"flipper_length_mm":191,"body_mass_g":3700,"sex":"male","year":2008,"x":191,"y":41.4},{"species":"Adelie","island":"Biscoe","bill_length_mm":39,"bill_depth_mm":17.5,"flipper_length_mm":186,"body_mass_g":3550,"sex":"female","year":2008,"x":186,"y":39},{"species":"Adelie","island":"Biscoe","bill_length_mm":40.6,"bill_depth_mm":18.8,"flipper_length_mm":193,"body_mass_g":3800,"sex":"male","year":2008,"x":193,"y":40.6},{"species":"Adelie","island":"Biscoe","bill_length_mm":36.5,"bill_depth_mm":16.6,"flipper_length_mm":181,"body_mass_g":2850,"sex":"female","year":2008,"x":181,"y":36.5},{"species":"Adelie","island":"Biscoe","bill_length_mm":37.6,"bill_depth_mm":19.1,"flipper_length_mm":194,"body_mass_g":3750,"sex":"male","year":2008,"x":194,"y":37.6},{"species":"Adelie","island":"Biscoe","bill_length_mm":35.7,"bill_depth_mm":16.9,"flipper_length_mm":185,"body_mass_g":3150,"sex":"female","year":2008,"x":185,"y":35.7},{"species":"Adelie","island":"Biscoe","bill_length_mm":41.3,"bill_depth_mm":21.1,"flipper_length_mm":195,"body_mass_g":4400,"sex":"male","year":2008,"x":195,"y":41.3},{"species":"Adelie","island":"Biscoe","bill_length_mm":37.6,"bill_depth_mm":17,"flipper_length_mm":185,"body_mass_g":3600,"sex":"female","year":2008,"x":185,"y":37.6},{"species":"Adelie","island":"Biscoe","bill_length_mm":41.1,"bill_depth_mm":18.2,"flipper_length_mm":192,"body_mass_g":4050,"sex":"male","year":2008,"x":192,"y":41.1},{"species":"Adelie","island":"Biscoe","bill_length_mm":36.4,"bill_depth_mm":17.1,"flipper_length_mm":184,"body_mass_g":2850,"sex":"female","year":2008,"x":184,"y":36.4},{"species":"Adelie","island":"Biscoe","bill_length_mm":41.6,"bill_depth_mm":18,"flipper_length_mm":192,"body_mass_g":3950,"sex":"male","year":2008,"x":192,"y":41.6},{"species":"Adelie","island":"Biscoe","bill_length_mm":35.5,"bill_depth_mm":16.2,"flipper_length_mm":195,"body_mass_g":3350,"sex":"female","year":2008,"x":195,"y":35.5},{"species":"Adelie","island":"Biscoe","bill_length_mm":41.1,"bill_depth_mm":19.1,"flipper_length_mm":188,"body_mass_g":4100,"sex":"male","year":2008,"x":188,"y":41.1},{"species":"Adelie","island":"Torgersen","bill_length_mm":35.9,"bill_depth_mm":16.6,"flipper_length_mm":190,"body_mass_g":3050,"sex":"female","year":2008,"x":190,"y":35.9},{"species":"Adelie","island":"Torgersen","bill_length_mm":41.8,"bill_depth_mm":19.4,"flipper_length_mm":198,"body_mass_g":4450,"sex":"male","year":2008,"x":198,"y":41.8},{"species":"Adelie","island":"Torgersen","bill_length_mm":33.5,"bill_depth_mm":19,"flipper_length_mm":190,"body_mass_g":3600,"sex":"female","year":2008,"x":190,"y":33.5},{"species":"Adelie","island":"Torgersen","bill_length_mm":39.7,"bill_depth_mm":18.4,"flipper_length_mm":190,"body_mass_g":3900,"sex":"male","year":2008,"x":190,"y":39.7},{"species":"Adelie","island":"Torgersen","bill_length_mm":39.6,"bill_depth_mm":17.2,"flipper_length_mm":196,"body_mass_g":3550,"sex":"female","year":2008,"x":196,"y":39.6},{"species":"Adelie","island":"Torgersen","bill_length_mm":45.8,"bill_depth_mm":18.9,"flipper_length_mm":197,"body_mass_g":4150,"sex":"male","year":2008,"x":197,"y":45.8},{"species":"Adelie","island":"Torgersen","bill_length_mm":35.5,"bill_depth_mm":17.5,"flipper_length_mm":190,"body_mass_g":3700,"sex":"female","year":2008,"x":190,"y":35.5},{"species":"Adelie","island":"Torgersen","bill_length_mm":42.8,"bill_depth_mm":18.5,"flipper_length_mm":195,"body_mass_g":4250,"sex":"male","year":2008,"x":195,"y":42.8},{"species":"Adelie","island":"Torgersen","bill_length_mm":40.9,"bill_depth_mm":16.8,"flipper_length_mm":191,"body_mass_g":3700,"sex":"female","year":2008,"x":191,"y":40.9},{"species":"Adelie","island":"Torgersen","bill_length_mm":37.2,"bill_depth_mm":19.4,"flipper_length_mm":184,"body_mass_g":3900,"sex":"male","year":2008,"x":184,"y":37.2},{"species":"Adelie","island":"Torgersen","bill_length_mm":36.2,"bill_depth_mm":16.1,"flipper_length_mm":187,"body_mass_g":3550,"sex":"female","year":2008,"x":187,"y":36.2},{"species":"Adelie","island":"Torgersen","bill_length_mm":42.1,"bill_depth_mm":19.1,"flipper_length_mm":195,"body_mass_g":4000,"sex":"male","year":2008,"x":195,"y":42.1},{"species":"Adelie","island":"Torgersen","bill_length_mm":34.6,"bill_depth_mm":17.2,"flipper_length_mm":189,"body_mass_g":3200,"sex":"female","year":2008,"x":189,"y":34.6},{"species":"Adelie","island":"Torgersen","bill_length_mm":42.9,"bill_depth_mm":17.6,"flipper_length_mm":196,"body_mass_g":4700,"sex":"male","year":2008,"x":196,"y":42.9},{"species":"Adelie","island":"Torgersen","bill_length_mm":36.7,"bill_depth_mm":18.8,"flipper_length_mm":187,"body_mass_g":3800,"sex":"female","year":2008,"x":187,"y":36.7},{"species":"Adelie","island":"Torgersen","bill_length_mm":35.1,"bill_depth_mm":19.4,"flipper_length_mm":193,"body_mass_g":4200,"sex":"male","year":2008,"x":193,"y":35.1},{"species":"Adelie","island":"Dream","bill_length_mm":37.3,"bill_depth_mm":17.8,"flipper_length_mm":191,"body_mass_g":3350,"sex":"female","year":2008,"x":191,"y":37.3},{"species":"Adelie","island":"Dream","bill_length_mm":41.3,"bill_depth_mm":20.3,"flipper_length_mm":194,"body_mass_g":3550,"sex":"male","year":2008,"x":194,"y":41.3},{"species":"Adelie","island":"Dream","bill_length_mm":36.3,"bill_depth_mm":19.5,"flipper_length_mm":190,"body_mass_g":3800,"sex":"male","year":2008,"x":190,"y":36.3},{"species":"Adelie","island":"Dream","bill_length_mm":36.9,"bill_depth_mm":18.6,"flipper_length_mm":189,"body_mass_g":3500,"sex":"female","year":2008,"x":189,"y":36.9},{"species":"Adelie","island":"Dream","bill_length_mm":38.3,"bill_depth_mm":19.2,"flipper_length_mm":189,"body_mass_g":3950,"sex":"male","year":2008,"x":189,"y":38.3},{"species":"Adelie","island":"Dream","bill_length_mm":38.9,"bill_depth_mm":18.8,"flipper_length_mm":190,"body_mass_g":3600,"sex":"female","year":2008,"x":190,"y":38.9},{"species":"Adelie","island":"Dream","bill_length_mm":35.7,"bill_depth_mm":18,"flipper_length_mm":202,"body_mass_g":3550,"sex":"female","year":2008,"x":202,"y":35.7},{"species":"Adelie","island":"Dream","bill_length_mm":41.1,"bill_depth_mm":18.1,"flipper_length_mm":205,"body_mass_g":4300,"sex":"male","year":2008,"x":205,"y":41.1},{"species":"Adelie","island":"Dream","bill_length_mm":34,"bill_depth_mm":17.1,"flipper_length_mm":185,"body_mass_g":3400,"sex":"female","year":2008,"x":185,"y":34},{"species":"Adelie","island":"Dream","bill_length_mm":39.6,"bill_depth_mm":18.1,"flipper_length_mm":186,"body_mass_g":4450,"sex":"male","year":2008,"x":186,"y":39.6},{"species":"Adelie","island":"Dream","bill_length_mm":36.2,"bill_depth_mm":17.3,"flipper_length_mm":187,"body_mass_g":3300,"sex":"female","year":2008,"x":187,"y":36.2},{"species":"Adelie","island":"Dream","bill_length_mm":40.8,"bill_depth_mm":18.9,"flipper_length_mm":208,"body_mass_g":4300,"sex":"male","year":2008,"x":208,"y":40.8},{"species":"Adelie","island":"Dream","bill_length_mm":38.1,"bill_depth_mm":18.6,"flipper_length_mm":190,"body_mass_g":3700,"sex":"female","year":2008,"x":190,"y":38.1},{"species":"Adelie","island":"Dream","bill_length_mm":40.3,"bill_depth_mm":18.5,"flipper_length_mm":196,"body_mass_g":4350,"sex":"male","year":2008,"x":196,"y":40.3},{"species":"Adelie","island":"Dream","bill_length_mm":33.1,"bill_depth_mm":16.1,"flipper_length_mm":178,"body_mass_g":2900,"sex":"female","year":2008,"x":178,"y":33.1},{"species":"Adelie","island":"Dream","bill_length_mm":43.2,"bill_depth_mm":18.5,"flipper_length_mm":192,"body_mass_g":4100,"sex":"male","year":2008,"x":192,"y":43.2},{"species":"Adelie","island":"Biscoe","bill_length_mm":35,"bill_depth_mm":17.9,"flipper_length_mm":192,"body_mass_g":3725,"sex":"female","year":2009,"x":192,"y":35},{"species":"Adelie","island":"Biscoe","bill_length_mm":41,"bill_depth_mm":20,"flipper_length_mm":203,"body_mass_g":4725,"sex":"male","year":2009,"x":203,"y":41},{"species":"Adelie","island":"Biscoe","bill_length_mm":37.7,"bill_depth_mm":16,"flipper_length_mm":183,"body_mass_g":3075,"sex":"female","year":2009,"x":183,"y":37.7},{"species":"Adelie","island":"Biscoe","bill_length_mm":37.8,"bill_depth_mm":20,"flipper_length_mm":190,"body_mass_g":4250,"sex":"male","year":2009,"x":190,"y":37.8},{"species":"Adelie","island":"Biscoe","bill_length_mm":37.9,"bill_depth_mm":18.6,"flipper_length_mm":193,"body_mass_g":2925,"sex":"female","year":2009,"x":193,"y":37.9},{"species":"Adelie","island":"Biscoe","bill_length_mm":39.7,"bill_depth_mm":18.9,"flipper_length_mm":184,"body_mass_g":3550,"sex":"male","year":2009,"x":184,"y":39.7},{"species":"Adelie","island":"Biscoe","bill_length_mm":38.6,"bill_depth_mm":17.2,"flipper_length_mm":199,"body_mass_g":3750,"sex":"female","year":2009,"x":199,"y":38.6},{"species":"Adelie","island":"Biscoe","bill_length_mm":38.2,"bill_depth_mm":20,"flipper_length_mm":190,"body_mass_g":3900,"sex":"male","year":2009,"x":190,"y":38.2},{"species":"Adelie","island":"Biscoe","bill_length_mm":38.1,"bill_depth_mm":17,"flipper_length_mm":181,"body_mass_g":3175,"sex":"female","year":2009,"x":181,"y":38.1},{"species":"Adelie","island":"Biscoe","bill_length_mm":43.2,"bill_depth_mm":19,"flipper_length_mm":197,"body_mass_g":4775,"sex":"male","year":2009,"x":197,"y":43.2},{"species":"Adelie","island":"Biscoe","bill_length_mm":38.1,"bill_depth_mm":16.5,"flipper_length_mm":198,"body_mass_g":3825,"sex":"female","year":2009,"x":198,"y":38.1},{"species":"Adelie","island":"Biscoe","bill_length_mm":45.6,"bill_depth_mm":20.3,"flipper_length_mm":191,"body_mass_g":4600,"sex":"male","year":2009,"x":191,"y":45.6},{"species":"Adelie","island":"Biscoe","bill_length_mm":39.7,"bill_depth_mm":17.7,"flipper_length_mm":193,"body_mass_g":3200,"sex":"female","year":2009,"x":193,"y":39.7},{"species":"Adelie","island":"Biscoe","bill_length_mm":42.2,"bill_depth_mm":19.5,"flipper_length_mm":197,"body_mass_g":4275,"sex":"male","year":2009,"x":197,"y":42.2},{"species":"Adelie","island":"Biscoe","bill_length_mm":39.6,"bill_depth_mm":20.7,"flipper_length_mm":191,"body_mass_g":3900,"sex":"female","year":2009,"x":191,"y":39.6},{"species":"Adelie","island":"Biscoe","bill_length_mm":42.7,"bill_depth_mm":18.3,"flipper_length_mm":196,"body_mass_g":4075,"sex":"male","year":2009,"x":196,"y":42.7},{"species":"Adelie","island":"Torgersen","bill_length_mm":38.6,"bill_depth_mm":17,"flipper_length_mm":188,"body_mass_g":2900,"sex":"female","year":2009,"x":188,"y":38.6},{"species":"Adelie","island":"Torgersen","bill_length_mm":37.3,"bill_depth_mm":20.5,"flipper_length_mm":199,"body_mass_g":3775,"sex":"male","year":2009,"x":199,"y":37.3},{"species":"Adelie","island":"Torgersen","bill_length_mm":35.7,"bill_depth_mm":17,"flipper_length_mm":189,"body_mass_g":3350,"sex":"female","year":2009,"x":189,"y":35.7},{"species":"Adelie","island":"Torgersen","bill_length_mm":41.1,"bill_depth_mm":18.6,"flipper_length_mm":189,"body_mass_g":3325,"sex":"male","year":2009,"x":189,"y":41.1},{"species":"Adelie","island":"Torgersen","bill_length_mm":36.2,"bill_depth_mm":17.2,"flipper_length_mm":187,"body_mass_g":3150,"sex":"female","year":2009,"x":187,"y":36.2},{"species":"Adelie","island":"Torgersen","bill_length_mm":37.7,"bill_depth_mm":19.8,"flipper_length_mm":198,"body_mass_g":3500,"sex":"male","year":2009,"x":198,"y":37.7},{"species":"Adelie","island":"Torgersen","bill_length_mm":40.2,"bill_depth_mm":17,"flipper_length_mm":176,"body_mass_g":3450,"sex":"female","year":2009,"x":176,"y":40.2},{"species":"Adelie","island":"Torgersen","bill_length_mm":41.4,"bill_depth_mm":18.5,"flipper_length_mm":202,"body_mass_g":3875,"sex":"male","year":2009,"x":202,"y":41.4},{"species":"Adelie","island":"Torgersen","bill_length_mm":35.2,"bill_depth_mm":15.9,"flipper_length_mm":186,"body_mass_g":3050,"sex":"female","year":2009,"x":186,"y":35.2},{"species":"Adelie","island":"Torgersen","bill_length_mm":40.6,"bill_depth_mm":19,"flipper_length_mm":199,"body_mass_g":4000,"sex":"male","year":2009,"x":199,"y":40.6},{"species":"Adelie","island":"Torgersen","bill_length_mm":38.8,"bill_depth_mm":17.6,"flipper_length_mm":191,"body_mass_g":3275,"sex":"female","year":2009,"x":191,"y":38.8},{"species":"Adelie","island":"Torgersen","bill_length_mm":41.5,"bill_depth_mm":18.3,"flipper_length_mm":195,"body_mass_g":4300,"sex":"male","year":2009,"x":195,"y":41.5},{"species":"Adelie","island":"Torgersen","bill_length_mm":39,"bill_depth_mm":17.1,"flipper_length_mm":191,"body_mass_g":3050,"sex":"female","year":2009,"x":191,"y":39},{"species":"Adelie","island":"Torgersen","bill_length_mm":44.1,"bill_depth_mm":18,"flipper_length_mm":210,"body_mass_g":4000,"sex":"male","year":2009,"x":210,"y":44.1},{"species":"Adelie","island":"Torgersen","bill_length_mm":38.5,"bill_depth_mm":17.9,"flipper_length_mm":190,"body_mass_g":3325,"sex":"female","year":2009,"x":190,"y":38.5},{"species":"Adelie","island":"Torgersen","bill_length_mm":43.1,"bill_depth_mm":19.2,"flipper_length_mm":197,"body_mass_g":3500,"sex":"male","year":2009,"x":197,"y":43.1},{"species":"Adelie","island":"Dream","bill_length_mm":36.8,"bill_depth_mm":18.5,"flipper_length_mm":193,"body_mass_g":3500,"sex":"female","year":2009,"x":193,"y":36.8},{"species":"Adelie","island":"Dream","bill_length_mm":37.5,"bill_depth_mm":18.5,"flipper_length_mm":199,"body_mass_g":4475,"sex":"male","year":2009,"x":199,"y":37.5},{"species":"Adelie","island":"Dream","bill_length_mm":38.1,"bill_depth_mm":17.6,"flipper_length_mm":187,"body_mass_g":3425,"sex":"female","year":2009,"x":187,"y":38.1},{"species":"Adelie","island":"Dream","bill_length_mm":41.1,"bill_depth_mm":17.5,"flipper_length_mm":190,"body_mass_g":3900,"sex":"male","year":2009,"x":190,"y":41.1},{"species":"Adelie","island":"Dream","bill_length_mm":35.6,"bill_depth_mm":17.5,"flipper_length_mm":191,"body_mass_g":3175,"sex":"female","year":2009,"x":191,"y":35.6},{"species":"Adelie","island":"Dream","bill_length_mm":40.2,"bill_depth_mm":20.1,"flipper_length_mm":200,"body_mass_g":3975,"sex":"male","year":2009,"x":200,"y":40.2},{"species":"Adelie","island":"Dream","bill_length_mm":37,"bill_depth_mm":16.5,"flipper_length_mm":185,"body_mass_g":3400,"sex":"female","year":2009,"x":185,"y":37},{"species":"Adelie","island":"Dream","bill_length_mm":39.7,"bill_depth_mm":17.9,"flipper_length_mm":193,"body_mass_g":4250,"sex":"male","year":2009,"x":193,"y":39.7},{"species":"Adelie","island":"Dream","bill_length_mm":40.2,"bill_depth_mm":17.1,"flipper_length_mm":193,"body_mass_g":3400,"sex":"female","year":2009,"x":193,"y":40.2},{"species":"Adelie","island":"Dream","bill_length_mm":40.6,"bill_depth_mm":17.2,"flipper_length_mm":187,"body_mass_g":3475,"sex":"male","year":2009,"x":187,"y":40.6},{"species":"Adelie","island":"Dream","bill_length_mm":32.1,"bill_depth_mm":15.5,"flipper_length_mm":188,"body_mass_g":3050,"sex":"female","year":2009,"x":188,"y":32.1},{"species":"Adelie","island":"Dream","bill_length_mm":40.7,"bill_depth_mm":17,"flipper_length_mm":190,"body_mass_g":3725,"sex":"male","year":2009,"x":190,"y":40.7},{"species":"Adelie","island":"Dream","bill_length_mm":37.3,"bill_depth_mm":16.8,"flipper_length_mm":192,"body_mass_g":3000,"sex":"female","year":2009,"x":192,"y":37.3},{"species":"Adelie","island":"Dream","bill_length_mm":39,"bill_depth_mm":18.7,"flipper_length_mm":185,"body_mass_g":3650,"sex":"male","year":2009,"x":185,"y":39},{"species":"Adelie","island":"Dream","bill_length_mm":39.2,"bill_depth_mm":18.6,"flipper_length_mm":190,"body_mass_g":4250,"sex":"male","year":2009,"x":190,"y":39.2},{"species":"Adelie","island":"Dream","bill_length_mm":36.6,"bill_depth_mm":18.4,"flipper_length_mm":184,"body_mass_g":3475,"sex":"female","year":2009,"x":184,"y":36.6},{"species":"Adelie","island":"Dream","bill_length_mm":36,"bill_depth_mm":17.8,"flipper_length_mm":195,"body_mass_g":3450,"sex":"female","year":2009,"x":195,"y":36},{"species":"Adelie","island":"Dream","bill_length_mm":37.8,"bill_depth_mm":18.1,"flipper_length_mm":193,"body_mass_g":3750,"sex":"male","year":2009,"x":193,"y":37.8},{"species":"Adelie","island":"Dream","bill_length_mm":36,"bill_depth_mm":17.1,"flipper_length_mm":187,"body_mass_g":3700,"sex":"female","year":2009,"x":187,"y":36},{"species":"Adelie","island":"Dream","bill_length_mm":41.5,"bill_depth_mm":18.5,"flipper_length_mm":201,"body_mass_g":4000,"sex":"male","year":2009,"x":201,"y":41.5}],"type":"scatter"},{"name":"Chinstrap","data":[{"species":"Chinstrap","island":"Dream","bill_length_mm":46.5,"bill_depth_mm":17.9,"flipper_length_mm":192,"body_mass_g":3500,"sex":"female","year":2007,"x":192,"y":46.5},{"species":"Chinstrap","island":"Dream","bill_length_mm":50,"bill_depth_mm":19.5,"flipper_length_mm":196,"body_mass_g":3900,"sex":"male","year":2007,"x":196,"y":50},{"species":"Chinstrap","island":"Dream","bill_length_mm":51.3,"bill_depth_mm":19.2,"flipper_length_mm":193,"body_mass_g":3650,"sex":"male","year":2007,"x":193,"y":51.3},{"species":"Chinstrap","island":"Dream","bill_length_mm":45.4,"bill_depth_mm":18.7,"flipper_length_mm":188,"body_mass_g":3525,"sex":"female","year":2007,"x":188,"y":45.4},{"species":"Chinstrap","island":"Dream","bill_length_mm":52.7,"bill_depth_mm":19.8,"flipper_length_mm":197,"body_mass_g":3725,"sex":"male","year":2007,"x":197,"y":52.7},{"species":"Chinstrap","island":"Dream","bill_length_mm":45.2,"bill_depth_mm":17.8,"flipper_length_mm":198,"body_mass_g":3950,"sex":"female","year":2007,"x":198,"y":45.2},{"species":"Chinstrap","island":"Dream","bill_length_mm":46.1,"bill_depth_mm":18.2,"flipper_length_mm":178,"body_mass_g":3250,"sex":"female","year":2007,"x":178,"y":46.1},{"species":"Chinstrap","island":"Dream","bill_length_mm":51.3,"bill_depth_mm":18.2,"flipper_length_mm":197,"body_mass_g":3750,"sex":"male","year":2007,"x":197,"y":51.3},{"species":"Chinstrap","island":"Dream","bill_length_mm":46,"bill_depth_mm":18.9,"flipper_length_mm":195,"body_mass_g":4150,"sex":"female","year":2007,"x":195,"y":46},{"species":"Chinstrap","island":"Dream","bill_length_mm":51.3,"bill_depth_mm":19.9,"flipper_length_mm":198,"body_mass_g":3700,"sex":"male","year":2007,"x":198,"y":51.3},{"species":"Chinstrap","island":"Dream","bill_length_mm":46.6,"bill_depth_mm":17.8,"flipper_length_mm":193,"body_mass_g":3800,"sex":"female","year":2007,"x":193,"y":46.6},{"species":"Chinstrap","island":"Dream","bill_length_mm":51.7,"bill_depth_mm":20.3,"flipper_length_mm":194,"body_mass_g":3775,"sex":"male","year":2007,"x":194,"y":51.7},{"species":"Chinstrap","island":"Dream","bill_length_mm":47,"bill_depth_mm":17.3,"flipper_length_mm":185,"body_mass_g":3700,"sex":"female","year":2007,"x":185,"y":47},{"species":"Chinstrap","island":"Dream","bill_length_mm":52,"bill_depth_mm":18.1,"flipper_length_mm":201,"body_mass_g":4050,"sex":"male","year":2007,"x":201,"y":52},{"species":"Chinstrap","island":"Dream","bill_length_mm":45.9,"bill_depth_mm":17.1,"flipper_length_mm":190,"body_mass_g":3575,"sex":"female","year":2007,"x":190,"y":45.9},{"species":"Chinstrap","island":"Dream","bill_length_mm":50.5,"bill_depth_mm":19.6,"flipper_length_mm":201,"body_mass_g":4050,"sex":"male","year":2007,"x":201,"y":50.5},{"species":"Chinstrap","island":"Dream","bill_length_mm":50.3,"bill_depth_mm":20,"flipper_length_mm":197,"body_mass_g":3300,"sex":"male","year":2007,"x":197,"y":50.3},{"species":"Chinstrap","island":"Dream","bill_length_mm":58,"bill_depth_mm":17.8,"flipper_length_mm":181,"body_mass_g":3700,"sex":"female","year":2007,"x":181,"y":58},{"species":"Chinstrap","island":"Dream","bill_length_mm":46.4,"bill_depth_mm":18.6,"flipper_length_mm":190,"body_mass_g":3450,"sex":"female","year":2007,"x":190,"y":46.4},{"species":"Chinstrap","island":"Dream","bill_length_mm":49.2,"bill_depth_mm":18.2,"flipper_length_mm":195,"body_mass_g":4400,"sex":"male","year":2007,"x":195,"y":49.2},{"species":"Chinstrap","island":"Dream","bill_length_mm":42.4,"bill_depth_mm":17.3,"flipper_length_mm":181,"body_mass_g":3600,"sex":"female","year":2007,"x":181,"y":42.4},{"species":"Chinstrap","island":"Dream","bill_length_mm":48.5,"bill_depth_mm":17.5,"flipper_length_mm":191,"body_mass_g":3400,"sex":"male","year":2007,"x":191,"y":48.5},{"species":"Chinstrap","island":"Dream","bill_length_mm":43.2,"bill_depth_mm":16.6,"flipper_length_mm":187,"body_mass_g":2900,"sex":"female","year":2007,"x":187,"y":43.2},{"species":"Chinstrap","island":"Dream","bill_length_mm":50.6,"bill_depth_mm":19.4,"flipper_length_mm":193,"body_mass_g":3800,"sex":"male","year":2007,"x":193,"y":50.6},{"species":"Chinstrap","island":"Dream","bill_length_mm":46.7,"bill_depth_mm":17.9,"flipper_length_mm":195,"body_mass_g":3300,"sex":"female","year":2007,"x":195,"y":46.7},{"species":"Chinstrap","island":"Dream","bill_length_mm":52,"bill_depth_mm":19,"flipper_length_mm":197,"body_mass_g":4150,"sex":"male","year":2007,"x":197,"y":52},{"species":"Chinstrap","island":"Dream","bill_length_mm":50.5,"bill_depth_mm":18.4,"flipper_length_mm":200,"body_mass_g":3400,"sex":"female","year":2008,"x":200,"y":50.5},{"species":"Chinstrap","island":"Dream","bill_length_mm":49.5,"bill_depth_mm":19,"flipper_length_mm":200,"body_mass_g":3800,"sex":"male","year":2008,"x":200,"y":49.5},{"species":"Chinstrap","island":"Dream","bill_length_mm":46.4,"bill_depth_mm":17.8,"flipper_length_mm":191,"body_mass_g":3700,"sex":"female","year":2008,"x":191,"y":46.4},{"species":"Chinstrap","island":"Dream","bill_length_mm":52.8,"bill_depth_mm":20,"flipper_length_mm":205,"body_mass_g":4550,"sex":"male","year":2008,"x":205,"y":52.8},{"species":"Chinstrap","island":"Dream","bill_length_mm":40.9,"bill_depth_mm":16.6,"flipper_length_mm":187,"body_mass_g":3200,"sex":"female","year":2008,"x":187,"y":40.9},{"species":"Chinstrap","island":"Dream","bill_length_mm":54.2,"bill_depth_mm":20.8,"flipper_length_mm":201,"body_mass_g":4300,"sex":"male","year":2008,"x":201,"y":54.2},{"species":"Chinstrap","island":"Dream","bill_length_mm":42.5,"bill_depth_mm":16.7,"flipper_length_mm":187,"body_mass_g":3350,"sex":"female","year":2008,"x":187,"y":42.5},{"species":"Chinstrap","island":"Dream","bill_length_mm":51,"bill_depth_mm":18.8,"flipper_length_mm":203,"body_mass_g":4100,"sex":"male","year":2008,"x":203,"y":51},{"species":"Chinstrap","island":"Dream","bill_length_mm":49.7,"bill_depth_mm":18.6,"flipper_length_mm":195,"body_mass_g":3600,"sex":"male","year":2008,"x":195,"y":49.7},{"species":"Chinstrap","island":"Dream","bill_length_mm":47.5,"bill_depth_mm":16.8,"flipper_length_mm":199,"body_mass_g":3900,"sex":"female","year":2008,"x":199,"y":47.5},{"species":"Chinstrap","island":"Dream","bill_length_mm":47.6,"bill_depth_mm":18.3,"flipper_length_mm":195,"body_mass_g":3850,"sex":"female","year":2008,"x":195,"y":47.6},{"species":"Chinstrap","island":"Dream","bill_length_mm":52,"bill_depth_mm":20.7,"flipper_length_mm":210,"body_mass_g":4800,"sex":"male","year":2008,"x":210,"y":52},{"species":"Chinstrap","island":"Dream","bill_length_mm":46.9,"bill_depth_mm":16.6,"flipper_length_mm":192,"body_mass_g":2700,"sex":"female","year":2008,"x":192,"y":46.9},{"species":"Chinstrap","island":"Dream","bill_length_mm":53.5,"bill_depth_mm":19.9,"flipper_length_mm":205,"body_mass_g":4500,"sex":"male","year":2008,"x":205,"y":53.5},{"species":"Chinstrap","island":"Dream","bill_length_mm":49,"bill_depth_mm":19.5,"flipper_length_mm":210,"body_mass_g":3950,"sex":"male","year":2008,"x":210,"y":49},{"species":"Chinstrap","island":"Dream","bill_length_mm":46.2,"bill_depth_mm":17.5,"flipper_length_mm":187,"body_mass_g":3650,"sex":"female","year":2008,"x":187,"y":46.2},{"species":"Chinstrap","island":"Dream","bill_length_mm":50.9,"bill_depth_mm":19.1,"flipper_length_mm":196,"body_mass_g":3550,"sex":"male","year":2008,"x":196,"y":50.9},{"species":"Chinstrap","island":"Dream","bill_length_mm":45.5,"bill_depth_mm":17,"flipper_length_mm":196,"body_mass_g":3500,"sex":"female","year":2008,"x":196,"y":45.5},{"species":"Chinstrap","island":"Dream","bill_length_mm":50.9,"bill_depth_mm":17.9,"flipper_length_mm":196,"body_mass_g":3675,"sex":"female","year":2009,"x":196,"y":50.9},{"species":"Chinstrap","island":"Dream","bill_length_mm":50.8,"bill_depth_mm":18.5,"flipper_length_mm":201,"body_mass_g":4450,"sex":"male","year":2009,"x":201,"y":50.8},{"species":"Chinstrap","island":"Dream","bill_length_mm":50.1,"bill_depth_mm":17.9,"flipper_length_mm":190,"body_mass_g":3400,"sex":"female","year":2009,"x":190,"y":50.1},{"species":"Chinstrap","island":"Dream","bill_length_mm":49,"bill_depth_mm":19.6,"flipper_length_mm":212,"body_mass_g":4300,"sex":"male","year":2009,"x":212,"y":49},{"species":"Chinstrap","island":"Dream","bill_length_mm":51.5,"bill_depth_mm":18.7,"flipper_length_mm":187,"body_mass_g":3250,"sex":"male","year":2009,"x":187,"y":51.5},{"species":"Chinstrap","island":"Dream","bill_length_mm":49.8,"bill_depth_mm":17.3,"flipper_length_mm":198,"body_mass_g":3675,"sex":"female","year":2009,"x":198,"y":49.8},{"species":"Chinstrap","island":"Dream","bill_length_mm":48.1,"bill_depth_mm":16.4,"flipper_length_mm":199,"body_mass_g":3325,"sex":"female","year":2009,"x":199,"y":48.1},{"species":"Chinstrap","island":"Dream","bill_length_mm":51.4,"bill_depth_mm":19,"flipper_length_mm":201,"body_mass_g":3950,"sex":"male","year":2009,"x":201,"y":51.4},{"species":"Chinstrap","island":"Dream","bill_length_mm":45.7,"bill_depth_mm":17.3,"flipper_length_mm":193,"body_mass_g":3600,"sex":"female","year":2009,"x":193,"y":45.7},{"species":"Chinstrap","island":"Dream","bill_length_mm":50.7,"bill_depth_mm":19.7,"flipper_length_mm":203,"body_mass_g":4050,"sex":"male","year":2009,"x":203,"y":50.7},{"species":"Chinstrap","island":"Dream","bill_length_mm":42.5,"bill_depth_mm":17.3,"flipper_length_mm":187,"body_mass_g":3350,"sex":"female","year":2009,"x":187,"y":42.5},{"species":"Chinstrap","island":"Dream","bill_length_mm":52.2,"bill_depth_mm":18.8,"flipper_length_mm":197,"body_mass_g":3450,"sex":"male","year":2009,"x":197,"y":52.2},{"species":"Chinstrap","island":"Dream","bill_length_mm":45.2,"bill_depth_mm":16.6,"flipper_length_mm":191,"body_mass_g":3250,"sex":"female","year":2009,"x":191,"y":45.2},{"species":"Chinstrap","island":"Dream","bill_length_mm":49.3,"bill_depth_mm":19.9,"flipper_length_mm":203,"body_mass_g":4050,"sex":"male","year":2009,"x":203,"y":49.3},{"species":"Chinstrap","island":"Dream","bill_length_mm":50.2,"bill_depth_mm":18.8,"flipper_length_mm":202,"body_mass_g":3800,"sex":"male","year":2009,"x":202,"y":50.2},{"species":"Chinstrap","island":"Dream","bill_length_mm":45.6,"bill_depth_mm":19.4,"flipper_length_mm":194,"body_mass_g":3525,"sex":"female","year":2009,"x":194,"y":45.6},{"species":"Chinstrap","island":"Dream","bill_length_mm":51.9,"bill_depth_mm":19.5,"flipper_length_mm":206,"body_mass_g":3950,"sex":"male","year":2009,"x":206,"y":51.9},{"species":"Chinstrap","island":"Dream","bill_length_mm":46.8,"bill_depth_mm":16.5,"flipper_length_mm":189,"body_mass_g":3650,"sex":"female","year":2009,"x":189,"y":46.8},{"species":"Chinstrap","island":"Dream","bill_length_mm":45.7,"bill_depth_mm":17,"flipper_length_mm":195,"body_mass_g":3650,"sex":"female","year":2009,"x":195,"y":45.7},{"species":"Chinstrap","island":"Dream","bill_length_mm":55.8,"bill_depth_mm":19.8,"flipper_length_mm":207,"body_mass_g":4000,"sex":"male","year":2009,"x":207,"y":55.8},{"species":"Chinstrap","island":"Dream","bill_length_mm":43.5,"bill_depth_mm":18.1,"flipper_length_mm":202,"body_mass_g":3400,"sex":"female","year":2009,"x":202,"y":43.5},{"species":"Chinstrap","island":"Dream","bill_length_mm":49.6,"bill_depth_mm":18.2,"flipper_length_mm":193,"body_mass_g":3775,"sex":"male","year":2009,"x":193,"y":49.6},{"species":"Chinstrap","island":"Dream","bill_length_mm":50.8,"bill_depth_mm":19,"flipper_length_mm":210,"body_mass_g":4100,"sex":"male","year":2009,"x":210,"y":50.8},{"species":"Chinstrap","island":"Dream","bill_length_mm":50.2,"bill_depth_mm":18.7,"flipper_length_mm":198,"body_mass_g":3775,"sex":"female","year":2009,"x":198,"y":50.2}],"type":"scatter"},{"name":"Gentoo","data":[{"species":"Gentoo","island":"Biscoe","bill_length_mm":46.1,"bill_depth_mm":13.2,"flipper_length_mm":211,"body_mass_g":4500,"sex":"female","year":2007,"x":211,"y":46.1},{"species":"Gentoo","island":"Biscoe","bill_length_mm":50,"bill_depth_mm":16.3,"flipper_length_mm":230,"body_mass_g":5700,"sex":"male","year":2007,"x":230,"y":50},{"species":"Gentoo","island":"Biscoe","bill_length_mm":48.7,"bill_depth_mm":14.1,"flipper_length_mm":210,"body_mass_g":4450,"sex":"female","year":2007,"x":210,"y":48.7},{"species":"Gentoo","island":"Biscoe","bill_length_mm":50,"bill_depth_mm":15.2,"flipper_length_mm":218,"body_mass_g":5700,"sex":"male","year":2007,"x":218,"y":50},{"species":"Gentoo","island":"Biscoe","bill_length_mm":47.6,"bill_depth_mm":14.5,"flipper_length_mm":215,"body_mass_g":5400,"sex":"male","year":2007,"x":215,"y":47.6},{"species":"Gentoo","island":"Biscoe","bill_length_mm":46.5,"bill_depth_mm":13.5,"flipper_length_mm":210,"body_mass_g":4550,"sex":"female","year":2007,"x":210,"y":46.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":45.4,"bill_depth_mm":14.6,"flipper_length_mm":211,"body_mass_g":4800,"sex":"female","year":2007,"x":211,"y":45.4},{"species":"Gentoo","island":"Biscoe","bill_length_mm":46.7,"bill_depth_mm":15.3,"flipper_length_mm":219,"body_mass_g":5200,"sex":"male","year":2007,"x":219,"y":46.7},{"species":"Gentoo","island":"Biscoe","bill_length_mm":43.3,"bill_depth_mm":13.4,"flipper_length_mm":209,"body_mass_g":4400,"sex":"female","year":2007,"x":209,"y":43.3},{"species":"Gentoo","island":"Biscoe","bill_length_mm":46.8,"bill_depth_mm":15.4,"flipper_length_mm":215,"body_mass_g":5150,"sex":"male","year":2007,"x":215,"y":46.8},{"species":"Gentoo","island":"Biscoe","bill_length_mm":40.9,"bill_depth_mm":13.7,"flipper_length_mm":214,"body_mass_g":4650,"sex":"female","year":2007,"x":214,"y":40.9},{"species":"Gentoo","island":"Biscoe","bill_length_mm":49,"bill_depth_mm":16.1,"flipper_length_mm":216,"body_mass_g":5550,"sex":"male","year":2007,"x":216,"y":49},{"species":"Gentoo","island":"Biscoe","bill_length_mm":45.5,"bill_depth_mm":13.7,"flipper_length_mm":214,"body_mass_g":4650,"sex":"female","year":2007,"x":214,"y":45.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":48.4,"bill_depth_mm":14.6,"flipper_length_mm":213,"body_mass_g":5850,"sex":"male","year":2007,"x":213,"y":48.4},{"species":"Gentoo","island":"Biscoe","bill_length_mm":45.8,"bill_depth_mm":14.6,"flipper_length_mm":210,"body_mass_g":4200,"sex":"female","year":2007,"x":210,"y":45.8},{"species":"Gentoo","island":"Biscoe","bill_length_mm":49.3,"bill_depth_mm":15.7,"flipper_length_mm":217,"body_mass_g":5850,"sex":"male","year":2007,"x":217,"y":49.3},{"species":"Gentoo","island":"Biscoe","bill_length_mm":42,"bill_depth_mm":13.5,"flipper_length_mm":210,"body_mass_g":4150,"sex":"female","year":2007,"x":210,"y":42},{"species":"Gentoo","island":"Biscoe","bill_length_mm":49.2,"bill_depth_mm":15.2,"flipper_length_mm":221,"body_mass_g":6300,"sex":"male","year":2007,"x":221,"y":49.2},{"species":"Gentoo","island":"Biscoe","bill_length_mm":46.2,"bill_depth_mm":14.5,"flipper_length_mm":209,"body_mass_g":4800,"sex":"female","year":2007,"x":209,"y":46.2},{"species":"Gentoo","island":"Biscoe","bill_length_mm":48.7,"bill_depth_mm":15.1,"flipper_length_mm":222,"body_mass_g":5350,"sex":"male","year":2007,"x":222,"y":48.7},{"species":"Gentoo","island":"Biscoe","bill_length_mm":50.2,"bill_depth_mm":14.3,"flipper_length_mm":218,"body_mass_g":5700,"sex":"male","year":2007,"x":218,"y":50.2},{"species":"Gentoo","island":"Biscoe","bill_length_mm":45.1,"bill_depth_mm":14.5,"flipper_length_mm":215,"body_mass_g":5000,"sex":"female","year":2007,"x":215,"y":45.1},{"species":"Gentoo","island":"Biscoe","bill_length_mm":46.5,"bill_depth_mm":14.5,"flipper_length_mm":213,"body_mass_g":4400,"sex":"female","year":2007,"x":213,"y":46.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":46.3,"bill_depth_mm":15.8,"flipper_length_mm":215,"body_mass_g":5050,"sex":"male","year":2007,"x":215,"y":46.3},{"species":"Gentoo","island":"Biscoe","bill_length_mm":42.9,"bill_depth_mm":13.1,"flipper_length_mm":215,"body_mass_g":5000,"sex":"female","year":2007,"x":215,"y":42.9},{"species":"Gentoo","island":"Biscoe","bill_length_mm":46.1,"bill_depth_mm":15.1,"flipper_length_mm":215,"body_mass_g":5100,"sex":"male","year":2007,"x":215,"y":46.1},{"species":"Gentoo","island":"Biscoe","bill_length_mm":44.5,"bill_depth_mm":14.3,"flipper_length_mm":216,"body_mass_g":4100,"sex":null,"year":2007,"x":216,"y":44.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":47.8,"bill_depth_mm":15,"flipper_length_mm":215,"body_mass_g":5650,"sex":"male","year":2007,"x":215,"y":47.8},{"species":"Gentoo","island":"Biscoe","bill_length_mm":48.2,"bill_depth_mm":14.3,"flipper_length_mm":210,"body_mass_g":4600,"sex":"female","year":2007,"x":210,"y":48.2},{"species":"Gentoo","island":"Biscoe","bill_length_mm":50,"bill_depth_mm":15.3,"flipper_length_mm":220,"body_mass_g":5550,"sex":"male","year":2007,"x":220,"y":50},{"species":"Gentoo","island":"Biscoe","bill_length_mm":47.3,"bill_depth_mm":15.3,"flipper_length_mm":222,"body_mass_g":5250,"sex":"male","year":2007,"x":222,"y":47.3},{"species":"Gentoo","island":"Biscoe","bill_length_mm":42.8,"bill_depth_mm":14.2,"flipper_length_mm":209,"body_mass_g":4700,"sex":"female","year":2007,"x":209,"y":42.8},{"species":"Gentoo","island":"Biscoe","bill_length_mm":45.1,"bill_depth_mm":14.5,"flipper_length_mm":207,"body_mass_g":5050,"sex":"female","year":2007,"x":207,"y":45.1},{"species":"Gentoo","island":"Biscoe","bill_length_mm":59.6,"bill_depth_mm":17,"flipper_length_mm":230,"body_mass_g":6050,"sex":"male","year":2007,"x":230,"y":59.6},{"species":"Gentoo","island":"Biscoe","bill_length_mm":49.1,"bill_depth_mm":14.8,"flipper_length_mm":220,"body_mass_g":5150,"sex":"female","year":2008,"x":220,"y":49.1},{"species":"Gentoo","island":"Biscoe","bill_length_mm":48.4,"bill_depth_mm":16.3,"flipper_length_mm":220,"body_mass_g":5400,"sex":"male","year":2008,"x":220,"y":48.4},{"species":"Gentoo","island":"Biscoe","bill_length_mm":42.6,"bill_depth_mm":13.7,"flipper_length_mm":213,"body_mass_g":4950,"sex":"female","year":2008,"x":213,"y":42.6},{"species":"Gentoo","island":"Biscoe","bill_length_mm":44.4,"bill_depth_mm":17.3,"flipper_length_mm":219,"body_mass_g":5250,"sex":"male","year":2008,"x":219,"y":44.4},{"species":"Gentoo","island":"Biscoe","bill_length_mm":44,"bill_depth_mm":13.6,"flipper_length_mm":208,"body_mass_g":4350,"sex":"female","year":2008,"x":208,"y":44},{"species":"Gentoo","island":"Biscoe","bill_length_mm":48.7,"bill_depth_mm":15.7,"flipper_length_mm":208,"body_mass_g":5350,"sex":"male","year":2008,"x":208,"y":48.7},{"species":"Gentoo","island":"Biscoe","bill_length_mm":42.7,"bill_depth_mm":13.7,"flipper_length_mm":208,"body_mass_g":3950,"sex":"female","year":2008,"x":208,"y":42.7},{"species":"Gentoo","island":"Biscoe","bill_length_mm":49.6,"bill_depth_mm":16,"flipper_length_mm":225,"body_mass_g":5700,"sex":"male","year":2008,"x":225,"y":49.6},{"species":"Gentoo","island":"Biscoe","bill_length_mm":45.3,"bill_depth_mm":13.7,"flipper_length_mm":210,"body_mass_g":4300,"sex":"female","year":2008,"x":210,"y":45.3},{"species":"Gentoo","island":"Biscoe","bill_length_mm":49.6,"bill_depth_mm":15,"flipper_length_mm":216,"body_mass_g":4750,"sex":"male","year":2008,"x":216,"y":49.6},{"species":"Gentoo","island":"Biscoe","bill_length_mm":50.5,"bill_depth_mm":15.9,"flipper_length_mm":222,"body_mass_g":5550,"sex":"male","year":2008,"x":222,"y":50.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":43.6,"bill_depth_mm":13.9,"flipper_length_mm":217,"body_mass_g":4900,"sex":"female","year":2008,"x":217,"y":43.6},{"species":"Gentoo","island":"Biscoe","bill_length_mm":45.5,"bill_depth_mm":13.9,"flipper_length_mm":210,"body_mass_g":4200,"sex":"female","year":2008,"x":210,"y":45.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":50.5,"bill_depth_mm":15.9,"flipper_length_mm":225,"body_mass_g":5400,"sex":"male","year":2008,"x":225,"y":50.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":44.9,"bill_depth_mm":13.3,"flipper_length_mm":213,"body_mass_g":5100,"sex":"female","year":2008,"x":213,"y":44.9},{"species":"Gentoo","island":"Biscoe","bill_length_mm":45.2,"bill_depth_mm":15.8,"flipper_length_mm":215,"body_mass_g":5300,"sex":"male","year":2008,"x":215,"y":45.2},{"species":"Gentoo","island":"Biscoe","bill_length_mm":46.6,"bill_depth_mm":14.2,"flipper_length_mm":210,"body_mass_g":4850,"sex":"female","year":2008,"x":210,"y":46.6},{"species":"Gentoo","island":"Biscoe","bill_length_mm":48.5,"bill_depth_mm":14.1,"flipper_length_mm":220,"body_mass_g":5300,"sex":"male","year":2008,"x":220,"y":48.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":45.1,"bill_depth_mm":14.4,"flipper_length_mm":210,"body_mass_g":4400,"sex":"female","year":2008,"x":210,"y":45.1},{"species":"Gentoo","island":"Biscoe","bill_length_mm":50.1,"bill_depth_mm":15,"flipper_length_mm":225,"body_mass_g":5000,"sex":"male","year":2008,"x":225,"y":50.1},{"species":"Gentoo","island":"Biscoe","bill_length_mm":46.5,"bill_depth_mm":14.4,"flipper_length_mm":217,"body_mass_g":4900,"sex":"female","year":2008,"x":217,"y":46.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":45,"bill_depth_mm":15.4,"flipper_length_mm":220,"body_mass_g":5050,"sex":"male","year":2008,"x":220,"y":45},{"species":"Gentoo","island":"Biscoe","bill_length_mm":43.8,"bill_depth_mm":13.9,"flipper_length_mm":208,"body_mass_g":4300,"sex":"female","year":2008,"x":208,"y":43.8},{"species":"Gentoo","island":"Biscoe","bill_length_mm":45.5,"bill_depth_mm":15,"flipper_length_mm":220,"body_mass_g":5000,"sex":"male","year":2008,"x":220,"y":45.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":43.2,"bill_depth_mm":14.5,"flipper_length_mm":208,"body_mass_g":4450,"sex":"female","year":2008,"x":208,"y":43.2},{"species":"Gentoo","island":"Biscoe","bill_length_mm":50.4,"bill_depth_mm":15.3,"flipper_length_mm":224,"body_mass_g":5550,"sex":"male","year":2008,"x":224,"y":50.4},{"species":"Gentoo","island":"Biscoe","bill_length_mm":45.3,"bill_depth_mm":13.8,"flipper_length_mm":208,"body_mass_g":4200,"sex":"female","year":2008,"x":208,"y":45.3},{"species":"Gentoo","island":"Biscoe","bill_length_mm":46.2,"bill_depth_mm":14.9,"flipper_length_mm":221,"body_mass_g":5300,"sex":"male","year":2008,"x":221,"y":46.2},{"species":"Gentoo","island":"Biscoe","bill_length_mm":45.7,"bill_depth_mm":13.9,"flipper_length_mm":214,"body_mass_g":4400,"sex":"female","year":2008,"x":214,"y":45.7},{"species":"Gentoo","island":"Biscoe","bill_length_mm":54.3,"bill_depth_mm":15.7,"flipper_length_mm":231,"body_mass_g":5650,"sex":"male","year":2008,"x":231,"y":54.3},{"species":"Gentoo","island":"Biscoe","bill_length_mm":45.8,"bill_depth_mm":14.2,"flipper_length_mm":219,"body_mass_g":4700,"sex":"female","year":2008,"x":219,"y":45.8},{"species":"Gentoo","island":"Biscoe","bill_length_mm":49.8,"bill_depth_mm":16.8,"flipper_length_mm":230,"body_mass_g":5700,"sex":"male","year":2008,"x":230,"y":49.8},{"species":"Gentoo","island":"Biscoe","bill_length_mm":46.2,"bill_depth_mm":14.4,"flipper_length_mm":214,"body_mass_g":4650,"sex":null,"year":2008,"x":214,"y":46.2},{"species":"Gentoo","island":"Biscoe","bill_length_mm":49.5,"bill_depth_mm":16.2,"flipper_length_mm":229,"body_mass_g":5800,"sex":"male","year":2008,"x":229,"y":49.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":43.5,"bill_depth_mm":14.2,"flipper_length_mm":220,"body_mass_g":4700,"sex":"female","year":2008,"x":220,"y":43.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":50.7,"bill_depth_mm":15,"flipper_length_mm":223,"body_mass_g":5550,"sex":"male","year":2008,"x":223,"y":50.7},{"species":"Gentoo","island":"Biscoe","bill_length_mm":47.7,"bill_depth_mm":15,"flipper_length_mm":216,"body_mass_g":4750,"sex":"female","year":2008,"x":216,"y":47.7},{"species":"Gentoo","island":"Biscoe","bill_length_mm":46.4,"bill_depth_mm":15.6,"flipper_length_mm":221,"body_mass_g":5000,"sex":"male","year":2008,"x":221,"y":46.4},{"species":"Gentoo","island":"Biscoe","bill_length_mm":48.2,"bill_depth_mm":15.6,"flipper_length_mm":221,"body_mass_g":5100,"sex":"male","year":2008,"x":221,"y":48.2},{"species":"Gentoo","island":"Biscoe","bill_length_mm":46.5,"bill_depth_mm":14.8,"flipper_length_mm":217,"body_mass_g":5200,"sex":"female","year":2008,"x":217,"y":46.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":46.4,"bill_depth_mm":15,"flipper_length_mm":216,"body_mass_g":4700,"sex":"female","year":2008,"x":216,"y":46.4},{"species":"Gentoo","island":"Biscoe","bill_length_mm":48.6,"bill_depth_mm":16,"flipper_length_mm":230,"body_mass_g":5800,"sex":"male","year":2008,"x":230,"y":48.6},{"species":"Gentoo","island":"Biscoe","bill_length_mm":47.5,"bill_depth_mm":14.2,"flipper_length_mm":209,"body_mass_g":4600,"sex":"female","year":2008,"x":209,"y":47.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":51.1,"bill_depth_mm":16.3,"flipper_length_mm":220,"body_mass_g":6000,"sex":"male","year":2008,"x":220,"y":51.1},{"species":"Gentoo","island":"Biscoe","bill_length_mm":45.2,"bill_depth_mm":13.8,"flipper_length_mm":215,"body_mass_g":4750,"sex":"female","year":2008,"x":215,"y":45.2},{"species":"Gentoo","island":"Biscoe","bill_length_mm":45.2,"bill_depth_mm":16.4,"flipper_length_mm":223,"body_mass_g":5950,"sex":"male","year":2008,"x":223,"y":45.2},{"species":"Gentoo","island":"Biscoe","bill_length_mm":49.1,"bill_depth_mm":14.5,"flipper_length_mm":212,"body_mass_g":4625,"sex":"female","year":2009,"x":212,"y":49.1},{"species":"Gentoo","island":"Biscoe","bill_length_mm":52.5,"bill_depth_mm":15.6,"flipper_length_mm":221,"body_mass_g":5450,"sex":"male","year":2009,"x":221,"y":52.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":47.4,"bill_depth_mm":14.6,"flipper_length_mm":212,"body_mass_g":4725,"sex":"female","year":2009,"x":212,"y":47.4},{"species":"Gentoo","island":"Biscoe","bill_length_mm":50,"bill_depth_mm":15.9,"flipper_length_mm":224,"body_mass_g":5350,"sex":"male","year":2009,"x":224,"y":50},{"species":"Gentoo","island":"Biscoe","bill_length_mm":44.9,"bill_depth_mm":13.8,"flipper_length_mm":212,"body_mass_g":4750,"sex":"female","year":2009,"x":212,"y":44.9},{"species":"Gentoo","island":"Biscoe","bill_length_mm":50.8,"bill_depth_mm":17.3,"flipper_length_mm":228,"body_mass_g":5600,"sex":"male","year":2009,"x":228,"y":50.8},{"species":"Gentoo","island":"Biscoe","bill_length_mm":43.4,"bill_depth_mm":14.4,"flipper_length_mm":218,"body_mass_g":4600,"sex":"female","year":2009,"x":218,"y":43.4},{"species":"Gentoo","island":"Biscoe","bill_length_mm":51.3,"bill_depth_mm":14.2,"flipper_length_mm":218,"body_mass_g":5300,"sex":"male","year":2009,"x":218,"y":51.3},{"species":"Gentoo","island":"Biscoe","bill_length_mm":47.5,"bill_depth_mm":14,"flipper_length_mm":212,"body_mass_g":4875,"sex":"female","year":2009,"x":212,"y":47.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":52.1,"bill_depth_mm":17,"flipper_length_mm":230,"body_mass_g":5550,"sex":"male","year":2009,"x":230,"y":52.1},{"species":"Gentoo","island":"Biscoe","bill_length_mm":47.5,"bill_depth_mm":15,"flipper_length_mm":218,"body_mass_g":4950,"sex":"female","year":2009,"x":218,"y":47.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":52.2,"bill_depth_mm":17.1,"flipper_length_mm":228,"body_mass_g":5400,"sex":"male","year":2009,"x":228,"y":52.2},{"species":"Gentoo","island":"Biscoe","bill_length_mm":45.5,"bill_depth_mm":14.5,"flipper_length_mm":212,"body_mass_g":4750,"sex":"female","year":2009,"x":212,"y":45.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":49.5,"bill_depth_mm":16.1,"flipper_length_mm":224,"body_mass_g":5650,"sex":"male","year":2009,"x":224,"y":49.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":44.5,"bill_depth_mm":14.7,"flipper_length_mm":214,"body_mass_g":4850,"sex":"female","year":2009,"x":214,"y":44.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":50.8,"bill_depth_mm":15.7,"flipper_length_mm":226,"body_mass_g":5200,"sex":"male","year":2009,"x":226,"y":50.8},{"species":"Gentoo","island":"Biscoe","bill_length_mm":49.4,"bill_depth_mm":15.8,"flipper_length_mm":216,"body_mass_g":4925,"sex":"male","year":2009,"x":216,"y":49.4},{"species":"Gentoo","island":"Biscoe","bill_length_mm":46.9,"bill_depth_mm":14.6,"flipper_length_mm":222,"body_mass_g":4875,"sex":"female","year":2009,"x":222,"y":46.9},{"species":"Gentoo","island":"Biscoe","bill_length_mm":48.4,"bill_depth_mm":14.4,"flipper_length_mm":203,"body_mass_g":4625,"sex":"female","year":2009,"x":203,"y":48.4},{"species":"Gentoo","island":"Biscoe","bill_length_mm":51.1,"bill_depth_mm":16.5,"flipper_length_mm":225,"body_mass_g":5250,"sex":"male","year":2009,"x":225,"y":51.1},{"species":"Gentoo","island":"Biscoe","bill_length_mm":48.5,"bill_depth_mm":15,"flipper_length_mm":219,"body_mass_g":4850,"sex":"female","year":2009,"x":219,"y":48.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":55.9,"bill_depth_mm":17,"flipper_length_mm":228,"body_mass_g":5600,"sex":"male","year":2009,"x":228,"y":55.9},{"species":"Gentoo","island":"Biscoe","bill_length_mm":47.2,"bill_depth_mm":15.5,"flipper_length_mm":215,"body_mass_g":4975,"sex":"female","year":2009,"x":215,"y":47.2},{"species":"Gentoo","island":"Biscoe","bill_length_mm":49.1,"bill_depth_mm":15,"flipper_length_mm":228,"body_mass_g":5500,"sex":"male","year":2009,"x":228,"y":49.1},{"species":"Gentoo","island":"Biscoe","bill_length_mm":47.3,"bill_depth_mm":13.8,"flipper_length_mm":216,"body_mass_g":4725,"sex":null,"year":2009,"x":216,"y":47.3},{"species":"Gentoo","island":"Biscoe","bill_length_mm":46.8,"bill_depth_mm":16.1,"flipper_length_mm":215,"body_mass_g":5500,"sex":"male","year":2009,"x":215,"y":46.8},{"species":"Gentoo","island":"Biscoe","bill_length_mm":41.7,"bill_depth_mm":14.7,"flipper_length_mm":210,"body_mass_g":4700,"sex":"female","year":2009,"x":210,"y":41.7},{"species":"Gentoo","island":"Biscoe","bill_length_mm":53.4,"bill_depth_mm":15.8,"flipper_length_mm":219,"body_mass_g":5500,"sex":"male","year":2009,"x":219,"y":53.4},{"species":"Gentoo","island":"Biscoe","bill_length_mm":43.3,"bill_depth_mm":14,"flipper_length_mm":208,"body_mass_g":4575,"sex":"female","year":2009,"x":208,"y":43.3},{"species":"Gentoo","island":"Biscoe","bill_length_mm":48.1,"bill_depth_mm":15.1,"flipper_length_mm":209,"body_mass_g":5500,"sex":"male","year":2009,"x":209,"y":48.1},{"species":"Gentoo","island":"Biscoe","bill_length_mm":50.5,"bill_depth_mm":15.2,"flipper_length_mm":216,"body_mass_g":5000,"sex":"female","year":2009,"x":216,"y":50.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":49.8,"bill_depth_mm":15.9,"flipper_length_mm":229,"body_mass_g":5950,"sex":"male","year":2009,"x":229,"y":49.8},{"species":"Gentoo","island":"Biscoe","bill_length_mm":43.5,"bill_depth_mm":15.2,"flipper_length_mm":213,"body_mass_g":4650,"sex":"female","year":2009,"x":213,"y":43.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":51.5,"bill_depth_mm":16.3,"flipper_length_mm":230,"body_mass_g":5500,"sex":"male","year":2009,"x":230,"y":51.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":46.2,"bill_depth_mm":14.1,"flipper_length_mm":217,"body_mass_g":4375,"sex":"female","year":2009,"x":217,"y":46.2},{"species":"Gentoo","island":"Biscoe","bill_length_mm":55.1,"bill_depth_mm":16,"flipper_length_mm":230,"body_mass_g":5850,"sex":"male","year":2009,"x":230,"y":55.1},{"species":"Gentoo","island":"Biscoe","bill_length_mm":44.5,"bill_depth_mm":15.7,"flipper_length_mm":217,"body_mass_g":4875,"sex":null,"year":2009,"x":217,"y":44.5},{"species":"Gentoo","island":"Biscoe","bill_length_mm":48.8,"bill_depth_mm":16.2,"flipper_length_mm":222,"body_mass_g":6000,"sex":"male","year":2009,"x":222,"y":48.8},{"species":"Gentoo","island":"Biscoe","bill_length_mm":47.2,"bill_depth_mm":13.7,"flipper_length_mm":214,"body_mass_g":4925,"sex":"female","year":2009,"x":214,"y":47.2},{"species":"Gentoo","island":"Biscoe","bill_length_mm":null,"bill_depth_mm":null,"flipper_length_mm":null,"body_mass_g":null,"sex":null,"year":2009,"x":null,"y":null},{"species":"Gentoo","island":"Biscoe","bill_length_mm":46.8,"bill_depth_mm":14.3,"flipper_length_mm":215,"body_mass_g":4850,"sex":"female","year":2009,"x":215,"y":46.8},{"species":"Gentoo","island":"Biscoe","bill_length_mm":50.4,"bill_depth_mm":15.7,"flipper_length_mm":222,"body_mass_g":5750,"sex":"male","year":2009,"x":222,"y":50.4},{"species":"Gentoo","island":"Biscoe","bill_length_mm":45.2,"bill_depth_mm":14.8,"flipper_length_mm":212,"body_mass_g":5200,"sex":"female","year":2009,"x":212,"y":45.2},{"species":"Gentoo","island":"Biscoe","bill_length_mm":49.9,"bill_depth_mm":16.1,"flipper_length_mm":213,"body_mass_g":5400,"sex":"male","year":2009,"x":213,"y":49.9}],"type":"scatter"}],"xAxis":{"type":"linear","title":{"text":"flipper_length_mm"},"categories":null}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+]
+
+---
+class: hide-logo
+
+.center[
+## (Interactive) Rapportages
+
+&lt;img src="https://i.imgur.com/gj17ADh.png" style="width: 90%;"/&gt;
+]
+---
+class: hide-logo
+
+.center[
+## Dashboards
+
+&lt;iframe src="https://demo.appsilon.ai/apps/shiny-enterprise-demo/" style="height:500px; width:100%; "&gt;&lt;/iframe&gt;
+]
+---
+
+# ZorgfocuZ en R
+
+--
+
+* Het advies is om R te integreren om zowel SPSS als Excel te vervangen bij het maken van rapportages.
+
+--
+
+* Als de basis staat is het mogelijk om:
+  + Data eenvoudig in te lezen
+  + Data op te schonen en om te vormen naar wat jij nodig hebt
+  + Visualisaties en analyses te maken zonder uitgebreide programmeerkennis
+  + Visualisaties met één klik te reproduceren
+
+---
+
+class: inverse
+
+# Voorbeeldje
+
+---
+
+## Inlezen van SPSS file
+
+
+
+```r
+df &lt;- read_spss('Gemeente Y Werkbestand.sav') %&gt;%
+  as_factor() 
+
+df %&gt;%
+  as_tibble()
+```
+
+
+
+```
+## # A tibble: 248 x 5
+##    V1                          V2                  V3_SQ001 V3_SQ002 V5_SQ001   
+##    &lt;fct&gt;                       &lt;fct&gt;               &lt;fct&gt;    &lt;fct&gt;    &lt;fct&gt;      
+##  1 Financiële vergoeding voor~ Ja, de eerste keer  Ja       Ja       Ja         
+##  2 Hulp bij het huishouden     Nee, ik heb deze v~ Nee      Nee      Niet gesel~
+##  3 Rolstoel                    Ja, de eerste keer  Nee      Nee      Niet gesel~
+##  4 Financiële vergoeding voor~ Nee, ik heb deze v~ Nee      Nee      Niet gesel~
+##  5 Anders                      Ja, de eerste keer  Ja       Ja       Niet gesel~
+##  6 Scootmobiel                 Nee, ik heb deze v~ Ja       Ja       Niet gesel~
+##  7 Anders                      Nee, ik heb deze v~ Nee      &lt;NA&gt;     Niet gesel~
+##  8 Woonvoorziening/woningaanp~ Ja, de eerste keer  Nee      &lt;NA&gt;     Niet gesel~
+##  9 Persoonlijke begeleiding e~ Nee, ik heb deze v~ Nee      Nee      Niet gesel~
+## 10 Collectief vervoer (Omnibu~ Nee, ik heb deze v~ Ja       Nee      Niet gesel~
+## # ... with 238 more rows
+```
+
+---
+
+## Staafgrafiek 2-punts schaal
+
+
+```r
+df %&gt;%
+  enkele_vraag_binair(var = "V2") +
+  theme_zorgfocuz()
+```
+
+![](r_introsessie_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+---
+
+## Staafgrafiek 5-punts schaal
+
+
+```r
+df %&gt;%
+  meerdere_vragen_5_punt(var_prefix = "V7") +
+  theme_zorgfocuz(legend_left = T, base_size = 16)
+```
+
+![](r_introsessie_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+---
+
+## Thema functie
+
+
+```r
+theme_zorgfocuz &lt;- function(base_size = 16, legend_left = F){
+  
+  font_family &lt;- 'Calibri'
+  border_color &lt;- "#18AD99"
+  text_color &lt;- "#595959"
+  title_size = base_size
+  text_size = base_size * 0.65
+  axis_size = base_size * 0.60
+  legend_size = base_size * 0.50
+  
+  theme &lt;- theme_minimal() %+replace% 
+    theme(
+      # Text elementen
+      text = element_text(family = font_family,
+                          color = text_color,
+                          size = text_size),
+      axis.text = element_text(size = axis_size),
+      legend.text = element_text(size = legend_size),
+      # Plot elementen
+      plot.title = element_text(hjust  = 0.5, size = title_size),
+      plot.subtitle = element_text(hjust  = 0.5, size = text_size),
+      plot.background = element_rect(color = border_color, size = 1),
+      
+      
+      # Legenda elementen
+      legend.position = 'bottom',
+      legend.justification = 'center', 
+      panel.grid.minor =element_blank()
+    )
+  ....
+}
+```
+
+
+
+
+---
+
+
+class: inverse
+
+# Volgende stappen
+
+Mocht er besloten worden om de overstap naar R te maken dan zijn dit de volgende stappen:
+
+--
+
+* Het oprichten van een Expert team
+
+--
+
+* Het opzetten van R infrastructuur voor ZorgfocuZ
+
+--
+
+* Het opzetten van alle thema’s en functies
+
+--
+
+* Training in het gebruik van R
+
+--
+
+* Ondersteuning bij het rapporteren in R
+
+---
+class: inverse
+
+.center[
+# Bedankt!
+
+&lt;br&gt;
+.white[&lt;b&gt;Achteraf nog vragen? Mail ons gerust.&lt;/b&gt;] 
+&lt;br&gt;
+&lt;a href="mailto:info@chartwise.nl"&gt;
+.white[&lt;svg viewBox="0 0 512 512" style="height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"&gt;&lt;/path&gt;&lt;/svg&gt;  info@chartwise.nl]
+&lt;/a&gt;
+&lt;br&gt;&lt;br&gt;
+
+.white[&lt;b&gt;Wij zijn ook bereikbaar via:&lt;/b&gt;]
+&lt;br&gt;
+
+&lt;a href="https://www.instagram.com/chartwisenl/?hl=nl"&gt;
+.white[&lt;svg viewBox="0 0 448 512" style="height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"&gt;&lt;/path&gt;&lt;/svg&gt;  @chartwiseNL]
+&lt;/a&gt;
+
+&lt;a href="https://www.facebook.com/ChartwiseNL"&gt;
+.white[&lt;svg viewBox="0 0 512 512" style="height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"&gt;&lt;/path&gt;&lt;/svg&gt;  @chartwiseNL]
+&lt;/a&gt;
+
+&lt;a href="https://www.linkedin.com/company/chartwise"&gt;
+.white[&lt;svg viewBox="0 0 448 512" style="height:1em;fill:currentColor;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"&gt;&lt;/path&gt;&lt;/svg&gt;  @Chartwise]
+&lt;/a&gt;
+]
+
+---
+
+# Bonus voorbeeld
+
+---
+
+## Grafiek Opbouwen
+
+1) Allereerst kijken we even naar de data die we hebben.
+  * We halen alle missende waarden weg
+  * We berekenen de proportie
+
+
+
+```r
+df %&gt;%
+  count(V2) %&gt;%
+* filter(!is.na(V2)) %&gt;%
+* mutate(proportie = n / sum(n)) %&gt;%
+  add_kable()
+```
+
+&lt;table class="table" style="font-size: 14px; font-family: Lato; "&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; V2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; proportie &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Ja, de eerste keer &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 118 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.53 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Nee, ik heb deze voorziening al eens aangevraagd &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 105 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.47 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+
+---
+
+## Grafiek Opbouwen
+
+2) Vervolgens gaan we de data visualiseren.
+  * We maken een gestapelde staafgrafiek
+
+.panelset[
+.panel[.panel-name[Code]
+
+```r
+v2_data %&gt;%
+  ggplot(aes(x = vraag,
+             y = proportie,
+             fill = fct_rev(V2)))+
+* geom_col(position = position_stack(), width = 0.8)
+```
+]
+.panel[.panel-name[Plot]
+![](r_introsessie_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+]]
+
+---
+
+## Grafiek Opbouwen
+
+3) We geven aan dat we tekst in het midden van de staven willen zien.
+  
+.panelset[
+.panel[.panel-name[Code]
+
+```r
+v2_data %&gt;%
+  ggplot(aes(x = vraag,
+             y = proportie,
+             fill = fct_rev(V2)))+
+  geom_col(position = position_stack(), width = 0.8) +
+* geom_text(aes(label = scales::percent(proportie)),
+*           position = position_stack(0.5),
+*           color = 'white',
+*           fontface= 'bold')
+```
+]
+.panel[.panel-name[Plot]
+![](r_introsessie_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+]]
+
+---
+
+## Grafiek Opbouwen
+
+4) We voegen schalen toe, voor de X-as, de Y-as en de groepen.
+  
+.panelset[
+.panel[.panel-name[Code]
+
+```r
+v2_data %&gt;%
+  ggplot(aes(x = vraag,
+             y = proportie,
+             fill = fct_rev(V2)))+
+  geom_col(position = position_stack(), width = 0.8) +
+  geom_text(aes(label = scales::percent(proportie)), 
+            position = position_stack(0.5), 
+            color = 'white', 
+            fontface= 'bold') +
+* scale_x_discrete(labels = scales::wrap_format(30))+
+* scale_y_continuous(labels = scales::percent,
+*                    breaks = scales::pretty_breaks(10))+
+* scale_fill_manual(name = '',
+*                   values = c("#C84963", "#37b69c"))
+```
+]
+.panel[.panel-name[Plot]
+![](r_introsessie_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+]]
+
+---
+
+## Grafiek Opbouwen
+
+5) We maken de grafiek af door deze te draaien, een titel toe te voegen, en de legenda goed te zetten.
+  
+.panelset[
+.panel[.panel-name[Code]
+
+```r
+v2_data %&gt;%
+  ggplot(aes(x = vraag,
+             y = proportie,
+             fill = fct_rev(V2)))+
+  geom_col(position = position_stack(), width = 0.8) +
+  geom_text(aes(label = scales::percent(proportie)), 
+            position = position_stack(0.5), 
+            color = 'white', 
+            fontface= 'bold') +
+  scale_x_discrete(labels = scales::wrap_format(30))+ 
+  scale_y_continuous(labels = scales::percent, 
+                     breaks = scales::pretty_breaks(10))+ 
+  scale_fill_manual(name = '',
+                    values = c("#C84963", "#37b69c")) +
+* coord_flip() +
+* guides(fill = guide_legend(reverse = TRUE)) +
+* labs(x = '',
+*      y = '',
+*      title = str_wrap(titel, 60))
+```
+]
+.panel[.panel-name[Plot]
+![](r_introsessie_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+]]
+
+---
+
+## Grafiek Opbouwen
+
+6) Tenslotte voegen we het gemaakte ZorgfocuZ thema toe.
+  
+.panelset[
+.panel[.panel-name[Code]
+
+```r
+titel &lt;- "Is het voor het eerst dat u deze voorziening (zoals u aangegeven heeft bij de vorige vraag) aanvraagt bij de gemeente? (n=223)"
+  
+v2_data %&gt;%
+  ggplot(aes(x = vraag,
+             y = proportie,
+             fill = fct_rev(V2)))+
+  geom_col(position = position_stack(), width = 0.8) +
+  geom_text(aes(label = scales::percent(proportie)), 
+            position = position_stack(0.5), 
+            color = 'white', 
+            fontface= 'bold') +
+  scale_x_discrete(labels = scales::wrap_format(30))+ 
+  scale_y_continuous(labels = scales::percent, 
+                     breaks = scales::pretty_breaks(10))+ 
+  scale_fill_manual(name = '',
+                    values = c("#C84963", "#37b69c")) +
+  coord_flip() + 
+  guides(fill = guide_legend(reverse = TRUE)) + 
+  labs(x = '', 
+       y = '', 
+       title = str_wrap(titel, 60)) +
+* theme_zorgfocuz()
+```
+]
+.panel[.panel-name[Plot]
+![](r_introsessie_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+]]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "tomorrow-night-blue",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

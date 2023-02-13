@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chartwise | Data Consultancy</title>
+    <link>/</link>
+    <description>Recent content on Chartwise | Data Consultancy</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright &amp;copy; 2020 Chartwise All Rights Reserved</copyright>
+    <lastBuildDate>Sun, 24 May 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Drankgebruik in Nederland | Chartwise - Datavisualisatie &amp; Data Consultancy</title>
+      <link>/blog/drankgebruik-in-nederland/</link>
+      <pubDate>Sun, 24 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/drankgebruik-in-nederland/</guid>
+      <description>Loop jij de laatste weken ook iets vaker naar de glasbak dan je lief is?
+Dan is de kans aanwezig dat jij inmiddels wordt gezien als overmatig drinker.</description>
+    </item>
+    
+    <item>
+      <title>Wat is datavisualisatie? | Chartwise - Datavisualisatie &amp; Data Consultancy</title>
+      <link>/blog/wat-is-datavisualisatie/</link>
+      <pubDate>Tue, 07 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/wat-is-datavisualisatie/</guid>
+      <description>Het is een mooi woord voor galgje: datavisualisatie. Maar wat is dit nou precies en wat kun je ermee? Wij krijgen deze vraag steeds vaker en leggen het graag aan je uit!</description>
+    </item>
+    
+    <item>
+      <title>Data Consultancy | Chartwise</title>
+      <link>/service/data-consultancy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/service/data-consultancy/</guid>
+      <description>Wij helpen jouw organisatie met al jullie datavragen. Dit kan uiteenlopen van het bepalen van de data strategie, tot het doen van een uitgebreide data analyse. Welke service jouw organisatie ook nodig heeft, wij nemen van begin tot eind zoveel mogelijk zorgen en werk uit handen.</description>
+    </item>
+    
+    <item>
+      <title>Datavisualisatie | Chartwise - Data Consultancy</title>
+      <link>/service/datavisualisatie/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/service/datavisualisatie/</guid>
+      <description>Een goede visualisatie zegt meer dan duizend woorden. Door data en informatie te visualiseren, wordt het namelijk mogelijk om trends, uitschieters en patronen in data te zien en te begrijpen. Daarnaast is het ook een sprekende manier om informatie te communiceren richting belangrijke stakeholders zoals werknemers, managers of klanten.</description>
+    </item>
+    
+    <item>
+      <title>Marktonderzoek | Chartwise - Data Consultancy</title>
+      <link>/service/marktonderzoek/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/service/marktonderzoek/</guid>
+      <description>Bruikbare en betrouwbare data vormen de basis voor het nemen van de juiste beslissingen. Toch zien wij vaak dat er bij het verzamelen van data nog wel eens iets mis gaat.</description>
+    </item>
+    
+    <item>
+      <title>Rob Storm | Chartwise - Data Consultancy</title>
+      <link>/author/rob-storm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/author/rob-storm/</guid>
+      <description>Het creatieve brein achter Chartwise. Met mijn ervaring in zowel online- als offline marketing help ik jouw bedrijf graag met het realiseren van groei.</description>
+    </item>
+    
+    <item>
+      <title>Stefan Musch | Chartwise - Data Consultancy</title>
+      <link>/author/stefan-musch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/author/stefan-musch/</guid>
+      <description>Met mijn passie voor feiten en ervaring als lead Data Scientist is jouw data in goede handen. Ik help jouw organisatie graag met het vertalen van lastige bedrijfsproblemen naar oplossingen aan de hand van data.</description>
+    </item>
+    
+    <item>
+      <title>Trainingen | Chartwise - Data Consultancy</title>
+      <link>/service/data-trainingen/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/service/data-trainingen/</guid>
+      <description>Worden de visualisaties binnen jouw bedrijf nog steeds gemaakt in Word 3D? Of moeten de CTRL, C en V toetsen van jouw data-team regelmatig worden vervangen? Dan is het hoog tijd voor een van onze Data Trainingen in R.</description>
+    </item>
+    
+  </channel>
+</rss>

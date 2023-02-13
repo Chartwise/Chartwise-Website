@@ -1,0 +1,65 @@
+---
+title: Wat is datavisualisatie? | Chartwise - Data Consultancy
+blog_title: Wat is datavisualisatie?
+author: Rob Storm
+date: '2020-04-07'
+slug: wat-is-datavisualisatie
+image: images/blog/2020-01-31-bevolkingsgroei-plot.png
+page_title: Blog
+description: 'Datavisualisatie is het grafisch weergeven van data en informatie. Dit kan door middel van visuele elementen zoals onder andere: grafieken, kaarten en diagrammen. Door data en informatie te visualiseren, wordt het mogelijk om trends, uitschieters en patronen in data te zien en te begrijpen.'
+bg_image: images/company/code.jpg
+draft: false
+categories:
+  - Datavisualisatie
+tags:
+  - Datavisualisatie
+type: "post"
+---
+
+```{r setup, include=FALSE}
+# Global R Chunk settings
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE,
+                      eval = TRUE,
+                      fig.height =6,
+                      fig.width = 6,
+                      fig.align = "center") 
+
+```
+
+**Het is een mooi woord voor galgje: datavisualisatie. Maar wat is dit nou precies en wat kun je ermee? Wij krijgen deze vraag steeds vaker en leggen het graag aan je uit!**
+  
+  
+Datavisualisatie is het grafisch weergeven van data en informatie. Dit kan door middel van visuele elementen zoals onder andere: *grafieken*, *kaarten* en *diagrammen*. Door data en informatie te visualiseren, wordt het mogelijk om trends, uitschieters en patronen in data te zien en te begrijpen. 
+
+**Een voorbeeld:**
+
+Het CBS heeft een prognose gemaakt van de bevolkingsgroei in Nederland in 2035. Hieronder een greep uit de data:
+
+```{r}
+library(readxl)
+library(magrittr)
+library(dplyr)
+library(knitr)
+library(kableExtra)
+
+bvgroei <- read_xlsx('../../../../chartwiseR/inst/chartwise-projects/data/Chartwise-datasets.xlsx', sheet = 'bevolkingsgroei')
+
+bvgroei %>% 
+  head(10) %>% 
+  select(Gemeente =1,`Huidig Inwonersaantal (x 1.000)`= `2020`, `Prognose 2035 (x 1.000)` = `2035`) %>%
+  kable(format = 'html') %>%
+  kable_styling(bootstrap_options = c('striped', 'hover'), full_width = FALSE, position = 'left')
+
+```
+
+Op  het eerste gezicht lijkt deze data eenvoudig te interpreteren. Dit zijn echter slechts 10 van de 355 gemeenten in Nederland. Je kunt je waarschijnlijk voorstellen dat de totale tabel behoorlijk groot moet zijn en dat het erg lastig wordt om hier trends en patronen in te zien. 
+
+**Datavisualisatie** biedt de uitkomst. Door deze cijfers per gemeente te plotten in een kaart van Nederland geeft dit duidelijke inzichten. Met name het gebruik van verschillende kleuren kan enorm helpen. Zo kunnen wij uit onderstaande voorbeeld concluderen dat gemeenten in het noorden van Nederland naar verwachting zullen krimpen in bevolkingsgroei. Dit terwijl het westen en het midden van Nederland hoogstwaarschijnlijk een flinke groei zullen doormaken. 
+
+![](/images/blog/2020-01-31-bevolkingsgroei-plot.png)
+
+Door de juiste data om te zetten in een visualisatie, is het eenvoudiger om de data te interpreteren en om op basis daarvan belangrijke beslissingen te maken. 
+
+**Enthousiast geworden? Houd onze site in de gaten voor onze volgende blog of neem [contact](/contact) met ons op om te bespreken hoe wij jou kunnen helpen met het maken van datavisualisaties.**

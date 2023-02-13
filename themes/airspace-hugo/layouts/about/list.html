@@ -1,0 +1,122 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+{{ if $data.about.about.enable }}
+{{ with $data.about.about }}
+<section class="about section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="about-img">
+          <img class="img-responsive" src="{{ .image | relURL }}">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h2 class="mt-40">{{ .title | markdownify }}</h2>
+        <p>{{ .content | markdownify }}</p>
+        {{ if .button.enable }}
+        {{ with .button }}
+        <a href="{{ .link | relURL }}" class="btn btn-small mt-20">{{ .label }}</a>
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
+    <div class="row counter-box text-center mt-50">
+      {{ range .funfacts }}
+      <div class="col-md-2">
+        <div class="counter-item">
+          <i class="{{ .icon }}"></i>
+          <h4 class="count" data-count="{{ .count }}">0</h4>
+          <span>{{ .name }}</span>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+{{ if $data.about.team.enable }}
+{{ with $data.about.team }}
+<section class="about team section">
+  <div class="container text-center">
+	<div class="row">
+		 <div class="section-title">
+			<h2>{{ .title | markdownify }}</h2>
+		</div>
+	</div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="about-img">
+          <img class="img-responsive" style = 'max-width:50%; display: inline-block;' src="{{ .image1 | relURL }}">
+        </div>
+		<h2 class="mt-40">{{ .name1 | markdownify }}</h2>
+		<h4 class="mt-10">{{ .functie1 | markdownify }}</h4>
+		<p> {{ .description1 | markdownify }} </p>
+		<ul class="list-inline">
+			{{ range .social1 }}
+			<li class="list-inline-item"><a class="share-icon bg-secondary" href="{{ .link | safeURL}}" target = "_blank"><i
+						class="{{ .icon }}"></i></a></li>
+			{{ end }}
+		</ul> 
+      </div>
+	   <div class="col-md-6">
+        <div class="about-img">
+          <img class="img-responsive" style = 'max-width:50%; display: inline-block;' src="{{ .image2 | relURL }}">
+        </div>
+		<h2 class="mt-40">{{ .name2 | markdownify }}</h2>
+		<h4 class="mt-10">{{ .functie2 | markdownify }}</h4>
+		<p> {{ .description2 | markdownify }} </p>
+		<ul class="list-inline">
+			{{ range .social2 }}
+			<li class="list-inline-item"><a class="share-icon bg-secondary" href="{{ .link | safeURL}}" target = "_blank"><i
+						class="{{ .icon }}"></i></a></li>
+			{{ end }}
+		</ul>
+      </div>
+	</div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+{{ if $data.about.features.enable }}
+{{ with $data.about.features }}
+<section class="about-feature bg-dark section dark-service">
+  <div class="container">
+    {{ with .title }}
+    <div class="row">
+      <div class="col-md-12">
+        <div class="title">
+          <h2>{{ . | markdownify }}</h2>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+    <div class="row">
+      {{ range .feature_item }}
+      <div class="col-md-4">
+        <div class="service-item">
+          <i class="{{ .icon }}"></i>
+          <h4>{{ .name | markdownify }}</h4>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+
+<!-- Call to action -->
+{{ if $data.about.cta.enable }}
+{{ partial "cta.html" . }}
+{{ end }}
+<!-- /Call to action -->
+
+{{ end }}

@@ -1,0 +1,99 @@
+############################### Banner ##############################
+banner:
+  enable : true
+  bg_image : "images/data-grid.png"
+  side_image: "images/favicon.png"
+  title : "jouw data, onze zorg."
+  content : "Bij Chartwise worden wij enthousiast van data. Met onze expertise helpen wij organisaties om het maximale uit data te halen. Hierbij begeleiden wij jouw project van begin tot eind met de beste zorg."
+  button:
+    enable : false
+    label : "BEKIJK HIER ONS PORTFOLIO OP INSTAGRAM"
+    link : "https://www.instagram.com/chartwisenl/"
+
+############################# About #################################
+about:
+  enable : false
+  title : "Wat ons uniek maakt"
+  description : "Anders dan het traditionele nieuws gebruikt Chartwise minder woorden en juist méér data. Wij zijn er namelijk van overtuigd dat op de hoogte blijven van het meest belangrijke nieuws veel sneller moet kunnen."
+  content : "Door het nieuws te visualiseren besparen wij jou je kostbare tijd en bieden we nieuwe inzichten. 
+            Wij merken dat deze content bijzonder goed aanslaat bij millennials zoals wij zelf. 
+            92% van onze achterban is dan ook tussen de 18 en de 34 jaar oud. 
+            Chartwise zorgt ervoor dat je altijd de slimste in de kamer bent!"
+  image : "images/wrapper-img.png"
+
+
+
+############################# Service ############################
+service:
+  enable : true
+  # service content comes from "data/*/service.yml" file
+
+
+######################### Portfolio ###############################
+portfolio:
+  enable : false
+  bg_image : "images/wat-wij-maken.png"
+  title : "Wat wij maken"
+  content : "
+  Hiernaast een greep uit de visualisaties die wij tot dusverre hebben gemaakt. 
+  Wij bieden de mogelijkheid om met relevante content te adverteren op ons platform.
+  Daarnaast kunnen wij ook helpen bij het inzichtelijk maken van de data van jouw bedrijf. 
+  
+  Benieuwd naar de rest van ons werk?
+  "
+  button:
+    enable : true
+    label : "Bekijk ons Portfolio"
+    link : "https://www.instagram.com/chartwisenl/"
+
+
+############################ call to action ###########################
+cta:
+  enable : true
+  bg_image : "images/call-to-action-bg.jpg"
+  title : "Kennismaken?"
+  content : "Nieuwsgierig geworden? Neem contact met ons op om de mogelijkheden te bespreken. Wij staan je graag te woord!"
+  button:
+    enable : true
+    label : "Contact"
+    link : "contact/"
+
+############################# Funfacts ###############################
+funfacts:
+  enable : true
+  title : "Onze Data"
+  description : ""
+  funfact_item:
+    # funfacts item loop
+    - icon : "ion-coffee" #ionicon pack v2 : https://ionicons.com/v2/
+      name : "Kopjes koffie"
+      count : "236"
+      
+    # funfacts item loop
+    - icon : "ion-image" #ionicon pack v2 : https://ionicons.com/v2/
+      name : "Datavisualisaties gemaakt"
+      count : "112"
+      
+    # funfacts item loop
+    - icon : "ion-social-instagram" #ionicon pack v2 : https://ionicons.com/v2/
+      name : "Instagram posts"
+      count : "72"
+      
+    # funfacts item loop
+    - icon : "ion-ios-people" #ionicon pack v2 : https://ionicons.com/v2/
+      name : "Instagram volgers"
+      count : "5000"
+
+  testimonial_slider:
+    # testimonial item loop
+    - name : "Rob Storm"
+      image : "images/teams/Rob.png"
+      designation : "Brand Manager"
+      content : "Het creatieve brein achter Chartwise. Met mijn ervaring in zowel online- als offline marketing help ik jouw bedrijf graag met het realiseren van groei."
+                
+    # testimonial item loop
+    - name : "Stefan Musch"
+      image : "images/teams/Stefan.png"
+      designation : "Data Manager"
+      content : "Met mijn passie voor feiten en ervaring als lead Data Scientist is jouw data in goede handen. Ik help jouw organisatie graag met het vertalen van lastige bedrijfsproblemen naar oplossingen aan de hand van data."
+                

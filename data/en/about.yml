@@ -1,0 +1,157 @@
+################################## About #####################################
+about:
+  enable : true
+  image : "images/favicon.png"
+  title : "Het verhaal achter Chartwise"
+  content : "Grafieken, onderzoek, data.. Wij: Stefan Musch en Rob Storm, realiseren ons dat niet iedereen hier meteen even enthousiast van wordt. Met onze achtergrond in marketing en met onze passie voor data leek het ons een mooie uitdaging om daar verandering in te brengen!
+  <br />
+  <br />
+  Dit begon door dagelijks, actuele onderwerpen met betrekking tot sport, economie, politiek en entertainment in aantrekkelijke visualisaties te gieten en te delen op social media (bekijk deze visualisaties <a href='https://www.instagram.com/chartwisenl/' target='_blank'>hier</a>).Dit concept sloeg al snel aan en zorgde ervoor dat Chartwise van een uit de hand gelopen hobby uitgroeide tot een full-service data bedrijf.
+  <br />
+  <br />
+  Wij helpen bedrijven en organisaties om data te vertalen naar waardevolle inzichten. Hierbij helpen wij jou van begin tot eind en nemen wij zoveel mogelijk zorgen uit handen. Enthousiast geworden om samen met ons het maximale uit jouw data te halen?
+  <br />
+  "
+
+  button:
+    enable : true
+    label : "Neem contact op"
+    link : "/contact/"
+
+  #funfacts:
+    # funfacts loop
+    #- icon : "ion-ios-flask-outline" #ionicon pack v2 : https://ionicons.com/v2/
+    #  name : "Completed Projects"
+    #  count : "349"
+      
+    # funfacts loop
+    #- icon : "ion-ios-flame-outline" #ionicon pack v2 : https://ionicons.com/v2/
+    #  name : "Lines Of Code"
+    #  count : "35000"
+      
+    # funfacts loop
+    #- icon : "ion-ios-pint-outline" #ionicon pack v2 : https://ionicons.com/v2/
+    #  name : "Satisfied Customer"
+    # count : "70"
+      
+    # funfacts loop
+    #- icon : "ion-ios-wineglass-outline" #ionicon pack v2 : https://ionicons.com/v2/
+    #  name : "Awards Winner"
+    #  count : "10"
+      
+    # funfacts loop
+    #- icon : "ion-ios-chatboxes-outline" #ionicon pack v2 : https://ionicons.com/v2/
+    #  name : "Satisfied Customer"
+    #  count : "75"
+      
+    # funfacts loop
+    #- icon : "ion-ios-body-outline" #ionicon pack v2 : https://ionicons.com/v2/
+    #  name : "Awards Winner"
+    #  count : "20"
+
+################################ profiles #####################################
+team:
+  enable : true
+  title: "Ons Team"
+  image1 : "images/teams/Rob.png"
+  name1 : "Rob Storm"
+  functie1: "Brand Manager"
+  description1: "Het creatieve brein achter Chartwise. Met mijn ervaring in zowel online- als offline marketing help ik jouw bedrijf graag met het realiseren van groei."
+  social1:
+    - icon: ion-social-linkedin
+      link: 'https://www.linkedin.com/in/robstormm/'
+    - icon: ion-social-instagram
+      link: 'https://www.instagram.com/rob.stormm/'
+    - icon: ion-email
+      link: 'mailto:rob@chartwise.nl'
+  image2: "images/teams/Stefan.png"
+  name2: "Stefan Musch"
+  functie2: "Data Manager"
+  description2: "Met mijn passie voor feiten en ervaring als lead Data Scientist is jouw data in goede handen. 
+  Ik help jouw organisatie graag met het vertalen van lastige bedrijfsproblemen naar oplossingen aan de hand van data."
+  social2:
+    - icon: ion-social-linkedin
+      link: 'https://www.linkedin.com/in/stefanmusch/'
+    - icon: ion-social-twitter
+      link: 'https://twitter.com/Stefan_Musch'
+    - icon: ion-email
+      link: 'mailto:stefan@chartwise.nl'
+    
+################################ feature #####################################
+features:
+  enable : false
+  title : "We are indepented Design & Development Agency"
+  feature_item:
+    # feature item loop
+    - icon : "ion-ios-color-filter-outline" #ionicon pack v2 : https://ionicons.com/v2/
+      name : "IOS App Development"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut"
+      
+    # feature item loop
+    - icon : "ion-ios-unlocked-outline" #ionicon pack v2 : https://ionicons.com/v2/
+      name : "App Secutity"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut"
+      
+    # feature item loop
+    - icon : "ion-ios-game-controller-b-outline" #ionicon pack v2 : https://ionicons.com/v2/
+      name : "Games Development"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut"
+      
+    # feature item loop
+    - icon : "ion-ios-mic-outline" #ionicon pack v2 : https://ionicons.com/v2/
+      name : "Animation and Editing"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut"
+      
+    # feature item loop
+    - icon : "ion-ios-lightbulb-outline" #ionicon pack v2 : https://ionicons.com/v2/
+      name : "UI/UX Design"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut"
+      
+    # feature item loop
+    - icon : "ion-ios-star-outline" #ionicon pack v2 : https://ionicons.com/v2/
+      name : "Branding"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut"
+    
+
+#################################### testimonial & mission vision #######################################
+mission_vision:
+  enable : false
+  tabs:
+    # tab item loop
+    - name : "Vision"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore nobis ducimus facere repellat
+      harum, eius cupiditate, aliquam aut deserunt. Nemo illo ex impedit autem quod nobis architecto, velit
+      quasi, aut voluptas porro natus. Fuga magnam perspiciatis fugit, placeat possimus officia non ducimus
+      voluptatum aspernatur ad quidem neque accusantium repudiandae cupiditate nobis corporis, cum facere
+      iusto, modi cumque consectetur saepe. Officia, molestiae tempore! Consequatur ipsa consequuntur saepe
+      suscipit vero laudantium, mollitia, quaerat soluta nihil non tempore, quos dignissimos quasi ab officiis
+      illum numquam quibusdam ducimus, veritatis ad. Quia, aliquid. Quaerat quos ducimus ipsam amet minus
+      temporibus eos sequi alias hic nemo."
+      
+    # tab item loop
+    - name : "Mission"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore nobis ducimus facere repellat
+      harum, eius cupiditate, aliquam aut deserunt. Nemo illo ex impedit autem quod nobis architecto, velit
+      quasi, aut voluptas porro natus. Fuga magnam perspiciatis fugit, placeat possimus officia non ducimus
+      voluptatum aspernatur ad quidem neque accusantium repudiandae cupiditate nobis corporis, cum facere
+      iusto, modi cumque consectetur saepe. Officia, molestiae tempore! Consequatur ipsa consequuntur saepe
+      suscipit vero laudantium, mollitia, quaerat soluta nihil non tempore, quos dignissimos quasi ab officiis
+      illum numquam quibusdam ducimus, veritatis ad. Quia, aliquid. Quaerat quos ducimus ipsam amet minus
+      temporibus eos sequi alias hic nemo."
+      
+    # tab item loop
+    - name : "Approach"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore nobis ducimus facere repellat
+      harum, eius cupiditate, aliquam aut deserunt. Nemo illo ex impedit autem quod nobis architecto, velit
+      quasi, aut voluptas porro natus. Fuga magnam perspiciatis fugit, placeat possimus officia non ducimus
+      voluptatum aspernatur ad quidem neque accusantium repudiandae cupiditate nobis corporis, cum facere
+      iusto, modi cumque consectetur saepe. Officia, molestiae tempore! Consequatur ipsa consequuntur saepe
+      suscipit vero laudantium, mollitia, quaerat soluta nihil non tempore, quos dignissimos quasi ab officiis
+      illum numquam quibusdam ducimus, veritatis ad. Quia, aliquid. Quaerat quos ducimus ipsam amet minus
+      temporibus eos sequi alias hic nemo."
+
+
+############################# call to action #################################
+cta:
+  enable : true
+  # call to action content comes from "data/*/homepage.yml"

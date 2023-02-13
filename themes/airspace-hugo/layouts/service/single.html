@@ -1,0 +1,36 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+<section class="portfolio-single-page section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="project-content mt-20">
+          {{ .Content }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div id = "first" class="col-md-6">
+        <div class="project-details">
+          <h4>Waar kunnen wij mee helpen?</h4>
+          <ul>
+          {{ range .Params.Information }}
+            <li>{{ .info | markdownify }}</li>
+          {{ end }}  
+          </ul>
+		  <p><b> {{.Params.label | markdownify}}</b></p>
+		  <a href="/contact/" class="btn btn-small mt-20">{{.Params.button_label }}</a>
+        </div>
+      </div>
+      <div id = "second" class="col-md-6">
+        <img class="img-responsive w-100" src="{{ .Params.Image | relURL }}" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}
